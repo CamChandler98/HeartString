@@ -59,6 +59,7 @@ const SignUpForm = () => {
     <form onSubmit={onSignUp}>
         <label htmlFor= 'profile-pic'>
             <input
+                type='file'
                 id = 'profile-pic'
                 onChange = {updateImage}
             />
