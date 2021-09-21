@@ -1,3 +1,4 @@
+from app.api.aws import public_file_upload
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
@@ -61,9 +62,22 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+
     if form.validate_on_submit():
+
+        profile_picture_url = None
+        try:
+            uploaded_file = request.files['image']
+            profile_picture_url = public_file_upload(uploaded_file, 'PUTBUCKETNAME')
+
+        except KeyError:
+            profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
+
         user = User(
             username=form.data['username'],
+            display_name = form.data['displayName'],
+            profile_picture_url = profile_picture_url,
             email=form.data['email'],
             password=form.data['password']
         )
