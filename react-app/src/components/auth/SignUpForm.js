@@ -9,6 +9,8 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [image, setImage] = useState('')
+  const [displayName, setDisplayName] = useState('')
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -38,12 +40,29 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const updateDisplayName = (e) => {
+    setDisplayName(e.target.value);
+  };
+  const updateImage = (e) => {
+    e.preventDefault()
+    const file = e.target.files[0];
+    if (file){
+        setImage(file);
+    }
+  }
+
   if (user) {
     return <Redirect to='/' />;
   }
 
   return (
     <form onSubmit={onSignUp}>
+        <label htmlFor= 'profile-pic'>
+            <input
+                id = 'profile-pic'
+                onChange = {updateImage}
+            />
+        </label>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -56,6 +75,15 @@ const SignUpForm = () => {
           name='username'
           onChange={updateUsername}
           value={username}
+        ></input>
+      </div>
+      <div>
+        <label>Display Name</label>
+        <input
+          type='text'
+          name='display_name'
+          onChange={updateDisplayName}
+          value={displayName}
         ></input>
       </div>
       <div>
