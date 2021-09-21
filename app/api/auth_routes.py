@@ -69,7 +69,7 @@ def sign_up():
         profile_picture_url = None
         try:
             uploaded_file = request.files['image']
-            profile_picture_url = public_file_upload(uploaded_file, 'PUTBUCKETNAME')
+            profile_picture_url = public_file_upload(uploaded_file, 'heartstringawsbuckect')
 
         except KeyError:
             profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
