@@ -1,1 +1,17 @@
-/* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@300;500&display=swap');
+
+*{
+    font-family: "Raleway",Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
+body, header, nav {
+    font-size: 1rem;
+    color: inherit;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-weight: normal;
+}

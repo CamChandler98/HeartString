@@ -1,0 +1,181 @@
+.form-header{
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.profile-pic-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0px;
+}
+.profile-pic{
+
+    box-sizing: border-box;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 0px;
+    width:90px;
+    height:90px;
+
+}
+.form-button {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    background-color: #90d5c6;
+    font-size: 14px;
+    border-radius: 6px;
+    text-justify: center;
+    font-weight:bold;
+    letter-spacing: 7px;
+}
+
+.form-button:hover {
+    background-color: #81c7b8;
+}
+
+.signup {
+    margin-top: 5px;
+}
+/*wrap form */
+.form-container {
+    width: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 245, 245);
+    padding: 10% 10%;
+    gap: 10px;
+    box-shadow: 2px 2px 1px 0px rgba(68, 67, 67, 0.623);
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.form-container h2 {
+    text-align: center;
+    margin: 5px 10px 25px;
+}
+/* wrap label and inputs with .form group div */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 1% 5%;
+    padding: 2%;
+    font-size: 24px;
+}
+.form-group label{
+    font-size: 19px;
+}
+.form-fields{
+    display:flex;
+    margin:0;
+    gap:20px;
+
+}
+.field-child{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-group:focus-within{
+    color: #fb6888;
+    border-color: #fb6888
+}
+/* give inputs .form-control class*/
+.form-control {
+    margin: 0px 0px 0px ;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgb(32, 30, 30);
+    height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+.form-control:focus {
+    border-color: #fb6888
+}
+/* add to text area instead of .form-control */
+.text-control {
+    margin: 2px 0px 20px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgb(32, 30, 30);
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    padding: 5%;
+    resize: none;
+}
+
+.text-review {
+    border: 1px solid;
+}
+
+select.form-control {
+    width: 20%;
+}
+
+#edit-content {
+    display: flex;
+    flex-direction: column;
+}
+.edit-center {
+    align-self: center;
+    font-weight: bold;
+}
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error p{
+    color: red;
+}
+
+.error li {
+    /* display: flex;
+    flex-direction: column; */
+    color: red;
+    list-style-position: inside;
+    text-align: center;
+}
+
+.form-group  p {
+    text-align: center;
+}
+
+a.form-group {
+    box-sizing: content-box;
+    margin-top: 0px;
+    text-decoration: none;
+}
+
+
+.placeholder{
+  margin:2%;
+  width:90px;
+  height: 90px;
+  object-fit: cover;
+}
+input[type="file"]{
+  display: none;
+  margin:0;
+}
+
+.remove{
+  height: 20px;
+  width: 20px;
+  margin:0;
+  align-self: flex-end;
+  margin-bottom: 2px;
+  margin-left: -15px;
+}
+
+.remove:hover{
+    filter: invert(50%) sepia(86%) saturate(1211%) hue-rotate(311deg) brightness(105%) contrast(97%);
+}
