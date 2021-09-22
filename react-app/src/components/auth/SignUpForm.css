@@ -179,3 +179,11 @@ input[type="file"]{
 .remove:hover{
     filter: invert(50%) sepia(86%) saturate(1211%) hue-rotate(311deg) brightness(105%) contrast(97%);
 }
+
+.errors-list{
+    margin-top: 3px;
+}
+.error{
+    color: red;
+    list-style: none;
+}

@@ -92,6 +92,7 @@ export const signUp = (username, email, password, image, displayName) => async (
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
+        console.log('errors to react' ,data.errors)
       return data.errors;
     }
   } else {

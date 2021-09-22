@@ -8,8 +8,15 @@ import uploadProfileIcon from './graphics/upload-profile-picture-icon.svg'
 import removeIcon from './graphics/remove-icon.svg'
 const SignUpForm = () => {
 
-    console.log('displaying signup form')
-  const [errors, setErrors] = useState([]);
+  let errorObj = {
+      username: [],
+      email: [],
+      password: [],
+      display_name: [],
+      confirmPassword: []
+  }
+
+  const [errors, setErrors] = useState(errorObj);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,11 +32,12 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, image, displayName));
       if (data) {
-        setErrors(data)
+          console.log('setting these errors on the form ->>>', data)
+        setErrors({...data})
       }
     }
     else{
-        setErrors(["Looks like your passwords don't match"])
+        setErrors({...errors, confirmPassword: ['sorry looks like your passwords dont match']})
     }
   };
 
@@ -84,6 +92,7 @@ const SignUpForm = () => {
                 type='file'
                 id = 'profile-pic'
                 onChange = {updateImage}
+                accept="image/*"
             />
             <img
                 src = {tempImageUrl ? tempImageUrl: uploadProfileIcon}
@@ -99,9 +108,9 @@ const SignUpForm = () => {
         </label>
       <div
       >
-        {errors.map((error, ind) => (
+        {/* {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))}
+        ))} */}
       </div>
       <div className = 'form-fields'>
           <div className = 'field-child'>
@@ -114,6 +123,17 @@ const SignUpForm = () => {
           value={username}
           className = 'form-control'
         ></input>
+        {errors.username &&
+            <ul className = 'errors-list'>
+            {errors.username.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
       <div className = 'form-group'>
         <label>Display Name</label>
@@ -124,6 +144,17 @@ const SignUpForm = () => {
           value={displayName}
           className = 'form-control'
         ></input>
+            {errors.display_name &&
+            <ul className = 'errors-list'>
+            {errors.display_name.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
       <div className = 'form-group'>
         <label>Email</label>
@@ -134,6 +165,17 @@ const SignUpForm = () => {
           value={email}
           className = 'form-control'
         ></input>
+            {errors.email &&
+            <ul className = 'errors-list'>
+            {errors.email.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
       </div>
       <div className = 'field-child'>
@@ -146,6 +188,17 @@ const SignUpForm = () => {
           value={password}
           className = 'form-control'
         ></input>
+            {errors.password &&
+            <ul className = 'errors-list'>
+            {errors.password.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
       <div className = 'form-group'>
         <label>Confirm Password</label>
@@ -157,6 +210,17 @@ const SignUpForm = () => {
           required={true}
           className = 'form-control'
         ></input>
+            {errors.confirmPassword &&
+            <ul className = 'errors-list'>
+            {errors.confirmPassword.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
         </div>
         </div>
       </div>
