@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 const FormStyle = styled.div`
-background-color:red
+input[type="file"]{
+    display: none;
+    margin:0;
+  }
 .form-container {
     width: 500px;
     height: auto;
@@ -96,6 +99,24 @@ background-color:red
   .remove:hover{
       filter: invert(50%) sepia(86%) saturate(1211%) hue-rotate(311deg) brightness(105%) contrast(97%);
   }
+  .form-button {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    background-color: #90d5c6;
+    font-size: 14px;
+    border-radius: 6px;
+    text-justify: center;
+    font-weight:bold;
+    letter-spacing: 7px;
+}
+
+.form-button:hover {
+    background-color: #81c7b8;
+}
 
 .errors-list{
     margin-top: 3px;
