@@ -5,12 +5,16 @@ from app.models import Heart, db
 
 heart_routes = Blueprint('hearts', __name__)
 
+
+@heart_routes.route('/')
+def hearts():
+    hearts = Heart.query.all()
+
+    return {heart.id:heart.to_dict() for heart in hearts}
+    
 @heart_routes.route('/<int:id>')
 def heart(id):
-    print('getting heart id', id)
-    all_hearts = Heart.query.all()
-    open_hearts = Heart.query.filter(Heart.content == 'test').all()
-    print('all hearts', all_hearts)
-    print('should be here', open_hearts)
 
-    return 'test'
+    heart = Heart.query.get(id)
+
+    return heart.to_dict()
