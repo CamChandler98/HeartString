@@ -82,9 +82,6 @@ const SignUpForm = ({closeModal}) => {
     }
   }
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
 
   return (
       <FormStyle>

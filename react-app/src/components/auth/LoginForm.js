@@ -4,13 +4,13 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import FormStyle from './FormStyle';
 
-const LoginForm = () => {
+const LoginForm = ({closeModal}) => {
 
   let errorObj = {
     credential: [],
     password: [],
 }
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState(errorObj);
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -22,6 +22,7 @@ const LoginForm = () => {
     if (data) {
       setErrors({...data});
     }
+    closeModal()
   };
 
   const updateCredential = (e) => {
@@ -32,9 +33,6 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
 
   return (
       <FormStyle>
