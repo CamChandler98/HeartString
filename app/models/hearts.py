@@ -6,6 +6,7 @@ class Heart(db.Model):
     __tablename__ = 'hearts'
 
     id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     content = db.Column(db.Text(), nullable = False)
     open = db.Column(db.Boolean(), nullable = False)
     time_to_live = db.Column(db.Integer(), nullable = False)
@@ -13,9 +14,8 @@ class Heart(db.Model):
     created_at = db.Column(db.DateTime(), default= datetime.datetime.now())
     updated_at = db.Column(db.DateTime(), default= datetime.datetime.now())
 
-    # def get_expiry(self):
-    #     return self.created_at.timestamp() + self.time_to_live
 
+    user = db.relationship('User', back_populates = 'hearts')
     @property
     def expiry(self):
         return self.created_at.timestamp() + self.time_to_live
@@ -23,6 +23,9 @@ class Heart(db.Model):
 
     def to_dict(self):
         return{
+            'display_name' : self.user.display_name,
+            'username': self.user.username,
+            'user_id':self.user_id,
             'content': self.content,
             'time_to_live': self.time_to_live,
             'content_url' : self.content_url,

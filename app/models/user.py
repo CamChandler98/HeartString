@@ -13,6 +13,8 @@ class User(db.Model, UserMixin):
     profile_picture_url = db.Column(db.String(), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+
+    hearts = db.relationship('Heart', back_populates = 'user')
     @property
     def password(self):
         return self.hashed_password
@@ -20,7 +22,7 @@ class User(db.Model, UserMixin):
     @password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
-    
+
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
