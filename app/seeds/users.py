@@ -3,16 +3,22 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
-
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    Romeo = User(
+        username='Romeow',
+        email= 'juliet@romeo.com',
+        display_name = 'Romeow',
+        password = 'password',
+        profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
+    )
+    Juliet = User(
+        username='Julion',
+        email= 'juliet@juliet.com',
+        display_name = 'Julion',
+        password = 'password',
+        profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
+    )
+    db.session.add(Romeo)
+    db.session.add(Juliet)
 
     db.session.commit()
 
