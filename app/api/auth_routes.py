@@ -1,3 +1,4 @@
+from app.api.aws import public_file_upload
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
@@ -11,11 +12,10 @@ def validation_errors_to_error_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
     """
-    errorMessages = []
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
-    return errorMessages
+    error_messages = {key:value for (key,value) in validation_errors.items()}
+
+
+    return error_messages
 
 
 @auth_routes.route('/')
@@ -61,16 +61,31 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+
     if form.validate_on_submit():
+
+        profile_picture_url = None
+        try:
+            uploaded_file = request.files['image']
+            profile_picture_url = public_file_upload(uploaded_file, 'heartstringawsbuckect')
+
+        except KeyError:
+            profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
+
         user = User(
             username=form.data['username'],
+            display_name = form.data['display_name'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            profile_picture_url = profile_picture_url,
         )
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
+
+    print('going to send thd', validation_errors_to_error_messages(form.errors))
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
