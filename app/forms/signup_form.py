@@ -21,10 +21,11 @@ def username_exists(form, field):
 
 def strong_password(form,field):
     password = field.data
-    if not re.fullmatch(r'[A-Za-z0-9]{8,}@#$%!^&+', password):
+    if not re.fullmatch(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}', password):
+
         raise ValidationError('Password must contain at least 8 characters that include at least 1 lowercase character, 1 uppercase character , 1 number and 1 special character(@#$%!^&)')
     else:
-        print(password, 'password looks good')
+  
 
 class SignUpForm(FlaskForm):
     username = StringField(

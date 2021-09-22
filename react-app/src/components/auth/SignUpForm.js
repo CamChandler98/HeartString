@@ -6,7 +6,7 @@ import './SignUpForm.css'
 
 import uploadProfileIcon from './graphics/upload-profile-picture-icon.svg'
 import removeIcon from './graphics/remove-icon.svg'
-const SignUpForm = () => {
+const SignUpForm = ({closeModal}) => {
 
   let errorObj = {
       username: [],
@@ -29,15 +29,19 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+
+    if(password !== repeatPassword){
+        setErrors({...errors, confirmPassword: ['sorry looks like your passwords dont match']})
+    }
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, image, displayName));
       if (data) {
           console.log('setting these errors on the form ->>>', data)
         setErrors({...data})
+      }else{
+        closeModal()
       }
-    }
-    else{
-        setErrors({...errors, confirmPassword: ['sorry looks like your passwords dont match']})
     }
   };
 
