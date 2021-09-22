@@ -6,9 +6,17 @@ import App from './App';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
 import { BrowserRouter } from 'react-router-dom';
+import * as heartActions from './store/hearts'
 
 const store = configureStore();
+if (process.env.NODE_ENV !== "production") {
+    window.store = store;
+  }
 
+  if (process.env.NODE_ENV !== 'production') {
+    window.store = store;
+    window.heartActions = heartActions
+  }
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
