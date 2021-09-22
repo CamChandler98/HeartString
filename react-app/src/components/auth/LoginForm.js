@@ -5,6 +5,11 @@ import { login } from '../../store/session';
 import FormStyle from './FormStyle';
 
 const LoginForm = () => {
+
+  let errorObj = {
+    credential: [],
+    password: [],
+}
   const [errors, setErrors] = useState([]);
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +20,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(credential, password));
     if (data) {
-      setErrors(data);
+      setErrors({...data});
     }
   };
 
@@ -34,11 +39,6 @@ const LoginForm = () => {
   return (
       <FormStyle>
     <form className='form-container' onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
       <div className = 'form-group'>
         <label htmlFor='credential'>Email or Username</label>
         <input
@@ -49,6 +49,17 @@ const LoginForm = () => {
           onChange={updateCredential}
           className= 'form-control'
         />
+            {errors.credential &&
+            <ul className = 'errors-list'>
+            {errors.credential.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
       <div className = 'form-group'>
         <label htmlFor='password'>Password</label>
@@ -60,8 +71,19 @@ const LoginForm = () => {
           onChange={updatePassword}
           className = 'form-control'
         />
-        <button className= 'form-button' type='submit'>Login</button>
+            {errors.password &&
+            <ul className = 'errors-list'>
+            {errors.password.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
+        <button className= 'form-button' type='submit'>Login</button>
     </form>
     </FormStyle>
   );
