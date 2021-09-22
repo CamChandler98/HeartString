@@ -6,21 +6,21 @@ import FormStyle from './FormStyle';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
+  const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(credential, password));
     if (data) {
       setErrors(data);
     }
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
+  const updateCredential = (e) => {
+    setCredential(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -40,13 +40,13 @@ const LoginForm = () => {
         ))}
       </div>
       <div className = 'form-group'>
-        <label htmlFor='email'>Email or Username</label>
+        <label htmlFor='credential'>Email or Username</label>
         <input
-          name='email'
+          name='credential'
           type='text'
           placeholder='Enter email or username'
-          value={email}
-          onChange={updateEmail}
+          value={credential}
+          onChange={updateCredential}
           className= 'form-control'
         />
       </div>
