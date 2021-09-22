@@ -1,5 +1,8 @@
 import os
 from flask import Flask, render_template, request, session, redirect
+
+
+from apscheduler.schedulers.background import BackgroundScheduler
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -8,10 +11,17 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.heart_routes import heart_routes
 
 from .seeds import seed_commands
 
 from .config import Config
+
+def sensor():
+    """ Function for test purposes. """
+    print("Scheduler is alive!")
+
+
 
 app = Flask(__name__)
 
@@ -31,9 +41,14 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(heart_routes, url_prefix = '/api/hearts' )
 db.init_app(app)
 Migrate(app, db)
 
+from app.tasks import heart_expiration
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(heart_expiration,'interval',seconds=7)
+sched.start()
 # Application Security
 CORS(app)
 
