@@ -41,6 +41,7 @@ input[type="file"]{
     display:flex;
     margin:0;
     gap:20px;
+    justify-content:center
 
 }
 .field-child{
@@ -54,6 +55,7 @@ input[type="file"]{
 }
 .form-control {
     margin: 0px 0px 0px ;
+    margin-bottom:10px;
     border: none;
     background: transparent;
     border-bottom: 1px solid rgb(32, 30, 30);
@@ -100,7 +102,7 @@ input[type="file"]{
       filter: invert(50%) sepia(86%) saturate(1211%) hue-rotate(311deg) brightness(105%) contrast(97%);
   }
   .form-button {
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 5px;
     height: 40px;
     color: rgb(255, 255, 255);
