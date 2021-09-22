@@ -77,3 +77,14 @@ def edit_heart():
         return {heart.id: heart.to_dict()}
 
     return{'errors': validation_errors_to_error_messages(form.errors)}
+
+
+@heart_routes.route('/<int:id>' ,methods = ['DELETE'])
+def delete_heart(id):
+
+    heart = Heart.query.get(id)
+
+    db.session.delete(heart)
+    db.session.commit()
+
+    return {'deleted': heart.id}
