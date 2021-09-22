@@ -5,23 +5,28 @@ def seed_hearts():
         content= 'test',
         open = True,
         time_to_live = 20,
+        user_id = 1,
+
     )
 
     heart2 = Heart(
         content= 'test',
         open = True,
         time_to_live = 100,
+        user_id = 2
     )
     heart3 = Heart(
         content= 'test',
         open = True,
         time_to_live = 180,
+        user_id = 1
     )
 
     heart4 = Heart(
         content= 'test',
         open = True,
         time_to_live = 180,
+        user_id = 2
     )
     db.session.add(heart)
     db.session.add(heart2)
