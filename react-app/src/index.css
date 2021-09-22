@@ -15,3 +15,8 @@ body, header, nav {
     outline: 0;
     font-weight: normal;
 }
+
+#root{
+    height: 100vh;
+    display: flex;
+}

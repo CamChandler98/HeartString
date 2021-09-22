@@ -4,8 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 // import './SignUpForm.css'
 
-import uploadProfileIcon from './graphics/upload-profile-picture-icon.svg'
-import removeIcon from './graphics/remove-icon.svg'
+import uploadProfileIcon from '../graphics/upload-profile-picture-icon.svg'
+import removeIcon from '../graphics/remove-icon.svg'
 import FormStyle from './FormStyle';
 const SignUpForm = ({closeModal}) => {
 
