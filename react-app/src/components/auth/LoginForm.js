@@ -2,24 +2,30 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import FormStyle from './FormStyle';
 
 const LoginForm = () => {
+
+  let errorObj = {
+    credential: [],
+    password: [],
+}
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
+  const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(credential, password));
     if (data) {
-      setErrors(data);
+      setErrors({...data});
     }
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
+  const updateCredential = (e) => {
+    setCredential(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -31,23 +37,31 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <FormStyle>
+    <form className='form-container' onSubmit={onLogin}>
+      <div className = 'form-group'>
+        <label htmlFor='credential'>Email or Username</label>
         <input
-          name='email'
+          name='credential'
           type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
+          placeholder='Enter email or username'
+          value={credential}
+          onChange={updateCredential}
+          className= 'form-control'
         />
+            {errors.credential &&
+            <ul className = 'errors-list'>
+            {errors.credential.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
-      <div>
+      <div className = 'form-group'>
         <label htmlFor='password'>Password</label>
         <input
           name='password'
@@ -55,10 +69,23 @@ const LoginForm = () => {
           placeholder='Password'
           value={password}
           onChange={updatePassword}
+          className = 'form-control'
         />
-        <button type='submit'>Login</button>
+            {errors.password &&
+            <ul className = 'errors-list'>
+            {errors.password.map((error, i) => {
+                return (
+                        <li className = 'error' key = {i}>
+                            {error}
+                        </li>
+                )
+            })}
+            </ul>
+        }
       </div>
+        <button className= 'form-button' type='submit'>Login</button>
     </form>
+    </FormStyle>
   );
 };
 
