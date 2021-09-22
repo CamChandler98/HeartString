@@ -23,9 +23,10 @@ class Heart(db.Model):
 
     def to_dict(self):
         return{
+            'id':self.id,
+            'user_id':self.user_id,
             'display_name' : self.user.display_name,
             'username': self.user.username,
-            'user_id':self.user_id,
             'content': self.content,
             'time_to_live': self.time_to_live,
             'content_url' : self.content_url,

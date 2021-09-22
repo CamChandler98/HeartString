@@ -1,3 +1,4 @@
+from datetime import datetime
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms.heart_form import HeartForm
 from app.api.aws import public_file_upload
@@ -52,5 +53,27 @@ def create_heart():
         db.session.add(heart)
         db.session.commit()
         return {heart.id: heart.to_dict()}
-        
+
+    return{'errors': validation_errors_to_error_messages(form.errors)}
+
+@heart_routes.route('/edit', methods= ['POST'])
+def edit_heart():
+    form = HeartForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        heart_id = request.form['heart_id']
+        content_url = request.form['content_url']
+        content = form.data['content']
+
+        heart = Heart.query.get(int(heart_id))
+
+        heart.content = content if content else heart.content
+
+        heart.content_url = content_url if content_url else heart.content_url
+        heart.updated_at = datetime.now()
+        db.session.add(heart)
+        db.session.commit()
+
+        return {heart.id: heart.to_dict()}
+
     return{'errors': validation_errors_to_error_messages(form.errors)}
