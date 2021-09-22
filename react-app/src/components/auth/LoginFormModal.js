@@ -18,7 +18,7 @@ const LoginFormModal = () => {
 
     return(
         <>
-        <button onClick={handleClick}>
+        <button className = 'login-button' onClick={handleClick}>
             Login
         </button>
         {showModal &&

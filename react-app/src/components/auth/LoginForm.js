@@ -21,8 +21,11 @@ const LoginForm = ({closeModal}) => {
     const data = await dispatch(login(credential, password));
     if (data) {
       setErrors({...data});
+    }else{
+
+        closeModal()
+
     }
-    closeModal()
   };
 
   const updateCredential = (e) => {
