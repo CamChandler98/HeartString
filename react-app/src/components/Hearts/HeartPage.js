@@ -14,3 +14,5 @@ const HeartPage = ({hearts}) => {
         </div>
     )
 }
+
+export default HeartPage
