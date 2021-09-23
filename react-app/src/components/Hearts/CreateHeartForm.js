@@ -5,7 +5,7 @@ import createHeartIcon from '../graphics/create-heart-icon.svg'
 import { goAddHeart } from '../../store/hearts';
 
 import './CreateHeartForm.css'
-const CreateHeartForm = () => {
+const CreateHeartForm = ({closeModal}) => {
 
     const errorObj = {
         content:null,
@@ -27,6 +27,8 @@ const CreateHeartForm = () => {
         let data = await dispatch(goAddHeart({content,image,time_to_live, user_id}))
         if(data){
             setErrors({...data})
+        }else{
+            closeModal()
         }
     }
 
