@@ -21,8 +21,8 @@ const CreateHeartModal = () => {
         <>
         <img onClick={handleClick}  src ={createHeartButton} alt= 'post new heart'/>
         {showModal &&
-            <Modal onClose = {() => setShowModal(false)}>
-                <CreateHeartForm />
+            <Modal  onClose = {() => setShowModal(false)}>
+                <CreateHeartForm closeModal = {closeModal} />
             </Modal>
         }
 
