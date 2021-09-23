@@ -17,7 +17,7 @@ class Heart(db.Model):
 
     user = db.relationship('User', back_populates = 'hearts')
 
-    replies = db.relationship('Re')
+    replies = db.relationship('Reply', back_populates = 'post')
 
     @property
     def expiry(self):
