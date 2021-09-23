@@ -59,10 +59,11 @@ def create_heart():
 @heart_routes.route('/edit', methods= ['POST'])
 def edit_heart():
     form = HeartForm()
+    data = request.get_json()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        heart_id = request.form['heart_id']
-        content_url = request.form['content_url']
+        heart_id = data['heart_id']
+        content_url = data['content_url']
         content = form.data['content']
 
         heart = Heart.query.get(int(heart_id))

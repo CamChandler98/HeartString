@@ -52,6 +52,7 @@ def create_reply():
         )
         db.session.add(reply)
         db.session.commit()
+
         return reply.to_dict()
 
     return{'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -77,7 +78,7 @@ def edit_heart():
 
         return reply.to_dict()
 
-    return{'errors': validation_errors_to_error_messages(form.errors)}
+    return{'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @reply_routes.route('/<int:id>' ,methods = ['DELETE'])

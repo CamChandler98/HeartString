@@ -50,7 +50,7 @@ Migrate(app, db)
 from app.tasks import heart_expiration
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(heart_expiration,'interval',seconds=50)
-sched.start()
+# sched.start()
 # Application Security
 CORS(app)
 
