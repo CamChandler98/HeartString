@@ -25,12 +25,17 @@ def reply(id):
 
     return reply.to_dict()
 @reply_routes.route('/user/<int:id>')
-def user_repleis(id):
+def user_replies(id):
 
-    user_repleis = Reply.query.filter(Reply.user_id == int(id)).all()
+    user_replies = Reply.query.filter(Reply.user_id == int(id)).all()
 
-    return {reply.id:reply.to_dict() for reply in user_repleis}
+    return {reply.id:reply.to_dict() for reply in user_replies}
 
+@reply_routes.route('/heart/<id:int>')
+def heart_replies(id):
+    heart_replies = Reply.query.filter(Reply.heart_id == int(id)).all()
+
+    return {reply.id:reply.to_dict() for reply in heart_replies}
 
 @reply_routes.route('/', methods = ['POST'])
 def create_heart():
