@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { authenticate } from './store/session';
 import AuthReminder from './components/Nav/AuthReminder';
+import Home from './Home/Home';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,7 +31,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        
+        <Route path = '/home' exact = {true}>
+            <Home />
+        </Route>
       </Switch>
       {!sessionUser &&<AuthReminder />}
     </BrowserRouter>

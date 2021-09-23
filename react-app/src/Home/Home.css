@@ -1,0 +1,15 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    min-width:800px;
+    border: 1px solid #5b626679;
+}
+.home-header{
+    border-bottom: solid 1px #5b626679;
+    padding: 2%;
+}
+
+.home-header span{
+    font-size: 20px;
+    font-weight: bold;
+}

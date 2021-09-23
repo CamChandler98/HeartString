@@ -9,6 +9,11 @@ const NavStyle = styled.nav`
     flex-direction: column;
     align-items: center;
 
+    img{
+        padding: 0px;
+        width:40px;
+        height:40px;
+    }
 
 `
 export default NavStyle

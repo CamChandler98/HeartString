@@ -12,8 +12,8 @@ const ProfilePictureStyle = styled.div`
         object-fit: cover;
         border-radius: 50%;
         padding: 0px;
-        width:70px;
-        height:70px;
+        width:40px;
+        height:40px;
     }
 `
 const ProfilePicture = ({user}) => {

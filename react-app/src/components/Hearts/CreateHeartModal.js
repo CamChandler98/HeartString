@@ -4,6 +4,7 @@ import { Modal } from "../../context/Modal";
 import CreateHeartForm from "./CreateHeartForm";
 
 import createHeartButton from "../graphics/create-heart-button.svg"
+import CreateHeartFormStyle from "./CreateHeartFormStyle";
 
 
 const CreateHeartModal = () => {
@@ -23,7 +24,9 @@ const CreateHeartModal = () => {
         <img onClick={handleClick}  src ={createHeartButton} alt= 'post new heart'/>
         {showModal &&
             <Modal  onClose = {() => setShowModal(false)}>
+                <CreateHeartFormStyle>
                 <CreateHeartForm closeModal = {closeModal} />
+                </CreateHeartFormStyle>
             </Modal>
         }
 

@@ -55,8 +55,7 @@ const CreateHeartForm = ({closeModal}) => {
        setTempImgUrl('')
  }
 
-    return(
-        <CreateHeartFormStyle>
+    return(<>
         {user && <form className= 'create-heart-form' onSubmit = {submitHeart}>
             <div className = 'photo-content'>
             <label htmlFor = 'heart-content'></label>
@@ -138,7 +137,7 @@ const CreateHeartForm = ({closeModal}) => {
                 submit
             </button>
         </form>}
-        </CreateHeartFormStyle>
+        </>
     )
 }
 
