@@ -6,14 +6,14 @@ class Reply(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
-    post_id = db.Column(db.Integer(), db.ForeignKey('posts.id'))
+    heart_id = db.Column(db.Integer(), db.ForeignKey('hearts.id'))
     content = db.Column(db.Text(), nullable = False)
     created_at = db.Column(db.DateTime(), default= datetime.datetime.now())
     updated_at = db.Column(db.DateTime(), default= datetime.datetime.now())
 
     user = db.relationship('User', back_populates = 'replies')
 
-    post = db.relationship('Post', back_populates = 'replies')
+    heart = db.relationship('Heart', back_populates = 'replies')
 
 
     def to_dict(self):
