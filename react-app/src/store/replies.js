@@ -104,7 +104,7 @@ export const goUpdateReply = ({reply_id,heart_id,user_id,content}) => async (dis
 
 
 export const goDeleteReply = (reply_id) => async (dispatch) => {
-    const res = await fetch(`/api/reply/${reply_id}`,{
+    const res = await fetch(`/api/replies/${reply_id}`,{
         method: 'DELETE'
     })
 
