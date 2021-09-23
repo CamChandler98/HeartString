@@ -3,21 +3,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import createHeartIcon from '../graphics/create-heart-icon.svg'
 import { goAddHeart } from '../../store/hearts';
+
+import './CreateHeartForm.css'
 const CreateHeartForm = () => {
 
+    const errorObj = {
+        content:null,
+        time_to_live:null
+    }
 
     const dispatch = useDispatch()
     const [content, setContent] = useState('')
     const [image, setImage] = useState(null)
     const [tempImgUrl, setTempImgUrl] = useState('')
     const [time_to_live, setTimeToLive] = useState(300)
+    const [errors, setErrors] = useState(errorObj)
 
     const user = useSelector(state => state.session.user)
 
-    const submitHeart = (e) => {
+    const submitHeart = async (e) => {
         e.preventDefault()
         let user_id = user.id
-        dispatch(goAddHeart({content,image,time_to_live, user_id}))
+        let data = await dispatch(goAddHeart({content,image,time_to_live, user_id}))
+        if(data){
+            setErrors({...data})
+        }
     }
 
     const updateContent = (e) => {
@@ -42,55 +52,84 @@ const CreateHeartForm = () => {
 
     return(
         <>
-        {user && <form onSubmit = {submitHeart}>
-            <div>
-            <label htmlFor = 'review-content'></label>
+        {user && <form className= 'create-heart-form' onSubmit = {submitHeart}>
+            <div className = 'photo-content'>
+            <label htmlFor = 'heart-content'></label>
+            <div className = 'text-errors'>
                 <textarea
-                    id = 'review-content'
+                    id = 'heart-content'
                     cols = '30'
                     rows ='5'
                     onChange= {updateContent}
-                    placeholder = 'Let the world know how you feel'
+                    placeholder = 'Let the world know how you feel....'
                     value = {content}
                 >
                 </textarea>
-            </div>
-            <div>
-            <label htmlFor ='add-photo'>
-                    <input id ='add-photo' type="file" onChange={updateFile} />
+
+                </div>
+            <label className = 'add-heart-photo' htmlFor ='add-photo'>
+                    <input
+                        id ='add-photo'
+                        type="file"
+                        onChange={updateFile}
+                        />
+
                        <img src = {tempImgUrl ? tempImgUrl: createHeartIcon}
-                       className = {tempImgUrl? null: 'camera-button'}
+                       className = {tempImgUrl? 'heart-image': 'camera-button'}
                        onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : null}
                        alt = 'submit-photo'/>
+
                        {tempImgUrl &&
-                       <button className ='remove'
-                       onClick ={ e => {
-                           removeImage(e)
-                       }}>
+                       <button className ='remove-button'
+                       onClick ={removeImage}>
                            remove
                         </button>}
-                    </label>
+                </label>
             </div>
+                {errors.content &&
+                    <ul className = 'errors-list'>
+                    {errors.content.map((error, i) => {
+                        return (
+                                <li className = 'error' key = {i}>
+                                    {error}
+                                </li>
+                        )
+                    })}
+                    </ul>
+                 }
 
-            <div>
+            <div className = 'time-to-live'>
                 <label htmlFor = 'time-to-live'></label>
-
+                <h2>How long will you bare your heart?</h2>
                 <select
                     value = {time_to_live}
                     onChange = {updateTTL}
+                    className = 'time-dropdown'
+                    placeholder = '5 minutes'
                 >
-                    <option value = '300'>
+                    <option id = 'five-min' value = '300'>
                         5 Minutes
                     </option>
-                    <option value = '3600'>
+                    <option id='one-hour' value = '3600'>
                         1 Hour
                     </option>
-                    <option value = '86400'>
+                    <option id = 'one-day'value = '86400'>
                         1 Day
                     </option>
                 </select>
             </div>
-            <button>
+            {errors.time_to_live &&
+                    <ul className = 'errors-list'>
+                    {errors.time_to_live.map((error, i) => {
+                        return (
+                                <li className = 'error' key = {i}>
+                                    {error}
+                                </li>
+                        )
+                    })}
+                    </ul>
+                 }
+            <button className= 'submit'>
                 submit
             </button>
         </form>}

@@ -57,6 +57,7 @@ export const goAddHeart = ({content, time_to_live, image, user_id }) => async (d
         const data = await res.json()
 
         if(data.errors){
+            console.log('sending these error to the heart form ->>', data.errors)
             return data.errors
         }
     }else{
