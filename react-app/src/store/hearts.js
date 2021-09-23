@@ -4,7 +4,7 @@ const ADD_HEART = 'hearts/ADD_HEART'
 const GET_SESSION = 'hearts/GET_SESSION'
 const DELETE_HEART = 'hearts/DELETE_HEART'
 const GET_POPULAR = 'hearts/GET_POPULAR'
-
+const GET_RECENT = 'hearts/GET_RECENT'
 const getHearts = (hearts) => ({
     type: GET,
     hearts
@@ -21,6 +21,10 @@ const getSessionHearts = (hearts) =>( {
 
 const getPopularHearts = (hearts) => ({
     type: GET_POPULAR,
+    hearts
+})
+const getRecentHearts = (hearts) => ({
+    type: GET_RECENT,
     hearts
 })
 const addHeart = (heart) => ({
@@ -67,11 +71,20 @@ export const goGetSessionHearts = (userId) => async (dispatch) => {
 }
 
 export const goGetPopularHearts = () => async (dispatch) => {
-    let res = await fetch('/api/hearts/home')
+    let res = await fetch('/api/hearts/popular')
 
     if(res.ok){
         let data = await res.json()
         dispatch(getPopularHearts(data.hearts))
+    }
+}
+
+export const goGetRecentHearts = () => async (dispatch) => {
+    let res = await fetch('/api/hearts/recent')
+
+    if(res.ok){
+        let data = await res.json()
+        dispatch(getRecentHearts(data.hearts))
     }
 }
 export const goAddHeart = ({content, time_to_live, image, user_id }) => async (dispatch) => {
@@ -148,7 +161,7 @@ export const goDeleteHeart = (heart_id) => async (dispatch) => {
 }
 
 
-const initialState = {profile:{}, home: [], all: {} ,session_user:{}}
+const initialState = {profile:{}, recent: [], popular: [], all: {} ,session_user:{}}
 
 
 
@@ -162,12 +175,14 @@ const heartReducer = (state = initialState, action) =>{
         case GET_SESSION:
             return {...state, session_user: {...action.hearts}}
         case GET_POPULAR:
-            return {...state, home :[...action.hearts]}
+            return {...state, popular :[...action.hearts]}
+        case GET_RECENT:
+            return {...state, recent : [...action.hearts]}
         case ADD_HEART:
             return{
                 ...state,
                 session_user: {...state.session_user, [action.heart.id]: {...action.heart}},
-                home: [...action.heart,...state.home.hearts],
+                recent: [...action.heart, ...state.recent],
                 all: {...state.all, [action.heart.id]: {...action.heart}},
             }
         case DELETE_HEART:

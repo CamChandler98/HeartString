@@ -25,12 +25,11 @@ def top_hearts():
     # Post.id).order_by(func.count().desc()).all()
     # data = posts[0:10]
 
-    hearts = db.session.query(Heart).Join(Heart).group_by(Heart.id).order_by(func.count().desc()).all()
+    hearts = db.session.query(Heart).join(Reply).group_by(Heart.id).order_by(func.count().desc()).limit(30).all()
 
-    data = hearts[0:30]
 
-    if data:
-        return {"hearts": [heart.to_dict() for heart in data]}
+    if hearts:
+        return {"hearts": [heart.to_dict() for heart in hearts]}
     else:
         return {"error": ['Something went wrong']}
 
