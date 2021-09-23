@@ -31,7 +31,10 @@ const CreateHeartForm = ({closeModal}) => {
         if(data){
             setErrors({...data})
         }else{
-            closeModal()
+            reset()
+            if(closeModal){
+                closeModal()
+            }
         }
     }
 
@@ -49,11 +52,18 @@ const CreateHeartForm = ({closeModal}) => {
             setTempImgUrl(tempUrl)
         }
       };
-      const removeImage = (e) => {
+    const removeImage = (e) => {
         e.preventDefault()
        URL.revokeObjectURL(tempImgUrl)
        setTempImgUrl('')
- }
+    }
+    const reset = () =>{
+        setContent('')
+        setTimeToLive(300)
+        setImage(null)
+        setTempImgUrl('')
+        setErrors(errorObj)
+    }
 
     return(<>
         {user && <form className= 'create-heart-form' onSubmit = {submitHeart}>
