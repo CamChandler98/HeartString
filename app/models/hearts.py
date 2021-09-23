@@ -16,6 +16,9 @@ class Heart(db.Model):
 
 
     user = db.relationship('User', back_populates = 'hearts')
+
+    replies = db.relationship('Re')
+
     @property
     def expiry(self):
         return self.created_at.timestamp() + self.time_to_live

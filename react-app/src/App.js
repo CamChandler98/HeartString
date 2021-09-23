@@ -30,7 +30,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-
+        
       </Switch>
       {!sessionUser &&<AuthReminder />}
     </BrowserRouter>
