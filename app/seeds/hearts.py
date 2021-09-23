@@ -1,3 +1,5 @@
+from app.seeds.utils import assign_from_dict, gen_count_dict
+from app.models.user import User
 import faker
 from app.models import Heart, db
 from faker import Faker
@@ -21,20 +23,34 @@ def gen_text():
 
     return content
 
-def seed_hearts(seeds = 25):
+def seed_base_hearts(seeds = 30):
 
     for i in range(seeds):
         heart = Heart(
             content = gen_text(),
             content_url = get_image_url(),
             time_to_live = get_ttl(),
-            user_id = 1,
+            user_id = random.choice([1,2]),
             open = True
         )
         db.session.add(heart)
 
     db.session.commit()
 
+def seed_hearts(seeds = 120):
+    user_dict = gen_count_dict(User)
+
+    for i in range(seeds):
+        heart = Heart(
+            content = gen_text(),
+            content_url = get_image_url(),
+            time_to_live = get_ttl(),
+            user_id = assign_from_dict(user_dict, 10),
+            open = True
+        )
+        db.session.add(heart)
+
+    db.session.commit()
 
 def undo_hearts():
     db.session.execute('TRUNCATE hearts RESTART IDENTITY CASCADE;')
