@@ -24,7 +24,7 @@
     background-color: white;
     min-width: 500px;
     padding:2% 2%;
-    padding-right: 8%;
+    padding-right: 4%;
     gap:5px;
     border-bottom: solid 1px #5b626679;
     margin: 0px;
@@ -32,19 +32,20 @@
 
 }
 .camera-button{
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
 }
 .heart-image{
-    width:90px;
-    max-height: 90px;
+    padding-top:2%;
+    width:60px;
+    max-height: 60px;
     object-fit: cover;
-    margin-bottom: 5px;
 }
 .add-heart-photo{
     display: flex;
     flex-direction: column;
     align-items:center;
+    padding-left: 1%;
 }
 input[type="file"]{
     display: none;
@@ -99,8 +100,10 @@ input[type="file"]{
     color: #393e41;
     font-weight: 600;
     font-size: 14px;
+    margin-bottom: 0px;
+    margin-top: -40px;
     margin-left: auto;
-    margin-right: 5%;
+    margin-right: 11.6%;
     padding: 1.01% 1%
 }
 .submit:hover{
