@@ -12,7 +12,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.heart_routes import heart_routes
-
+from .api.reply_routes import reply_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -42,13 +42,15 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(heart_routes, url_prefix = '/api/hearts' )
+
+app.register_blueprint(reply_routes, url_prefix = '/api/replies')
 db.init_app(app)
 Migrate(app, db)
 
 from app.tasks import heart_expiration
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(heart_expiration,'interval',seconds=50)
-sched.start()
+# sched.start()
 # Application Security
 CORS(app)
 

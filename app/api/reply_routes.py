@@ -13,7 +13,7 @@ reply_routes = Blueprint('replies', __name__)
 
 @reply_routes.route('/')
 def replies():
-	replies = Reply.query.All()
+	replies = Reply.query.all()
 
 	return {reply.id:reply.to_dict() for reply in replies}
 
@@ -32,7 +32,7 @@ def user_replies(id):
 
     return {reply.id:reply.to_dict() for reply in user_replies}
 
-@reply_routes.route('/heart/<id:int>')
+@reply_routes.route('/heart/<int:id>')
 def heart_replies(id):
     heart_replies = Reply.query.filter(Reply.heart_id == int(id)).all()
 
@@ -52,6 +52,7 @@ def create_reply():
         )
         db.session.add(reply)
         db.session.commit()
+
         return reply.to_dict()
 
     return{'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -59,9 +60,10 @@ def create_reply():
 @reply_routes.route('/edit', methods= ['POST'])
 def edit_heart():
     form = ReplyForm()
+    data = request.get_json()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        reply_id = request.form['reply_id']
+        reply_id = data['reply_id']
 
         content = form.data['content']
 
@@ -76,7 +78,7 @@ def edit_heart():
 
         return reply.to_dict()
 
-    return{'errors': validation_errors_to_error_messages(form.errors)}
+    return{'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @reply_routes.route('/<int:id>' ,methods = ['DELETE'])

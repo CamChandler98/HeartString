@@ -19,9 +19,9 @@ class Reply(db.Model):
     def to_dict(self):
         return{
             'id':self.id,
-            'post_id': self.post_id,
+            'heart_id': self.heart_id,
             'user_id': self.user_id,
-            'username': self.username,
+            'username': self.user.username,
             'content': self.content,
             'created_at': self.created_at,
             'updated_at': self.updated_at
