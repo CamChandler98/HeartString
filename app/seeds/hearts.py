@@ -1,38 +1,40 @@
+import faker
 from app.models import Heart, db
+from faker import Faker
+Faker.seed(0)
+fake = Faker()
+fake_latin = Faker('la')
+fake_english = Faker('en-US')
+fake_japanese = Faker('ja-JP')
 
-def seed_hearts():
-    heart = Heart(
-        content= 'test',
-        open = True,
-        time_to_live = 20,
-        user_id = 1,
 
-    )
+import random
+def get_ttl():
+    return random.choice([86400,300,3600])
+def get_image_url():
+    url = fake.image_url() if fake.boolean(chance_of_getting_true=25) else None
+    return url
+def gen_text():
+    language = random.choice([fake_latin,fake_japanese, fake_english])
 
-    heart2 = Heart(
-        content= 'test',
-        open = True,
-        time_to_live = 100,
-        user_id = 2
-    )
-    heart3 = Heart(
-        content= 'test',
-        open = True,
-        time_to_live = 180,
-        user_id = 1
-    )
+    content = language.text(max_nb_chars=random.randrange(5,245))
 
-    heart4 = Heart(
-        content= 'test',
-        open = True,
-        time_to_live = 180,
-        user_id = 2
-    )
-    db.session.add(heart)
-    db.session.add(heart2)
-    db.session.add(heart3)
-    db.session.add(heart4)
+    return content
+
+def seed_hearts(seeds = 25):
+
+    for i in range(seeds):
+        heart = Heart(
+            content = gen_text(),
+            content_url = get_image_url(),
+            time_to_live = get_ttl(),
+            user_id = 1,
+            open = True
+        )
+        db.session.add(heart)
+
     db.session.commit()
+
 
 def undo_hearts():
     db.session.execute('TRUNCATE hearts RESTART IDENTITY CASCADE;')

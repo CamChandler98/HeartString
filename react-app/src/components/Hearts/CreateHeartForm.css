@@ -138,3 +138,7 @@ input[type="file"]{
     text-justify: center;
     font-weight:bold;
 }
+
+.remove-button:hover{
+    background-color: #e95d7c
+}
