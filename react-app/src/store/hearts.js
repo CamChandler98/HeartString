@@ -3,6 +3,7 @@ const GET_USER = 'hearts/GET_USER'
 const ADD_HEART = 'hearts/ADD_HEART'
 const GET_SESSION = 'hearts/GET_SESSION'
 const DELETE_HEART = 'hearts/DELETE_HEART'
+const GET_POPULAR = 'hearts/GET_POPULAR'
 
 const getHearts = (hearts) => ({
     type: GET,
@@ -15,6 +16,11 @@ const getUserHearts = (hearts) => ({
 })
 const getSessionHearts = (hearts) =>( {
     type: GET_SESSION,
+    hearts
+})
+
+const getPopularHearts = (hearts) => ({
+    type: GET_POPULAR,
     hearts
 })
 const addHeart = (heart) => ({
@@ -60,7 +66,14 @@ export const goGetSessionHearts = (userId) => async (dispatch) => {
     }
 }
 
+export const goGetPopularHearts = () => async (dispatch) => {
+    let res = await fetch('/api/hearts/home')
 
+    if(res.ok){
+        let data = await res.json()
+        dispatch(getPopularHearts(data.hearts))
+    }
+}
 export const goAddHeart = ({content, time_to_live, image, user_id }) => async (dispatch) => {
     const formData = new FormData()
 
@@ -135,7 +148,7 @@ export const goDeleteHeart = (heart_id) => async (dispatch) => {
 }
 
 
-const initialState = {profile:{}, home: {}, all: {} ,session_user:{}}
+const initialState = {profile:{}, home: [], all: {} ,session_user:{}}
 
 
 
@@ -148,11 +161,13 @@ const heartReducer = (state = initialState, action) =>{
             return {...state, profile:{...action.hearts}}
         case GET_SESSION:
             return {...state, session_user: {...action.hearts}}
+        case GET_POPULAR:
+            return {...state, home :[...action.hearts]}
         case ADD_HEART:
             return{
                 ...state,
                 session_user: {...state.session_user, [action.heart.id]: {...action.heart}},
-                home: {...state.home, [action.heart.id]: {...action.heart}},
+                home: [...action.heart,...state.home.hearts],
                 all: {...state.all, [action.heart.id]: {...action.heart}},
             }
         case DELETE_HEART:
