@@ -11,3 +11,17 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
     SQLALCHEMY_ECHO = True
+
+    # JOBS = [
+    #     {
+    #         'id':'heart_expiration',
+    #         'func':'app.tasks.heart_expiration',
+    #         'trigger': 'interval',
+    #         'minutes': 1,
+    #         'replace_existing': True
+    #     }
+    # ]
+    # SCHEDULER_JOBSTORES = {
+    #     'default': SQLAlchemyJobStore(url='sqlite:///flask_context.db')
+    # }
+    # SCHEDULER_API_ENABLED = True

@@ -3,6 +3,7 @@ import React  from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import CreateHeartModal from '../Hearts/CreateHeartModal';
 import './NavBar.css'
 import ProfilePicture from './ProfilePicture';
 
@@ -14,6 +15,7 @@ const NavBar = () => {
 
     return (
         <nav>
+            {sessionUser && <CreateHeartModal />}
             {sessionUser && <ProfilePicture user = {sessionUser}/>}
         </nav>
     );
