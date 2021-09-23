@@ -45,7 +45,7 @@ def seed_base_replies(seeds = 25):
 
         juliet_reply = Reply(
             content = gen_text(),
-            user_id = 1,
+            user_id = 2,
             heart_id = assign_from_dict(romeo_dict, 4)
         )
 
