@@ -2,10 +2,12 @@
 import React  from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
 import LogoutButton from '../auth/LogoutButton';
 import CreateHeartModal from '../Hearts/CreateHeartModal';
-import './NavBar.css'
+import  NavStyle  from './NavStyle';
 import ProfilePicture from './ProfilePicture';
+// import './NavBar.css'
 
 
 const NavBar = () => {
@@ -14,10 +16,10 @@ const NavBar = () => {
 
 
     return (
-        <nav>
+        <NavStyle>
             {sessionUser && <CreateHeartModal />}
             {sessionUser && <ProfilePicture user = {sessionUser}/>}
-        </nav>
+        </NavStyle>
     );
 }
 

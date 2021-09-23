@@ -1,0 +1,150 @@
+import styled from "styled-components";
+
+const CreateHeartFormStyle = styled.div`
+
+.create-heart-form{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    background-color: white;
+    min-width: 500px;
+    padding:5% 0%;
+    gap:20px;
+    border-radius: 20px;
+    box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+    margin: 0px
+
+}
+
+
+.create-heart-form h2{
+    font-size: 24px;
+}
+
+
+.create-heart-form div{
+    margin:0
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.camera-button{
+    width:90px;
+    height:90px;
+}
+
+.time-to-live{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+#heart-content{
+    resize:none;
+    border: none;
+    width:350px;
+    outline:none;
+    background: transparent;
+    padding-top: 60px;
+    padding-bottom: 0px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.photo-content{
+    border-bottom: solid 1px #393e4185;
+    display: flex;
+    align-items: center;
+}
+
+.heart-image{
+    width:90px;
+    max-height: 90px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.add-heart-photo{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.time-dropdown{
+    background-color: transparent;
+    color:#393e41;
+    border:none;
+    border-bottom: 1px solid rgb(106, 98, 98);
+    outline: none;
+    padding: 2%;
+    width: 300px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.time-dropdown option{
+    color:#393e41;
+    width: 300px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+#five-min{
+    background-color: #a2e8d9;
+}
+#one-hour{
+    background-color: #fb6888;
+}
+#one-day{
+    background-color: #ffeb7b;
+}
+
+.submit{
+    width: 50%;
+    min-height: 30px;
+    border-radius: 8px;
+    border: 0px;
+    background-color: #ffeb7b;
+    color: #393e41;
+    font-weight: 600;
+    font-size: 24px;
+    padding: 2% 0%;
+}
+.submit:hover{
+    background-color: #e1d175;
+    transform: scale(1.02);
+}
+
+.errors-list{
+    margin-top: 3px;
+
+}
+.error{
+    color: red;
+    list-style: none;
+    font-size: 20px;
+}
+
+.remove-button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    background-color: #fb6888;
+    font-size: 14px;
+    border-radius: 7px;
+    text-justify: center;
+    font-weight:bold;
+}
+
+.remove-button:hover{
+    background-color: #e95d7c
+}
+`
+
+export default CreateHeartFormStyle
