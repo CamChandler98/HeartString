@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
 // import './SignUpForm.css'
 
+import { signUp } from '../../store/session';
 import uploadProfileIcon from '../graphics/upload-profile-picture-icon.svg'
 import removeIcon from '../graphics/remove-icon.svg'
 import FormStyle from './FormStyle';

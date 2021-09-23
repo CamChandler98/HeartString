@@ -4,7 +4,10 @@ import { useState } from 'react';
 import createHeartIcon from '../graphics/create-heart-icon.svg'
 import { goAddHeart } from '../../store/hearts';
 
-import './CreateHeartForm.css'
+// import './CreateHeartForm.css'
+import CreateHeartFormStyle from './CreateHeartFormStyle';
+
+
 const CreateHeartForm = ({closeModal}) => {
 
     const errorObj = {
@@ -53,7 +56,7 @@ const CreateHeartForm = ({closeModal}) => {
  }
 
     return(
-        <>
+        <CreateHeartFormStyle>
         {user && <form className= 'create-heart-form' onSubmit = {submitHeart}>
             <div className = 'photo-content'>
             <label htmlFor = 'heart-content'></label>
@@ -135,7 +138,7 @@ const CreateHeartForm = ({closeModal}) => {
                 submit
             </button>
         </form>}
-        </>
+        </CreateHeartFormStyle>
     )
 }
 
