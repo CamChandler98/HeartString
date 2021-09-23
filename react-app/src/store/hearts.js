@@ -13,9 +13,10 @@ const getUserHearts = (hearts) => ({
     type: GET_USER,
     hearts
 })
-const getSessionHearts = (hearts) => {
-
-}
+const getSessionHearts = (hearts) =>( {
+    type: GET_SESSION,
+    hearts
+})
 const addHeart = (heart) => ({
     type: ADD_HEART,
     heart
@@ -90,18 +91,20 @@ export const goAddHeart = ({content, time_to_live, image, user_id }) => async (d
     }
 }
 
-export const goUpdateHeart = ({heart_id,content_url,content}) => async (dispatch) => {
+export const goUpdateHeart = ({heart_id,content_url,time_to_live, user_id, content}) => async (dispatch) => {
 
     const res = await fetch('/api/hearts/edit',{
-        mehtod: 'POST',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
           },
-        body : {
+        body : JSON.stringify( {
             heart_id,
             content_url,
-            content
-        }
+            content,
+            time_to_live,
+            user_id
+        })
     })
 
     if (res.ok) {

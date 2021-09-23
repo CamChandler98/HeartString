@@ -75,7 +75,7 @@ def edit_heart():
         db.session.add(heart)
         db.session.commit()
 
-        return {heart.id: heart.to_dict()}
+        return heart.to_dict()
 
     return{'errors': validation_errors_to_error_messages(form.errors)}
 
