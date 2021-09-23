@@ -11,6 +11,7 @@ const Home = () => {
         <div className = 'create-heart-form-container'>
         <CreateHeartForm />
         </div>
+        <div className = 'hearts-page'></div>
         </div>
     )
 }
