@@ -11,7 +11,6 @@ const CreateHeartModal = () => {
     const [showModal, setShowModal] = useState(false)
 
     const handleClick = () => {
-        console.log('opening sign up modal')
         setShowModal(true)
     }
 

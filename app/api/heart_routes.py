@@ -52,7 +52,7 @@ def heart(id):
 @heart_routes.route('/user/<int:id>')
 def user_hearts(id):
 
-    user_hearts = Heart.query.filter(Heart.user_id == int(id)).all()
+    user_hearts = Heart.query.filter(Heart.user_id == int(id)).order_by(desc(Heart.created_at)).all()
 
     return {heart.id:heart.to_dict() for heart in user_hearts}
 

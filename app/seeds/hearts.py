@@ -23,7 +23,7 @@ def gen_text():
 
     return content
 
-def seed_base_hearts(seeds = 30):
+def seed_base_hearts(seeds = 40):
 
     for i in range(seeds):
         heart = Heart(
@@ -37,7 +37,7 @@ def seed_base_hearts(seeds = 30):
 
     db.session.commit()
 
-def seed_hearts(seeds = 120):
+def seed_hearts(seeds = 160):
     user_dict = gen_count_dict(User)
 
     for i in range(seeds):

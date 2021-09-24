@@ -32,7 +32,7 @@ const ProfilePicture = ({user}) => {
         <img onClick={handleClick} className = 'profile-pic' src ={user.profile_picture_url} alt= 'logout'/>
         {showModal &&
         <Modal bottom = '95px' left = '75px' backgroundColor = 'transparent' borderRadius= '6px' onClose = {closeModal}>
-            <LogoutModal user = {user}/>
+            <LogoutModal closeModal = {closeModal} user = {user}/>
         </Modal>}
         </ProfilePictureStyle>
     )
