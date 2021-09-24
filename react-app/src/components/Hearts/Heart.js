@@ -32,6 +32,7 @@ const Heart = ({heart}) => {
         <div className = 'heart-container'>
         <div className = 'heart-content'>
             <p className = 'heart-text'>{heart.content}</p>
+                <h3>Expires in :</h3>
             <p className = 'expiration-count'>
              {expirationCountdown >= 0 ? expirationCountdown: 'EXPIRED'}
             </p>
