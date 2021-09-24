@@ -6,15 +6,17 @@ import './Alert.css'
 const Alert = () => {
     const {showAlert,setShowAlert, alertText} = useAlert()
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setShowAlert(false)
-    //     },100000)
-    // },[])
+    useEffect(() => {
+        setTimeout(() => {
+            setShowAlert(false)
+        },3000)
+    },[])
 
     return(
-        <div className = 'alert'>
+        <div className = 'alert-container'>
+            <div className = 'alert'>
             {alertText}
+            </div>
         </div>
     )
 }

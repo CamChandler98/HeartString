@@ -6,8 +6,8 @@ export const useAlert = () => useContext(AlertContext)
 
 export default function AlertProvider(props) {
 
-    const [showAlert, setShowAlert] = useState(true)
-    const [alertText, setAlertText] = useState('look at notification')
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertText, setAlertText] = useState('')
 
 
 
