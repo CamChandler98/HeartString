@@ -1,18 +1,17 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { goAddReply } from "../../store/replies"
-import './CreateReplyForm.css'
+import { goUpdateReply } from "../../store/replies"
+import './EditReplyForm.css'
 
-const CreateReplyForm = ({heart_id}) => {
+
+const EditReplyForm = ({reply, closeModal}) => {
 
     const dispatch = useDispatch()
     const errorObj = {
         content: null
     }
-    const [content, setContent ] = useState('')
+    const [content, setContent ] = useState(reply.content)
     const [errors, setErrors] = useState(errorObj)
-
-    const user = useSelector(state => state.session.user)
 
     const updateContent = (e) => {
         setContent(e.target.value)
@@ -20,26 +19,28 @@ const CreateReplyForm = ({heart_id}) => {
             setErrors({...errors, content: null})
         }
     }
-    const reset = () =>{
-        setContent('')
 
-    }
+        const reset = () =>{
+            setContent('')
 
-    const handleSubmit =  async (e) => {
-        e.preventDefault()
-        let user_id = user.id
-        let data = await(dispatch(goAddReply({content,user_id,heart_id})))
-        if(data){
-            setErrors({...data})
-        }else{
-            reset()
         }
-    }
 
-
+        const handleSubmit =  async (e) => {
+            e.preventDefault()
+            let user_id = reply.user_id
+            let heart_id = reply.heart_id
+            let reply_id = reply.id
+            let data = await(dispatch(goUpdateReply({content,user_id,heart_id,reply_id})))
+            if(data){
+                setErrors({...data})
+            }else{
+                closeModal(e)
+                reset()
+            }
+        }
 
     return (
-        <form className = 'create-reply-form' onSubmit = {handleSubmit}>
+    <form className = 'edit-reply-form' onSubmit = {handleSubmit}>
             <div className = 'text-errors'>
                 <textarea
                     id = 'heart-content'
@@ -67,4 +68,4 @@ const CreateReplyForm = ({heart_id}) => {
     )
 }
 
-export default CreateReplyForm
+export default EditReplyForm

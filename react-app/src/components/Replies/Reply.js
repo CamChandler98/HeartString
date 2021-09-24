@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import DeleteModal from "../util/DeleteModal"
+import EditReplyModal from "./EditReplyFormModal"
 import './Reply.css'
 const Reply = ({reply, i}) => {
 
@@ -27,6 +29,14 @@ const Reply = ({reply, i}) => {
            <p className = 'reply-text'>
                 {reply.content}
            </p>
+           {owner && <div className = 'crud-buttons'>
+               <div className = 'edit-reply'>
+                <EditReplyModal  reply = {reply} />
+                </div>
+                <div className = 'delete-reply'>
+                        <DeleteModal id = {reply.id} type = {'reply'} onClick= {e => e.stopPropagation()} />
+                </div>
+           </div>}
        </div>
     )
 }

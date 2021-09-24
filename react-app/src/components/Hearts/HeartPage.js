@@ -98,7 +98,7 @@ const HeartPage = () => {
             </div>}
             </div>
             <div>
-                <CreateReplyForm heart_id = {heart.id} />
+             {!owner && sessionUser && <CreateReplyForm heart_id = {heart.id} />}
             </div>
             <div>
                 { heartReplies &&
