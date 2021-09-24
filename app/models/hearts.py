@@ -21,7 +21,7 @@ class Heart(db.Model):
 
     @property
     def expiry(self):
-        return self.created_at.timestamp() + self.time_to_live
+        return int(self.created_at.timestamp() + self.time_to_live)
 
 
     def to_dict(self):

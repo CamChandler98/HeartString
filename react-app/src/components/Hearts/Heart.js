@@ -8,7 +8,7 @@ const Heart = ({heart}) => {
         setExpirationCountdown(expiresInSec)
     }
 
-    const [expirationCountdown, setExpirationCountdown] = useState(heart.expires)
+    const [expirationCountdown, setExpirationCountdown] = useState(heart.expires - Math.floor((new Date().getTime()/1000)))
 
 
     useEffect(() => {
