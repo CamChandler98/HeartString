@@ -3,12 +3,12 @@ import './Heart.css'
 
 const Heart = ({heart}) => {
     const updateCountdown = () => {
-        let currentTime = (new Date().getTime()/1000)
+        let currentTime = Math.floor((new Date().getTime()/1000))
         let expiresInSec = heart.expires - currentTime
         setExpirationCountdown(expiresInSec)
     }
 
-    const [expirationCountdown, setExpirationCountdown] = useState()
+    const [expirationCountdown, setExpirationCountdown] = useState(heart.expires)
 
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const Heart = ({heart}) => {
         return () => {
             clearInterval(interval)
         }
-    },[expirationCountdown])
+    },[expirationCountdown, updateCountdown])
 
 
 

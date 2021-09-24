@@ -75,7 +75,9 @@ def create_heart():
             time_to_live = form.data['time_to_live'],
             content_url = content_url,
             user_id = form.data['user_id'],
-            open = True
+            open = True,
+            created_at = datetime.now(),
+            updated_at = datetime.now()
         )
         db.session.add(heart)
         db.session.commit()
