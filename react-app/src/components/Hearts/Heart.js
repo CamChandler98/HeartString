@@ -8,7 +8,7 @@ const Heart = ({heart}) => {
         setExpirationCountdown(expiresInSec)
     }
 
-    const [expirationCountdown, setExpirationCountdown] = useState(heart.expires)
+    const [expirationCountdown, setExpirationCountdown] = useState(heart.expires - Math.floor((new Date().getTime()/1000)))
 
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Heart = ({heart}) => {
             <p className = 'heart-text'>{heart.content}</p>
                 <h3>Expires in :</h3>
             <p className = 'expiration-count'>
-             {expirationCountdown >= 0 ? expirationCountdown: 'EXPIRED'}
+             {expirationCountdown > 0 ? expirationCountdown: 'EXPIRED'}
             </p>
             <p>
                 {heart.time_to_live}

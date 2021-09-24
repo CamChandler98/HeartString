@@ -6,14 +6,16 @@ import styled from 'styled-components';
 const LogoutStyle = styled.div`
     .logout-container{
         min-height: 40px;
-        min-width: 70px;
+        min-width: 200px;
         background-color: white;
         display:flex;
         flex-direction:column;
-        padding:5%;
+        padding:20px;
+        bottom: 10px;
+        left: 35px;
         align-items: center;
         border-radius: 20px;
-
+        position:absolute;
         box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
 
     }
