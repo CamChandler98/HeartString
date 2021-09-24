@@ -7,8 +7,8 @@ import EditHeartForm from "./EditHeartForm"
 const EditHeartModal = ({content, heart_id, content_url, time_to_live}) => {
     const [showModal, setShowModal] = useState(false)
 
-    const handleClick = () => {
-
+    const handleClick = (e) => {
+        e.stopPropagation()
         setShowModal(true)
     }
 
@@ -18,11 +18,11 @@ const EditHeartModal = ({content, heart_id, content_url, time_to_live}) => {
 
     return(
         <>
-        <button className='edit-heart' onClick = {handleClick}>Edit</button>
+        <button onClick = {handleClick}>Edit</button>
         {showModal &&
-            <Modal  onClose = {() => setShowModal(false)}>
-                <CreateHeartFormStyle>
-                <EditHeartForm closeModal = {closeModal} content = {content}heart_id = {heart_id} content_url = {content_url} time_to_live = {time_to_live} />
+            <Modal onClick = {handleClick} onClose = {() => setShowModal(false)}>
+                <CreateHeartFormStyle onClick = {handleClick}>
+                <EditHeartForm onClick = {handleClick} closeModal = {closeModal} content = {content}heart_id = {heart_id} content_url = {content_url} time_to_live = {time_to_live} />
                 </CreateHeartFormStyle>
             </Modal>
         }

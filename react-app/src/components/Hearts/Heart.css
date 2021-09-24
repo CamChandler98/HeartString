@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,300;0,400;0,500;1,300;1,500&display=swap');
 .heart-container{
     display: flex;
+    flex-direction: column;
     border:1px solid #5b626651;
-    min-width: 800px;
-    padding: 5%;
+    width: 800px;
+    padding: 5% 5% 2% 5% ;
     overflow: hidden;
     margin: 2%;
     border-radius: 7px;
@@ -16,6 +17,7 @@
 .heart-text{
     font-size: 18px;
     text-align: center;
+    margin-bottom: 26px;
 
 }
 
@@ -31,4 +33,22 @@
 h3{
     font-size: 26px;
     text-align: center;
+}
+
+.edit-heart{
+   margin-left: auto;
+   margin-top: auto;
+   margin-bottom: 0;
+}
+
+.edit-heart button{
+    height:40px;
+    width:90px;
+    border-radius: 15px;
+    font-size: 16px;
+    padding: 1%;
+    background-color: #ffeb7b;
+    color: #393e41;
+    font-weight: bold;
+    border:none
 }

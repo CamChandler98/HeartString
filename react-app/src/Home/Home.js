@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import CreateHeartForm from "../components/Hearts/CreateHeartForm"
-import HeartPage from "../components/Hearts/HeartPage"
+import HeartsPage from "../components/Hearts/HeartsPage"
 import { goGetPopularHearts, goGetRecentHearts } from "../store/hearts"
 import './Home.css'
 import HomeCreateHeartFormStyle from "./HomeCreateHeartStyle"
@@ -62,8 +62,8 @@ const Home = () => {
             </div>
         </div>
         <div className = 'focus-content'>
-            {focus === 'recent' && <HeartPage hearts = {recentHearts} />}
-            {focus === 'popular' && <HeartPage hearts = {popularHearts} />}
+            {focus === 'recent' && <HeartsPage hearts = {recentHearts} />}
+            {focus === 'popular' && <HeartsPage hearts = {popularHearts} />}
         </div>
         </div>
     )
