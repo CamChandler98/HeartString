@@ -64,10 +64,10 @@ const Profile = () => {
         console.log('going to get those hearts for you')
         console.log(sessionHearts)
         if(sessionHearts && owner){
-            setHearts(Object.values(sessionHearts))
+            setHearts(Object.values(sessionHearts).reverse())
             console.log('got your hearts!')
         }else if(profileHearts){
-            setHearts(Object.values(profileHearts))
+            setHearts(Object.values(profileHearts).reverse())
             console.log('got anothers hearts!')
         }
 
