@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,300;0,400;0,500;1,300;1,500&display=swap');
 .heart-container{
     display: flex;
-    border:1px solid #5b626679;
+    border:1px solid #5b626651;
     min-width: 800px;
     padding: 5%;
     overflow: hidden;
@@ -11,7 +11,6 @@
     align-items: center;
     position: relative;
     box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-    background-color: #f3efd96d;
 }
 
 .heart-text{
