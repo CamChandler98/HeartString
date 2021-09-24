@@ -25,7 +25,7 @@ def top_hearts():
     # Post.id).order_by(func.count().desc()).all()
     # data = posts[0:10]
 
-    hearts = db.session.query(Heart).join(Reply).group_by(Heart.id).order_by(func.count().desc()).limit(30).all()
+    hearts = db.session.query(Heart).filter(Heart.open == True).join(Reply).group_by(Heart.id).order_by(func.count().desc()).limit(30).all()
 
 
     if hearts:
@@ -37,7 +37,7 @@ def top_hearts():
 def recent_hearts():
     # entities = MyEntity.query.order_by(desc(MyEntity.time)).limit(3).all()
 
-    hearts = Heart.query.order_by(desc(Heart.created_at)).limit(30).all()
+    hearts = Heart.query.filter(Heart.open == True).order_by(desc(Heart.created_at)).limit(30).all()
 
     if hearts:
         return {"hearts": [heart.to_dict() for heart in hearts]}

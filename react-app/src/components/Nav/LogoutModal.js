@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const LogoutStyle = styled.div`
     .logout-container{
@@ -38,6 +39,13 @@ const LogoutStyle = styled.div`
         transform: scale(1.03);
     }
 
+    img{
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border-radius: 50%
+    }
+
 
 `
 const LogoutModal = ({user}) => {
@@ -48,6 +56,12 @@ const LogoutModal = ({user}) => {
     return(
         <LogoutStyle>
         <div className = 'logout-container'>
+            <Link to = {`/user/${user.username}`}>
+            <p>
+                profile
+            </p>
+            <img src = {user.profile_picture_url} />
+            </Link>
             <p>
                 logout {user.username}?
             </p>

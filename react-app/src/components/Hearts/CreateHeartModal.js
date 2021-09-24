@@ -30,7 +30,6 @@ const CreateHeartModal = () => {
             </Modal>
         }
 
-
         </>
     )
 }
