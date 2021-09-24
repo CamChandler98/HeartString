@@ -18,7 +18,7 @@ const EditHeartModal = ({content, heart_id, content_url, time_to_live}) => {
 
     return(
         <>
-        <button onClick = {handleClick}>Edit</button>
+        <button className='edit-heart' onClick = {handleClick}>Edit</button>
         {showModal &&
             <Modal  onClose = {() => setShowModal(false)}>
                 <CreateHeartFormStyle>
