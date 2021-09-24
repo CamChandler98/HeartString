@@ -33,6 +33,7 @@ class Heart(db.Model):
             'content': self.content,
             'time_to_live': self.time_to_live,
             'content_url' : self.content_url,
+            'user_profile_pic': self.user.profile_picture_url,
             'expires': self.expiry,
             'created_at': self.created_at,
             'updated_at': self.updated_at

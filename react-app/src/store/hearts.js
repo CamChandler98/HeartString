@@ -182,7 +182,7 @@ const heartReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 session_user: {...state.session_user, [action.heart.id]: {...action.heart}},
-                recent: [...action.heart, ...state.recent],
+                recent: [action.heart, ...state.recent],
                 all: {...state.all, [action.heart.id]: {...action.heart}},
             }
         case DELETE_HEART:

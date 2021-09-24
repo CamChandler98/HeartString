@@ -17,6 +17,9 @@ body, header, nav {
 }
 
 #root{
-    height: 100vh;
+    height: 100%;
     display: flex;
+    position: relative;
+    align-items: stretch;
+    overflow-x: hidden;
 }
