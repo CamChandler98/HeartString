@@ -8,6 +8,7 @@ import { ModalProvider } from './context/Modal';
 import { BrowserRouter } from 'react-router-dom';
 import * as heartActions from './store/hearts'
 import * as replyActions from './store/replies'
+import AlertProvider from './context/Alert';
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
     window.store = store;
@@ -21,9 +22,11 @@ if (process.env.NODE_ENV !== "production") {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+        <AlertProvider>
         <ModalProvider>
              <App />
         </ModalProvider>
+        </AlertProvider>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -27,7 +27,7 @@ const ModalStyle = styled.div`
     };
     }
   #modal-content {
-      ${props => console.log(props, 'here')}
+
     position: fixed;
 
     ${props => props.modalTop ? `top:${props.modalTop}`: null};

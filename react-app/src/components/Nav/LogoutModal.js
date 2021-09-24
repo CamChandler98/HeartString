@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../store/session';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useAlert } from '../../context/Alert';
+import { logout } from '../../store/session';
 
 const LogoutStyle = styled.div`
     .logout-container{
@@ -62,9 +64,16 @@ const LogoutStyle = styled.div`
 
 `
 const LogoutModal = ({user, closeModal}) => {
+
+    let history = useHistory()
+    const {alertText, setShowAlert ,setAlertText} = useAlert()
     const dispatch = useDispatch()
+
     const onLogout = async (e) => {
+        history.push('/home')
       await dispatch(logout());
+      setAlertText('Logged Out')
+      setShowAlert(true)
     };
     return(
         <LogoutStyle>

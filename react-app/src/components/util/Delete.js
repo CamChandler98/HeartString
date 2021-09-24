@@ -1,8 +1,12 @@
 import { goDeleteHeart } from "../../store/hearts"
 import { goDeleteReply } from "../../store/replies"
 import { useDispatch } from "react-redux"
+import { useAlert } from "../../context/Alert"
 
 const Delete = ({id, type , closeModal}) => {
+
+    const {alertText, setShowAlert ,setAlertText} = useAlert()
+
     const dispatch = useDispatch()
 
     const typeHandeler = {
@@ -16,8 +20,11 @@ const Delete = ({id, type , closeModal}) => {
         let thunk = typeHandeler[type]
 
         dispatch(thunk(id))
-
         closeModal(e)
+
+        setAlertText(`Sucessfully Deleted ${type}`)
+
+        setShowAlert(true)
     }
     return(
 

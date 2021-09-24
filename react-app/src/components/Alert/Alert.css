@@ -1,0 +1,31 @@
+.alert-container{
+    position: fixed;
+    min-height: 20px;
+    min-width: 40px;
+    padding: 1%;
+    background-color: #a2e8d951;
+    display: flex;
+    margin-top: 10px;
+    left: 45%;
+    transform: translateX(-45%);
+    border-radius: 20px;
+    animation-duration: 3s;
+    animation-name: fade;
+    animation-delay: 1.5s;
+}
+
+.alert{
+    font-size: 16px;
+    color: #393e41;
+    font-weight: bold
+}
+
+@keyframes fade{
+    from{
+        opacity: 1;
+    }
+
+    to{
+        opacity: 0;
+    }
+}

@@ -7,8 +7,9 @@ import { signUp } from '../../store/session';
 import uploadProfileIcon from '../graphics/upload-profile-picture-icon.svg'
 import removeIcon from '../graphics/remove-icon.svg'
 import FormStyle from './FormStyle';
+import { useAlert } from '../../context/Alert';
 const SignUpForm = ({closeModal}) => {
-
+    const {alertText, setShowAlert ,setAlertText} = useAlert()
   let errorObj = {
       username: [],
       email: [],
@@ -41,6 +42,8 @@ const SignUpForm = ({closeModal}) => {
           console.log('setting these errors on the form ->>>', data)
         setErrors({...data})
       }else{
+        setAlertText('Signed Up!')
+        setShowAlert(true)
         closeModal()
       }
     }

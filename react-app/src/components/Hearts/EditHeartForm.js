@@ -32,7 +32,7 @@ const EditHeartForm = ({closeModal, content, heart_id, content_url, time_to_live
         }else{
             reset()
             if(closeModal){
-                closeModal()
+                closeModal(e)
             }
         }
     }
