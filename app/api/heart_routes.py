@@ -109,7 +109,7 @@ def edit_heart():
     return{'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@heart_routes.route('/<int:id>' ,methods = ['DELETE'])
+@heart_routes.route('/<int:id>',methods = ["DELETE"])
 def delete_heart(id):
 
     heart = Heart.query.get(id)

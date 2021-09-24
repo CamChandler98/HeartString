@@ -10,6 +10,7 @@ import { authenticate } from './store/session';
 import AuthReminder from './components/Nav/AuthReminder';
 import Home from './Home/Home';
 import Profile from './components/Profile/Profile.js';
+import HeartPage from './components/Hearts/HeartPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path = '/users/:username' >
             <Profile />
+        </Route>
+        <Route path ='/hearts/:heartId'>
+            <HeartPage />
         </Route>
       </Switch>
 

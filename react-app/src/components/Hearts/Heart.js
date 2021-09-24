@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState,  } from 'react'
+import { Link, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux'
 import EditHeartModal from './EditHeartFormModal'
 import './Heart.css'
+import DeleteModal from '../util/DeleteModal';
 
 const Heart = ({heart}) => {
 
-    const [owner, setOwner] = useState(false)
+    const [expirationCountdown, setExpirationCountdown] = useState(heart.expires - Math.floor((new Date().getTime()/1000)))
 
+    const [owner, setOwner] = useState(false)
+    let history = useHistory()
     let sessionUser = useSelector(state => state.session.user)
 
     useEffect(() => {
@@ -15,13 +20,17 @@ const Heart = ({heart}) => {
         }else{
             setOwner(false)
         }
-    })
-    const [expirationCountdown, setExpirationCountdown] = useState(heart.expires - Math.floor((new Date().getTime()/1000)))
+    },[sessionUser])
 
     const updateCountdown = () => {
         let currentTime = Math.floor((new Date().getTime()/1000))
         let expiresInSec = heart.expires - currentTime
         setExpirationCountdown(expiresInSec)
+    }
+
+    const redirectToHeartPage = () => {
+        console.log('clicked')
+        history.push(`/hearts/${heart.id}`)
     }
 
 
@@ -44,17 +53,24 @@ const Heart = ({heart}) => {
 
 
     return(
-        <div className = 'heart-container'>
-        <div className = 'heart-content'>
-            <p className = 'heart-text'>{heart.content}</p>
-                <h3>Expires in :</h3>
-            <p className = 'expiration-count'>
-             {expirationCountdown > 0 ? expirationCountdown: 'EXPIRED'}
-            </p>
-        </div>
-        <div>
-            {owner && <EditHeartModal content = {heart.content} heart_id = {heart.id} content_url = {heart.content_url} time_to_live = {heart.time_to_live} />}
-        </div>
+        <div className = 'heart-container' onClick = {redirectToHeartPage}>
+                <p className = 'heart-text'>{heart.content}</p>
+                    <h3>Expires in :</h3>
+                <p className = 'expiration-count'>
+                {expirationCountdown > 0 ? expirationCountdown: 'EXPIRED'}
+                </p>
+
+                {owner &&
+                <div className = 'crud-buttons'>
+                    <div className = 'edit-heart'>
+                    <EditHeartModal content = {heart.content} heart_id = {heart.id} content_url = {heart.content_url} time_to_live = {heart.time_to_live} />
+                    </div>
+                    <div className = 'delete-heart'>
+                        <DeleteModal id = {heart.id} type = {'heart'} onClick= {e => e.stopPropagation()} />
+                    </div>
+
+                </div>
+                }
         </div>
     )
 }

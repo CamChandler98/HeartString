@@ -47,7 +47,7 @@ export const goGetHeartReplies = (heartId) => async (dispatch) => {
 }
 
 export const goAddReply = ({content, heart_id, user_id }) => async (dispatch) => {
-
+    
 
     const res = await fetch('/api/replies/', {
         method: 'POST',

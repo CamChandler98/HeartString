@@ -1,6 +1,7 @@
 const GET = 'hearts/GET'
 const GET_USER = 'hearts/GET_USER'
 const ADD_HEART = 'hearts/ADD_HEART'
+const GET_ONE = 'hearts/GET_ONE'
 const GET_SESSION = 'hearts/GET_SESSION'
 const DELETE_HEART = 'hearts/DELETE_HEART'
 const GET_POPULAR = 'hearts/GET_POPULAR'
@@ -8,6 +9,11 @@ const GET_RECENT = 'hearts/GET_RECENT'
 const getHearts = (hearts) => ({
     type: GET,
     hearts
+})
+
+const getHeart = (heart) =>({
+    type: GET_ONE,
+    heart
 })
 
 const getUserHearts = (hearts) => ({
@@ -48,6 +54,17 @@ export const goGetHearts = () => async (dispatch) => {
     if(res.ok){
         let data = await res.json()
         dispatch(getHearts(data))
+    }
+}
+
+export const goGetHeart = (heartId) => async (dispatch) => {
+    console.log('going to get that heart you asked for')
+    let res = await fetch(`/api/hearts/${heartId}`)
+
+    if(res.ok){
+        console.log('got that heart, showing you soon')
+        let data = await res.json()
+        dispatch(getHeart(data))
     }
 }
 
@@ -149,8 +166,8 @@ export const goUpdateHeart = ({heart_id,content_url,time_to_live, user_id, conte
 }
 
 export const goDeleteHeart = (heart_id) => async (dispatch) => {
-    const res = await fetch(`/api/heart/${heart_id}`,{
-        method: 'DELETE'
+    const res = await fetch(`/api/hearts/${heart_id}`,{
+        method:'DELETE'
     })
 
     if(res.ok){
@@ -178,6 +195,10 @@ const heartReducer = (state = initialState, action) =>{
             return {...state, popular :[...action.hearts]}
         case GET_RECENT:
             return {...state, recent : [...action.hearts]}
+        case GET_ONE:
+            return{
+                ...state, all: {...state.all, [action.heart.id]: {...action.heart}}
+            }
         case ADD_HEART:
             return{
                 ...state,

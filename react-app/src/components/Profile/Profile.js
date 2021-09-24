@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { goGetSessionHearts, goGetUserHearts } from "../../store/hearts"
 import { getUser } from "../../store/profile"
-import HeartPage from "../Hearts/HeartPage"
+import HeartsPage from "../Hearts/HeartsPage"
 
 
 const Profile = () => {
@@ -89,8 +89,8 @@ const Profile = () => {
             </div> */}
         </div>
         <div className = 'focus-content'>
-            {hearts && focus === 'recent' && <HeartPage hearts = {hearts} />}
-            {/* {focus === 'popular' && <HeartPage hearts = {popularHearts} />} */}
+            {hearts && focus === 'recent' && <HeartsPage hearts = {hearts} />}
+            {/* {focus === 'popular' && <HeartsPage hearts = {popularHearts} />} */}
         </div>
         </div>
     )
