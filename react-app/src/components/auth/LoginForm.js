@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useAlert } from '../../context/Alert';
 import { login } from '../../store/session';
 import FormStyle from './FormStyle';
 
 const LoginForm = ({closeModal}) => {
+
+    const {alertText, setShowAlert ,setAlertText} = useAlert()
 
   let errorObj = {
     credential: [],
@@ -21,7 +24,8 @@ const LoginForm = ({closeModal}) => {
     if (data) {
       setErrors({...data});
     }else{
-
+        setAlertText('logged in!')
+        setShowAlert(true)
         closeModal()
 
     }

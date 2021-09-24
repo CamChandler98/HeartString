@@ -11,11 +11,13 @@ import AuthReminder from './components/Nav/AuthReminder';
 import Home from './Home/Home';
 import Profile from './components/Profile/Profile.js';
 import HeartPage from './components/Hearts/HeartPage';
+import Alert from './components/Alert/Alert';
+import { useAlert } from './context/Alert';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-
+  const {showAlert} = useAlert()
    const sessionUser = useSelector(state => state.session.user)
 
   useEffect(() => {
@@ -43,7 +45,7 @@ function App() {
             <HeartPage />
         </Route>
       </Switch>
-
+        {showAlert&& <Alert/>}
       {!sessionUser &&<AuthReminder />}
     </BrowserRouter>
   );
