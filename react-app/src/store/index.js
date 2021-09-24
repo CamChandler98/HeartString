@@ -5,10 +5,9 @@ import replyReducer from './replies';
 import session from './session'
 
 const rootReducer = combineReducers({
-
   session,
-  heartReducer: heartReducer,
-  replyReducer: replyReducer
+  hearts: heartReducer,
+  replies: replyReducer
 });
 
 

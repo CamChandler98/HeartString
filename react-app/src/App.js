@@ -35,6 +35,7 @@ function App() {
             <Home />
         </Route>
       </Switch>
+      
       {!sessionUser &&<AuthReminder />}
     </BrowserRouter>
   );

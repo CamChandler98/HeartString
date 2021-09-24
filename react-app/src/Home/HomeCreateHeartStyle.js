@@ -21,12 +21,13 @@ const HomeCreateHeartFormStyle = styled.div`
     margin-top: 0px
 }
 .create-heart-form{
+    position:sticky;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
     min-width: 500px;
-    padding:2% 2%;
+    padding:2% 1%;
     padding-right: 4%;
     gap:5px;
     border-bottom: solid 1px #5b626679;
@@ -71,9 +72,10 @@ input[type="file"]{
 }
 .time-to-live{
     margin-right: auto;
-    margin-left: 14.7%;
+    margin-left: 27.7%;
 }
 .time-to-live h2{
+    align-text:center
     color:#393e41;
     font-size: 14px;
 }

@@ -16,7 +16,7 @@ import random
 def gen_text():
     language = random.choice([fake_latin,fake_japanese, fake_english])
 
-    content = language.text(max_nb_chars=random.randrange(5,245))
+    content = language.text(max_nb_chars=random.randrange(5,800))
 
     return content
 

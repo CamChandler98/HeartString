@@ -5,7 +5,7 @@ from wtforms.fields.simple import TextField
 
 class ReplyForm(FlaskForm):
 
-    content = TextField('content', validators = [DataRequired(message='no one wants an empty gesture'), Length(min= 1, max = 250)])
+    content = TextField('content', validators = [DataRequired(message='no one wants an empty gesture'), Length(min= 1, max = 800)])
 
     user_id = IntegerField('user_id', validators= [DataRequired()])
 

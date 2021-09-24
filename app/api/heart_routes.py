@@ -1,11 +1,14 @@
 from datetime import datetime
+
+from sqlalchemy.sql.expression import desc
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms.heart_form import HeartForm
 from app.api.aws import public_file_upload
 from flask import Blueprint, request
 from sqlalchemy.sql.operators import op
+from sqlalchemy import func
 
-from app.models import Heart, db
+from app.models import Heart, Reply, db
 
 heart_routes = Blueprint('hearts', __name__)
 
@@ -16,6 +19,30 @@ def hearts():
 
     return {heart.id:heart.to_dict() for heart in hearts}
 
+@heart_routes.route('/popular')
+def top_hearts():
+    # posts = db.session.query(Post).join(Comment).group_by(
+    # Post.id).order_by(func.count().desc()).all()
+    # data = posts[0:10]
+
+    hearts = db.session.query(Heart).join(Reply).group_by(Heart.id).order_by(func.count().desc()).limit(30).all()
+
+
+    if hearts:
+        return {"hearts": [heart.to_dict() for heart in hearts]}
+    else:
+        return {"error": ['Something went wrong']}
+
+@heart_routes.route('/recent')
+def recent_hearts():
+    # entities = MyEntity.query.order_by(desc(MyEntity.time)).limit(3).all()
+
+    hearts = Heart.query.order_by(desc(Heart.created_at)).limit(30).all()
+
+    if hearts:
+        return {"hearts": [heart.to_dict() for heart in hearts]}
+    else:
+        return {"error": ['Something went wrong']}
 @heart_routes.route('/<int:id>')
 def heart(id):
 
@@ -48,7 +75,9 @@ def create_heart():
             time_to_live = form.data['time_to_live'],
             content_url = content_url,
             user_id = form.data['user_id'],
-            open = True
+            open = True,
+            created_at = datetime.now(),
+            updated_at = datetime.now()
         )
         db.session.add(heart)
         db.session.commit()
