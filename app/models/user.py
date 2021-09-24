@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
     hearts = db.relationship('Heart', back_populates = 'user')
     replies = db.relationship('Reply',back_populates = 'user' )
-    
+
     @property
     def password(self):
         return self.hashed_password
@@ -32,6 +32,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
+            'display_name': self.display_name,
             'email': self.email,
             'profile_picture_url': self.profile_picture_url
         }

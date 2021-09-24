@@ -17,3 +17,9 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/<string:username>')
+def user_by_name(username):
+    user =  User.query.filter( User.username == username).first()
+
+    return user.to_dict()

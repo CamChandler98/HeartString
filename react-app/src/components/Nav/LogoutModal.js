@@ -43,12 +43,25 @@ const LogoutStyle = styled.div`
         height: 50px;
         width: 50px;
         object-fit: cover;
-        border-radius: 50%
+        border-radius: 50%;
+        padding: 10px
+    }
+    a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 50%;
+        padding:10px;
+
+    }
+    img:hover{
+        background-color: #393e411a;
     }
 
 
 `
-const LogoutModal = ({user}) => {
+const LogoutModal = ({user, closeModal}) => {
     const dispatch = useDispatch()
     const onLogout = async (e) => {
       await dispatch(logout());
@@ -56,14 +69,14 @@ const LogoutModal = ({user}) => {
     return(
         <LogoutStyle>
         <div className = 'logout-container'>
-            <Link to = {`/user/${user.username}`}>
+            <Link to = {`/users/${user.username}`} onClick = {closeModal}>
             <p>
-                profile
+                {user.display_name}
             </p>
             <img src = {user.profile_picture_url} />
             </Link>
             <p>
-                logout {user.username}?
+                Logout {user.username}?
             </p>
             <button className = 'logout-button' onClick = {onLogout}>
                 Logout
