@@ -166,8 +166,8 @@ export const goUpdateHeart = ({heart_id,content_url,time_to_live, user_id, conte
 }
 
 export const goDeleteHeart = (heart_id) => async (dispatch) => {
-    const res = await fetch(`/api/heart/${heart_id}`,{
-        method: 'DELETE'
+    const res = await fetch(`/api/hearts/${heart_id}`,{
+        method:'DELETE'
     })
 
     if(res.ok){

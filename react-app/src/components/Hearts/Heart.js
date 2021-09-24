@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux'
 import EditHeartModal from './EditHeartFormModal'
 import './Heart.css'
+import DeleteModal from '../util/DeleteModal';
 
 const Heart = ({heart}) => {
 
@@ -60,8 +61,14 @@ const Heart = ({heart}) => {
                 </p>
 
                 {owner &&
-                <div className = 'edit-heart'>
-                <EditHeartModal content = {heart.content} heart_id = {heart.id} content_url = {heart.content_url} time_to_live = {heart.time_to_live} />
+                <div className = 'crud-buttons'>
+                    <div className = 'edit-heart'>
+                    <EditHeartModal content = {heart.content} heart_id = {heart.id} content_url = {heart.content_url} time_to_live = {heart.time_to_live} />
+                    </div>
+                    <div className = 'delete-heart'>
+                        <DeleteModal id = {heart.id} type = {'heart'} onClick= {e => e.stopPropagation()} />
+                    </div>
+
                 </div>
                 }
         </div>

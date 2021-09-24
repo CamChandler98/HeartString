@@ -64,5 +64,6 @@
     flex-direction: column;
     max-width: 1000px;
     align-items: center;
-    background-color: #393e411b;
+    background-color: #8c9ba51b;
+    min-height: 100vh;
 }

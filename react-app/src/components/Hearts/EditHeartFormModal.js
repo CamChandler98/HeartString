@@ -12,7 +12,8 @@ const EditHeartModal = ({content, heart_id, content_url, time_to_live}) => {
         setShowModal(true)
     }
 
-    const closeModal = () => {
+    const closeModal = (e) => {
+        e.stopPropagation()
         setShowModal(false)
     }
 
@@ -20,7 +21,7 @@ const EditHeartModal = ({content, heart_id, content_url, time_to_live}) => {
         <>
         <button onClick = {handleClick}>Edit</button>
         {showModal &&
-            <Modal onClick = {handleClick} onClose = {() => setShowModal(false)}>
+            <Modal onClick = {handleClick} onClose = {closeModal}>
                 <CreateHeartFormStyle onClick = {handleClick}>
                 <EditHeartForm onClick = {handleClick} closeModal = {closeModal} content = {content}heart_id = {heart_id} content_url = {content_url} time_to_live = {time_to_live} />
                 </CreateHeartFormStyle>
