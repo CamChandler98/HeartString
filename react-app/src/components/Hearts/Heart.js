@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import EditHeartModal from './EditHeartFormModal'
 import './Heart.css'
 import DeleteModal from '../util/DeleteModal';
+import EditMarker from '../util/EditMarker';
 
 const Heart = ({heart}) => {
 
@@ -28,8 +29,8 @@ const Heart = ({heart}) => {
         setExpirationCountdown(expiresInSec)
     }
 
-    const redirectToHeartPage = () => {
-        console.log('clicked')
+    const redirectToHeartPage = (e) => {
+        console.log('i,' ,e.target, 'am redirecting to heart page')
         history.push(`/hearts/${heart.id}`)
     }
 
@@ -71,6 +72,7 @@ const Heart = ({heart}) => {
 
                 </div>
                 }
+                    <EditMarker obj = {heart} />
         </div>
     )
 }

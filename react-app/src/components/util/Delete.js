@@ -28,7 +28,7 @@ const Delete = ({id, type , closeModal}) => {
     }
     return(
 
-        <div className = 'delete-container'>
+        <div onClick = { e => e.stopPropagation()} className = 'delete-container'>
             <h1>Are you sure you want to delete this {type} ? </h1>
 
             <button onClick = {handleClick}>
