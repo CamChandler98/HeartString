@@ -1,0 +1,9 @@
+.edit-marker{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.edit-marker span{
+    color: #393e41;
+}

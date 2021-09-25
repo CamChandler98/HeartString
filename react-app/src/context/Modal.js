@@ -77,7 +77,7 @@ export function Modal({onClose, children, top, bottom, left, right, backgroundCo
     backgroundColor = {backgroundColor}
     borderRadius = {borderRadius}
     >
-        <div id="modal">
+        <div id="modal" onClick = {e => e.stopPropagation()}>
         <div id="modal-background" onClick={onClose} />
         <div id="modal-content">
             {children}

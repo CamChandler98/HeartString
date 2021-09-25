@@ -52,7 +52,7 @@ const EditHeartForm = ({closeModal, content, heart_id, content_url, time_to_live
     }
 
     return(<>
-        {user && <form className= 'create-heart-form' onSubmit = {submitHeart}>
+        {user && <form className= 'create-heart-form' onSubmit = {submitHeart} onClick = {e => e.stopPropagation()}>
             <div className = 'photo-content'>
             <label htmlFor = 'heart-content'></label>
             <div className = 'text-errors'>
@@ -63,6 +63,7 @@ const EditHeartForm = ({closeModal, content, heart_id, content_url, time_to_live
                     onChange= {updateContent}
                     placeholder = 'Let the world know how you feel....'
                     value = {new_content}
+                    onClick = {e => e.stopPropagation()}
                 >
                 </textarea>
                 </div>

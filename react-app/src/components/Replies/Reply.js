@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import DeleteModal from "../util/DeleteModal"
+import EditMarker from "../util/EditMarker"
 import EditReplyModal from "./EditReplyFormModal"
 import './Reply.css'
 const Reply = ({reply, i}) => {
@@ -37,6 +38,8 @@ const Reply = ({reply, i}) => {
                         <DeleteModal id = {reply.id} type = {'reply'} onClick= {e => e.stopPropagation()} />
                 </div>
            </div>}
+
+             <EditMarker obj = {reply} />
        </div>
     )
 }

@@ -7,6 +7,7 @@ const DeleteModal = ({type, id}) => {
     const [showModal, setShowModal] = useState(false)
 
     const handleClick = (e) => {
+        e.preventDefault()
         e.stopPropagation()
         setShowModal(true)
     }
