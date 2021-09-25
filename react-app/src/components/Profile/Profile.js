@@ -32,6 +32,10 @@ const Profile = () => {
             dispatch(goGetUserHearts(profileUser.id))
             setOwner(false)
         }
+
+        return () => {
+            setOwner(false)
+        }
     }, [profileUser,sessionUser])
 
     const switchFocus = (e,target) => {
@@ -70,6 +74,11 @@ const Profile = () => {
             setHearts(Object.values(profileHearts).reverse())
             console.log('got anothers hearts!')
         }
+        return () =>{
+
+            setHearts([])
+        }
+
 
     },[sessionHearts,profileHearts,profileUser,sessionUser])
 

@@ -2,7 +2,7 @@ import { goDeleteHeart } from "../../store/hearts"
 import { goDeleteReply } from "../../store/replies"
 import { useDispatch } from "react-redux"
 import { useAlert } from "../../context/Alert"
-
+import './Delete.css'
 const Delete = ({id, type , closeModal}) => {
 
     const {alertText, setShowAlert ,setAlertText} = useAlert()
@@ -28,8 +28,8 @@ const Delete = ({id, type , closeModal}) => {
     }
     return(
 
-        <div className = 'logout-container'>
-            <h1>Are you sure you want to delete this {type} </h1>
+        <div className = 'delete-container'>
+            <h1>Are you sure you want to delete this {type} ? </h1>
 
             <button onClick = {handleClick}>
                 delete

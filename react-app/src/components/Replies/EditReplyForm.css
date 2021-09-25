@@ -1,14 +1,15 @@
-.create-reply-form{
+.edit-reply-form{
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     min-width: 500px;
     align-items: center;
     padding: 5% 5% 2% 5% ;
-    border: 10px solid #a2e8d974;
+    border-radius: 10px;
+    background-color: white;
 }
 
-.create-reply-form textarea{
+.edit-reply-form textarea{
     min-width: 500px;
     resize:none;
     border: none;
@@ -22,7 +23,7 @@
     box-sizing: border-box;
 }
 
-.create-reply-form button{
+.edit-reply-form button{
     width: 40%;
     min-height: 30px;
     border-radius: 8px;
@@ -35,7 +36,7 @@
     margin: 2%
 }
 
-.create-reply-form button:hover{
+.edit-reply-form button:hover{
     background-color: #e1d175;
     transform: scale(1.02);
 }
