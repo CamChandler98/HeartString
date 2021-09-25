@@ -2,6 +2,7 @@
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    margin-right: 0px;
 }
 
 .edit-marker span{

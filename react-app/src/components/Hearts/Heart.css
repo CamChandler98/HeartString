@@ -42,6 +42,7 @@ h3{
    margin-bottom: 0;
    display: flex;
    gap: 13px;
+   align-items: center;
 }
 
 .crud-buttons button{

@@ -30,16 +30,16 @@ const Reply = ({reply, i}) => {
            <p className = 'reply-text'>
                 {reply.content}
            </p>
-           {owner && <div className = 'crud-buttons'>
-               <div className = 'edit-reply'>
-                <EditReplyModal  reply = {reply} />
-                </div>
-                <div className = 'delete-reply'>
-                        <DeleteModal id = {reply.id} type = {'reply'} onClick= {e => e.stopPropagation()} />
-                </div>
-           </div>}
-
+          <div className = 'crud-buttons'>
              <EditMarker obj = {reply} />
+               {owner && <div className = 'edit-reply'>
+                <EditReplyModal  reply = {reply} />
+                </div>}
+                {owner && <div className = 'delete-reply'>
+                        <DeleteModal id = {reply.id} type = {'reply'} onClick= {e => e.stopPropagation()} />
+                </div>}
+           </div>
+
        </div>
     )
 }
