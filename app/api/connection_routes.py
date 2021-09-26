@@ -12,6 +12,7 @@ def user_connections(id):
 def connect():
     data = request.get_json()
 
+    print('look at this conenction data', data)
     chooser_id =  data['user_one']
     chosen_id = data['user_two']
 
