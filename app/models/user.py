@@ -1,3 +1,4 @@
+from sqlalchemy.orm import backref
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -16,6 +17,14 @@ class User(db.Model, UserMixin):
 
     hearts = db.relationship('Heart', back_populates = 'user')
     replies = db.relationship('Reply',back_populates = 'user' )
+
+    connections = db.relationship(
+        'User', lambda: user_connections,
+        primaryjoin  = lambda: User.id == user_connections.c.user_id,
+        secondaryjoin = lambda:User.id == user_connections.c.connection_id,
+        backref= 'connections',
+        cascade = 'all, delete'
+    )
 
     @property
     def password(self):
@@ -36,3 +45,11 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_picture_url': self.profile_picture_url
         }
+
+
+user_connections = db.Table(
+    'user_connections',
+    db.Column('user_id' , db.Integer, db.ForeignKey(User.id), primary_key = True),
+
+    db.Column('connection_id', db.Integer, db.ForeignKey(User.id), primary_key = True)
+)
