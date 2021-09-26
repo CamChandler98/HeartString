@@ -3,6 +3,10 @@ from flask import Blueprint, request
 from app.models import User, db
 
 connection_routes = Blueprint('connections', __name__)
+@connection_routes.route('/user/<int:id>')
+def user_connections(id):
+    user = User.query.get(id)
+    return user.to_dict()['connections']
 
 @connection_routes.route('/', methods = ['POST'])
 def connect():
