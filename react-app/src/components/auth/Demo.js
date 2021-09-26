@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { login } from "../../store/session"
-
+import './Demo.css'
 
 const DemoLogin = () => {
     const dispatch = useDispatch()
@@ -21,6 +21,8 @@ const DemoLogin = () => {
 
     return (
         <div className = 'demo-container'>
+                <h1>Demo</h1>
+            <div className = 'demo-user-container' >
             <div className = 'romeow'>
                 <h2>
                     Romeow
@@ -40,6 +42,8 @@ const DemoLogin = () => {
                     Demo
                 </button>
             </div>
+
+        </div>
         </div>
     )
 }
