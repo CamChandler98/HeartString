@@ -71,5 +71,16 @@ const AuthReminderStyle = styled.div`
     transform: scale(1.03);
 }
 
+.demo-button{
+    background-color: #e4d374;
+    border: none;
+    color: whitesmoke;
+
+}
+.demo-button:hover{
+    background-color: #d2c163;
+    transform: scale(1.03);
+}
+
 `
 export default AuthReminderStyle

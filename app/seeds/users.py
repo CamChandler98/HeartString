@@ -10,17 +10,17 @@ fake_japanese = Faker('ja-JP')
 def seed_base_users():
     Romeo = User(
         username='Romeow',
-        email= 'juliet@romeo.com',
+        email= 'romeo@romeo.com',
         display_name = 'Romeow',
         password = 'password',
-        profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
+        profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/romeo-profile-pic.svg'
     )
     Juliet = User(
         username='Julion',
         email= 'juliet@juliet.com',
         display_name = 'Julion',
         password = 'password',
-        profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
+        profile_picture_url = 'https://heartstringawsbuckect.s3.amazonaws.com/julion-profile-pic.svg'
     )
     db.session.add(Romeo)
     db.session.add(Juliet)
