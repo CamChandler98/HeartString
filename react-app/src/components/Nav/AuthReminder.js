@@ -1,3 +1,4 @@
+import DemoModal from "../auth/DemoModal"
 import LoginFormModal from "../auth/LoginFormModal"
 import SignUpFormModal from "../auth/SignupFormModal"
 // import './AuthReminder.css'
@@ -16,6 +17,7 @@ const AuthReminder = () => {
         <div className = 'auth-buttons'>
         <LoginFormModal />
         <SignUpFormModal />
+        <DemoModal />
         </div>
         </div>
         </AuthReminderStyle>
