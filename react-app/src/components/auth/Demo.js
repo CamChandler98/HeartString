@@ -1,12 +1,47 @@
+import { useDispatch } from "react-redux"
+import { login } from "../../store/session"
 
 
-const Demo = () => {
+const DemoLogin = () => {
+    const dispatch = useDispatch()
 
+    const loginRomeow = () => {
+        let credential = 'Romeow'
+        let password = 'password'
+
+        dispatch(login(credential, password))
+    }
+
+    const loginJulion = () => {
+        let credential = 'Julion'
+        let password = 'password'
+
+        dispatch(login(credential, password))
+    }
 
     return (
+        <div className = 'demo-container'>
+            <div className = 'romeow'>
+                <h2>
+                    Romeow
+                </h2>
+                <img src = 'https://heartstringawsbuckect.s3.amazonaws.com/romeo-profile-pic.svg' />
+                <button onClick = {loginRomeow}>
+                    Demo
+                </button>
+            </div>
 
-        null
+            <div className = 'julion'>
+                <h2>
+                    Julion
+                </h2>
+                <img src = 'https://heartstringawsbuckect.s3.amazonaws.com/julion-profile-pic.svg' />
+                <button onClick = {loginJulion}>
+                    Demo
+                </button>
+            </div>
+        </div>
     )
 }
 
-export default Demo
+export default DemoLogin
