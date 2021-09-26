@@ -44,7 +44,7 @@ class User(db.Model, UserMixin):
             'display_name': self.display_name,
             'email': self.email,
             'profile_picture_url': self.profile_picture_url,
-            'connections': {user.id: user.to_dict() for user in self.connections}
+            'connections': {user.id: user.to_dict_short() for user in self.connections}
         }
     def to_dict_short(self):
 
