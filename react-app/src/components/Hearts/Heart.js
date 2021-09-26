@@ -57,9 +57,10 @@ const Heart = ({heart}) => {
         <div className = 'heart-container' onClick = {redirectToHeartPage}>
                 <p className = 'heart-text'>{heart.content}</p>
                     <h3>Expires in :</h3>
-                <p className = 'expiration-count'>
+                { expirationCountdown && !Number.isNaN(expirationCountdown) &&
+                    <p className = 'expiration-count'>
                 {expirationCountdown > 0 ? expirationCountdown: 'EXPIRED'}
-                </p>
+                </p>}
 
                 {owner &&
                 <div className = 'crud-buttons'>
