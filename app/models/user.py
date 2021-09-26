@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
         'User', lambda: user_connections,
         primaryjoin  = lambda: User.id == user_connections.c.user_id,
         secondaryjoin = lambda:User.id == user_connections.c.connection_id,
-        backref= 'connections',
+        backref= 'connectors',
         cascade = 'all, delete'
     )
 
@@ -43,9 +43,30 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'display_name': self.display_name,
             'email': self.email,
-            'profile_picture_url': self.profile_picture_url
+            'profile_picture_url': self.profile_picture_url,
+            'connections': {user.id: user.to_dict() for user in self.connections}
+        }
+    def to_dict_short(self):
+
+        return {
+            'id': self.id,
+            'username': self.username,
+            'display_name': self.display_name,
+            'profile_picture_url': self.profile_picture_url,
         }
 
+    def make_connection(self, user_id):
+
+        user  = User.query.get(user_id)
+
+        if not user in self.connections:
+            self.connections.append(user)
+            user.connections.append(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
 
 user_connections = db.Table(
     'user_connections',
