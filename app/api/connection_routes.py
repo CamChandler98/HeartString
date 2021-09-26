@@ -8,10 +8,11 @@ connection_routes = Blueprint('connections', __name__)
 def connect():
     data = request.get_json()
 
-    chooser_id =  data['chooser_id']
-    chosen_id = data['chosen_id']
+    chooser_id =  data['user_one']
+    chosen_id = data['user_two']
 
     chooser = User.query.get(chooser_id)
+    chosen = User.query.get(chosen_id)
 
     chooser.make_connection(chosen_id)
 
@@ -19,18 +20,23 @@ def connect():
 
     db.session.commit()
 
-    return chooser.to_dict()
+    return { chosen_id : chosen.to_dict_short()}
 
 @connection_routes.route('/', methods = ['DELETE'])
 def sever():
 
     data = request.get_json()
 
-    user_one = data['user_one']
-    user_two = data['user_two']
+    user_one_id = data['user_one']
+    user_two_id = data['user_two']
 
-    user_one.sever_connection(user_two)
+    user_one = User.query.get(user_one_id)
+
+    user_one.sever_connection(user_two_id)
+
 
     db.session.add(user_one)
 
     db.session.commit()
+
+    return str(user_two_id)

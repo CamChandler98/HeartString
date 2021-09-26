@@ -74,12 +74,14 @@ class User(db.Model, UserMixin):
 
         if user in self.connections:
             self.connections.remove(user)
-            user.connections.remover(self)
+            user.connections.remove(self)
 
             db.session.add(self)
             db.session.add(user)
 
             db.session.commit()
+    def get_connections(self):
+        return {user.id: user.to_dict_short() for user in self.connections}
 
 user_connections = db.Table(
     'user_connections',
