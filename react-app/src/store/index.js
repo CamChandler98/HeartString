@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import connectionReducer from './connections';
 import heartReducer from './hearts';
 import profileReducer from './profile';
 import replyReducer from './replies';
@@ -9,7 +10,8 @@ const rootReducer = combineReducers({
   session,
   hearts: heartReducer,
   replies: replyReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  connections: connectionReducer
 });
 
 

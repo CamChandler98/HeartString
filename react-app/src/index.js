@@ -8,6 +8,7 @@ import { ModalProvider } from './context/Modal';
 import { BrowserRouter } from 'react-router-dom';
 import * as heartActions from './store/hearts'
 import * as replyActions from './store/replies'
+import  * as connectionActions from './store/connections'
 import AlertProvider from './context/Alert';
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== "production") {
     window.store = store;
     window.heartActions = heartActions
     window.replyActions = replyActions
+    window.connectionActions = connectionActions
   }
 ReactDOM.render(
   <React.StrictMode>
