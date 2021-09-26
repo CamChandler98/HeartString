@@ -27,5 +27,5 @@ def undo():
     undo_hearts()
     undo_users()
     undo_replies()
-    # undo_connections()
+    undo_connections()
     # Add other undo functions here

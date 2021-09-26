@@ -68,6 +68,19 @@ class User(db.Model, UserMixin):
 
             db.session.commit()
 
+    def sever_connection(self,user_id):
+
+        user = User.query.get(user_id)
+
+        if user in self.connections:
+            self.connections.remove(user)
+            user.connections.remover(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
+
 user_connections = db.Table(
     'user_connections',
     db.Column('user_id' , db.Integer, db.ForeignKey(User.id), primary_key = True),
