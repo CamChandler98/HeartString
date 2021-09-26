@@ -28,13 +28,16 @@ const Profile = () => {
             dispatch(goGetSessionHearts(sessionUser?.id))
             setOwner(true)
         }
-        else if(sessionUser.id && profileUser.id ){
+        else if(profileUser.id ){
             dispatch(goGetUserHearts(profileUser.id))
             setOwner(false)
+        }else{
+
         }
 
         return () => {
             setOwner(false)
+            setHearts([])
         }
     }, [profileUser,sessionUser])
 
