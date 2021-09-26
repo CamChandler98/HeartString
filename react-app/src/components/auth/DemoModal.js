@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 import { Modal } from "../../context/Modal";
+import DemoLogin from "./Demo";
 import SignUpForm from "./SignUpForm";
 
 
-const SignUpFormModal = () => {
+const DemoModal = () => {
     const [showModal, setShowModal] = useState(false)
 
     const handleClick = () => {
@@ -17,12 +18,12 @@ const SignUpFormModal = () => {
 
     return(
         <>
-        <button className='signup-button' onClick={handleClick}>
-            Sign Up
+        <button className='demo-button' onClick={handleClick}>
+            Demo
         </button>
         {showModal &&
             <Modal onClose = {() => setShowModal(false)}>
-                <SignUpForm closeModal = {closeModal}/>
+                <DemoLogin onClose = {closeModal} />
             </Modal>
         }
 
@@ -31,4 +32,4 @@ const SignUpFormModal = () => {
     )
 }
 
-export default SignUpFormModal
+export default DemoModal

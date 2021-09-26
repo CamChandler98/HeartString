@@ -11,9 +11,10 @@ const ProfilePictureStyle = styled.div`
         box-sizing: border-box;
         object-fit: cover;
         border-radius: 50%;
-        padding: 0px;
-        width:40px;
-        height:40px;
+        padding: 5px;
+        width:70px;
+        height:70px;
+        background-color: white;
     }
 `
 const ProfilePicture = ({user}) => {
