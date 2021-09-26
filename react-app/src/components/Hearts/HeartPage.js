@@ -91,10 +91,11 @@ const HeartPage = () => {
                     {heart.content}
                 </p>
             </div>
-            {expirationCountdown !== NaN &&
+            {!Number.isNaN(expirationCountdown  )&& expirationCountdown&&
             <div className = 'a-heart-countdown'>
                 <h2>Expires in: </h2>
-                <span>{expirationCountdown}</span>
+               { expirationCountdown && !Number.isNaN(expirationCountdown) && <span>
+                {expirationCountdown > 0 ? expirationCountdown: 'EXPIRED'}</span> }
             </div>}
             </div>
             <div>
