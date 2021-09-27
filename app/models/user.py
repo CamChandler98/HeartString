@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
 
     hearts = db.relationship('Heart', back_populates = 'user')
     replies = db.relationship('Reply',back_populates = 'user' )
-
+    connected_hearts = db.relationship('Heart', back_populates = 'connector')
     connections = db.relationship(
         'User', lambda: user_connections,
         primaryjoin  = lambda: User.id == user_connections.c.user_id,
