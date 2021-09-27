@@ -10,7 +10,7 @@ const RepliesPage = ({replies, heartOwnerId}) => {
                 replies.map((reply,i) => {
 
                     return(
-                        <Reply key ={reply.id} i = {i} reply = {reply} />
+                        <Reply heartOwnerId = {heartOwnerId} key ={reply.id} i = {i} reply = {reply} />
                     )
                 })
             }

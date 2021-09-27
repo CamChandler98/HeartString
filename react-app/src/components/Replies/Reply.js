@@ -46,16 +46,18 @@ const Reply = ({reply, i, heartOwnerId}) => {
 
     useEffect(() => {
         if(sessionUser && sessionUser.id === heartOwnerId){
+            console.log(heartOwnerId, 'this number owns it')
             setHeartOwner(true)
         }
         else if(sessionUser && sessionUser.id !== heartOwnerId){
+            console.log(heartOwnerId, 'this number owns it')
             setHeartOwner(false)
         }
 
         return () => {
             setHeartOwner(false)
         }
-    },[sessionUser])
+    },[sessionUser, heartOwnerId])
 
     const leftOrRight = () => {
         if( i % 2 === 0){
