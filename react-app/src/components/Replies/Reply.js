@@ -75,7 +75,7 @@ const Reply = ({reply, i, heartOwnerId}) => {
 
     return(
        <div style = {leftOrRight()} className = 'reply-container'>
-           {connected || owner &&
+           {(connected || owner) &&
               <div className = 'connected-header'>
                 <div className = 'connected-top'>
                <img className ='connected-profile-picture' src = {reply.user_profile_pic} alt ={`connection ${reply.username} profile picture`}/>
