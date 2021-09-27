@@ -38,10 +38,13 @@ def edit_user(id):
 
     if form.validate_on_submit():
         user = User.query.get(id)
+        isImage = request.form['isImage']
+        print('is image', isImage)
+        profile_picture_url = user.profile_picture_url if len(isImage) > 0 else 'https://heartstringawsbuckect.s3.amazonaws.com/heartstring-default-profile-picture.jpg'
 
-        profile_picture_url = user.profile_picture_url
-
+        print('i am here')
         try:
+            print(request.files['image'], 'look at nothing')
             uploaded_file = request.files['image']
             profile_picture_url = public_file_upload    (uploaded_file, 'heartstringawsbuckect')
         except KeyError:

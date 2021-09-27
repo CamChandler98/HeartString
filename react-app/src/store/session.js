@@ -104,11 +104,11 @@ export const signUp = (username, email, password, image, displayName) => async (
   }
 }
 
-export const editUser = (user_id, display_name, image) => async (dispatch) => {
+export const editUser = (user_id, display_name, image, tempImageUrl) => async (dispatch) => {
     const formData = new FormData()
     formData.append('display_name',display_name)
+    formData.append('isImage', tempImageUrl)
     if(image) formData.append("image", image)
-
     const response = await fetch(`/api/users/${user_id}/edit`, {
         method: 'PUT',
         body: formData

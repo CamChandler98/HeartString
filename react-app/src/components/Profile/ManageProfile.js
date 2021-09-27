@@ -21,7 +21,7 @@ const ManageProfile = ({closeModal, user}) => {
 
     const submitEdit = async (e) => {
         e.preventDefault()
-        const data = await dispatch(editUser(user.id,displayName,image))
+        const data = await dispatch(editUser(user.id,displayName,image ,tempImageUrl))
         if (data) {
             console.log('setting these errors on the form ->>>', data)
           setErrors({...data})
@@ -100,7 +100,7 @@ const ManageProfile = ({closeModal, user}) => {
             </ul>
         }
         </div>
-        <button className = 'form-button' type='submit'>Sign Up</button>
+        <button className = 'form-button' type='submit'>Edit</button>
             </form>
             </FormStyle>
     )
