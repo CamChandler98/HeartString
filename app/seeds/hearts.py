@@ -23,7 +23,7 @@ def gen_text():
 
     return content
 
-def seed_base_hearts(seeds = 40):
+def seed_base_hearts(seeds = 26):
 
     for i in range(seeds):
         heart = Heart(
@@ -37,7 +37,7 @@ def seed_base_hearts(seeds = 40):
 
     db.session.commit()
 
-def seed_hearts(seeds = 160):
+def seed_hearts(seeds = 250):
     user_dict = gen_count_dict(User)
 
     for i in range(seeds):
@@ -45,7 +45,7 @@ def seed_hearts(seeds = 160):
             content = gen_text(),
             content_url = get_image_url(),
             time_to_live = get_ttl(),
-            user_id = assign_from_dict(user_dict, 10),
+            user_id = assign_from_dict(user_dict, 7),
             open = True
         )
         db.session.add(heart)

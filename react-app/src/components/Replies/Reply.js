@@ -97,7 +97,7 @@ const Reply = ({reply, i, heartOwnerId}) => {
            </div>
                 {heartOwner && !owner && !alreadyConnected &&
                     <div>
-                        <button
+                        <button className = 'connect-button'
                         onClick ={() => goMakeConnection(sessionUser.id, reply.user_id)}
                         >
                             Connect!

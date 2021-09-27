@@ -54,7 +54,7 @@ def seed_base_replies(seeds = 25):
 
     db.session.commit()
 
-def seed_replies(seeds = 200):
+def seed_replies(seeds = 350):
     user_dict = gen_count_dict(User)
     heart_dict = gen_count_dict(Heart)
 
@@ -63,7 +63,7 @@ def seed_replies(seeds = 200):
         reply = Reply(
             content= gen_text(),
             user_id = assign_from_dict(user_dict,7),
-            heart_id = assign_from_dict(heart_dict, 7)
+            heart_id = assign_from_dict(heart_dict, 10)
         )
 
         db.session.add(reply)

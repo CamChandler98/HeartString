@@ -63,3 +63,19 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+.connect-button{
+    background-color: #fb6888;
+    height:40px;
+    width:90px;
+    border-radius: 15px;
+    font-size: 16px;
+    padding: 1%;
+    color: #393e41;
+    font-weight: bold;
+    border:none
+}
+.connect-button button:hover{
+    background-color: #d5506c;
+    cursor: pointer;
+}

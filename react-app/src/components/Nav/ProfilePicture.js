@@ -16,6 +16,11 @@ const ProfilePictureStyle = styled.div`
         height:70px;
         background-color: white;
     }
+
+    .profile-pic:hover{
+        transform: scale(1.01);
+        cursor: pointer;
+    }
 `
 const ProfilePicture = ({user}) => {
     const [showModal, setShowModal] = useState(false)
