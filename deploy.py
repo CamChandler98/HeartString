@@ -4,6 +4,6 @@ import os
 # os.system("heroku container:push web -a heart-string")
 # os.system("heroku container:release web -a heart-string"
 # )
-os.system("heroku run -a heart-string flask seed undo")
 os.system("heroku run -a heart-string flask db upgrade")
+os.system("heroku run -a heart-string flask seed undo")
 os.system("heroku run -a heart-string flask seed all")
