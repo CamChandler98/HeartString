@@ -16,6 +16,7 @@
 }
 
 .a-heart-content p{
+    color: #1b1f21;
     font-size: 24px;
 }
 
@@ -29,9 +30,21 @@
 }
 
 .a-heart-countdown span{
+    color: #1b1f21;
     font-size: 26px;
 }
 
 .a-heart-countdown h2{
+    color: #1b1f21;
     font-size: 30px;
+}
+
+.closed-heart-text{
+    font-size: 26px;
+    max-width: 400px;
+    margin: 2%;
+    margin-bottom: 40px;
+    text-align: justify;
+    line-height: 35px;
+    color: #1b1f21;
 }

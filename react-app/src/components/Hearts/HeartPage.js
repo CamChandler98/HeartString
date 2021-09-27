@@ -71,7 +71,6 @@ const HeartPage = () => {
 
     useEffect(()=> {
         if(heart){
-            console.log('going to set heart status for you', heart.open)
             setOpen(heart.open)
         }
     },[heart])
@@ -110,6 +109,11 @@ const HeartPage = () => {
             </div>
             <div>
              {!owner && open && sessionUser && <CreateReplyForm heart_id = {heart.id} />}
+             {!owner && !open &&
+                <h2 className = 'closed-heart-text'>
+                    Sorry this heart is heart is closed, but you can still take a look at the replies
+                </h2>
+             }
             </div>
             <div>
                 { heartReplies &&

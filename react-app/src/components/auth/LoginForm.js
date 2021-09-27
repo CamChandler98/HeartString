@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { useAlert } from '../../context/Alert';
 import { login } from '../../store/session';
 import FormStyle from './FormStyle';
 
 const LoginForm = ({closeModal}) => {
+
+    let history = useHistory()
 
     const {alertText, setShowAlert ,setAlertText} = useAlert()
 
@@ -24,6 +27,9 @@ const LoginForm = ({closeModal}) => {
     if (data) {
       setErrors({...data});
     }else{
+        if(history.location.pathname === '/'){
+            history.push('/home')
+        }
         setAlertText('logged in!')
         setShowAlert(true)
         closeModal()
