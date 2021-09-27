@@ -1,3 +1,4 @@
+from app.forms.delete_user_form import DeleteUserForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms.edit_user_form import EditUserForm
 from app.api.aws import public_file_upload
@@ -64,8 +65,14 @@ def edit_user(id):
 
 @user_routes.route('/<int:id>/delete', methods = ['DELETE'])
 def delete_user(id):
-    User.query.get(id).delete()
 
-    db.session.commit()
+    form = DeleteUserForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    return 201
+    if form.validate_on_submit():
+        user = User.query.get(id)
+        db.session.delete(user)
+        db.session.commit()
+        return 201
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

@@ -129,6 +129,22 @@ export const editUser = (user_id, display_name, image, tempImageUrl) => async (d
       }
 }
 
+export const deleteUser = (userId, password, confirmPassword) => async (dispatch) => {
+
+    let res = await fetch(`/api/users/${userId}/delete`, {
+        method = 'DELETE',
+        body: JSON.stringify({
+            userId,
+            password,
+            confirmPassword
+        })
+    })
+
+    if (res.ok){
+        dispatch(removeUser())
+    }
+
+}
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
