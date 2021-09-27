@@ -2,6 +2,8 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
+
+
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
@@ -10,6 +12,8 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+
 
 const initialState = { user: null };
 
@@ -98,6 +102,31 @@ export const signUp = (username, email, password, image, displayName) => async (
   } else {
     return ['An error occurred. Please try again.']
   }
+}
+
+export const editUser = (user_id, display_name, image) => async (dispatch) => {
+    const formData = new FormData()
+    formData.append('display_name',display_name)
+    if(image) formData.append("image", image)
+
+    const response = await fetch(`/api/users/${user_id}/edit`, {
+        method: 'POST',
+        body: formData
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setUser(data))
+        return null;
+      } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log('errors to react from edit' ,data.errors)
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 export default function reducer(state = initialState, action) {
