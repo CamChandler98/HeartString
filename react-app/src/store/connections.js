@@ -67,7 +67,7 @@ const initialState = {}
 const connectionReducer = (state = initialState , action) => {
     switch(action.type){
         case GET:
-            return {...state, ...action.connections}
+            return { ...action.connections}
         case ADD:
             return {...state, ...action.conenction}
         case DELETE:

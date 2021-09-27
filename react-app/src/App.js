@@ -13,6 +13,7 @@ import Profile from './components/Profile/Profile.js';
 import HeartPage from './components/Hearts/HeartPage';
 import Alert from './components/Alert/Alert';
 import { useAlert } from './context/Alert';
+import SideBar from './components/Sidebar/SideBar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,7 @@ function App() {
       </Switch>
         {showAlert&& <Alert/>}
       {!sessionUser &&<AuthReminder />}
+      <SideBar />
     </BrowserRouter>
   );
 }
