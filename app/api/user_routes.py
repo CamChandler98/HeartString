@@ -33,6 +33,8 @@ def user_by_name(username):
 def edit_user(id):
 
     form = EditUserForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
 
     if form.validate_on_submit():
         user = User.query.get(id)

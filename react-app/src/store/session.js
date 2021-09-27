@@ -110,7 +110,7 @@ export const editUser = (user_id, display_name, image) => async (dispatch) => {
     if(image) formData.append("image", image)
 
     const response = await fetch(`/api/users/${user_id}/edit`, {
-        method: 'POST',
+        method: 'PUT',
         body: formData
     })
 
@@ -132,7 +132,7 @@ export const editUser = (user_id, display_name, image) => async (dispatch) => {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload }
+      return { user: {...action.payload} }
     case REMOVE_USER:
       return { user: null }
     default:

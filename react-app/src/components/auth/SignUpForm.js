@@ -112,12 +112,7 @@ const SignUpForm = ({closeModal}) => {
                 />
             }
         </label>
-      <div
-      >
-        {/* {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))} */}
-      </div>
+
       <div className = 'form-fields'>
           <div className = 'field-child'>
       <div className = 'form-group'>

@@ -4,6 +4,7 @@ import { Redirect, useParams } from "react-router"
 import { goGetSessionHearts, goGetUserHearts } from "../../store/hearts"
 import { getUser } from "../../store/profile"
 import HeartsPage from "../Hearts/HeartsPage"
+import ManageProfileModal from "./ManageProfileModal"
 import './ProfilePage.css'
 
 const Profile = () => {
@@ -89,14 +90,15 @@ const Profile = () => {
     return (
         <div className= 'home-container'>
         <div className ='home-header' >
-            <span>{profileUser.username}</span>
+            <span>{owner ? sessionUser.username: profileUser.username}</span>
         </div>
         <div className = 'user-info-header' >
-            <img className = 'profile-picture' src = {profileUser.profile_picture_url} />
+            <img className = 'profile-picture' src = {owner ? sessionUser.profile_picture_url : profileUser.profile_picture_url} />
             <div className = 'profile-header-text'>
-                <span id = 'display-name'>{profileUser.display_name}</span>
+                <span id = 'display-name'>{owner ?sessionUser.display_name :profileUser.display_name}</span>
                 <span id = 'username'>@{profileUser.username}</span>
             </div>
+            {owner && <ManageProfileModal user ={sessionUser} />}
         </div>
         <div className = 'tab-bar'>
             <div className ='bar-item focused yellow'
