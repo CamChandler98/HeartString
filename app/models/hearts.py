@@ -21,7 +21,7 @@ class Heart(db.Model):
     user = db.relationship('User',
             foreign_keys = user_id,
             primaryjoin=user_id == User.id,
-            backref=backref('hearts', order_buy=id)
+            backref=backref('hearts', order_by=id)
      )
     connector = db.relationship('User',
             foreign_keys=connector_id,
@@ -39,6 +39,8 @@ class Heart(db.Model):
         return{
             'id':self.id,
             'user_id':self.user_id,
+            'connector_id':self.connector_id,
+            'connector': self.connector.to_dict_short() if self.connector else None,
             'display_name' : self.user.display_name,
             'username': self.user.username,
             'content': self.content,

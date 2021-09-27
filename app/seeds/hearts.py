@@ -31,7 +31,8 @@ def seed_base_hearts(seeds = 26):
             content_url = get_image_url(),
             time_to_live = get_ttl(),
             user_id = random.choice([1,2]),
-            open = True
+            open = True,
+            connector_id = random.choice([1,2])
         )
         db.session.add(heart)
 
