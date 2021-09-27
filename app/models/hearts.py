@@ -35,6 +35,7 @@ class Heart(db.Model):
             'content_url' : self.content_url,
             'user_profile_pic': self.user.profile_picture_url,
             'expires': self.expiry,
+            'open': self.open,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

@@ -1,0 +1,81 @@
+.splash-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 15% 9%;
+    height: fit-content;
+    width: 100%;
+    background-color: #f5c7d1b3;
+    color: whitesmoke;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.intro-text{
+    max-width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    padding-left: 6%;
+    gap: 10px;
+    padding-top: 5%;
+}
+.intro-text h1{
+    color: #fb6888;
+    font-size: 64px;
+    font-weight: 900;
+}
+.intro-text h2 {
+    color: #393e41;
+    font-size: 30px;
+
+}
+
+.auth-links{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 400px;
+    height: 370px;
+    justify-content: center;
+    gap: 30px;
+    padding: 3%;
+    border-radius: 20px;
+}
+
+.auth-links button{
+    height: 50px;
+    font-weight: bold;
+    color: #393e41;
+}
+
+.login-button{
+    background-color: #a2e8d9;
+    border: solid 3px whitesmoke;
+    color: whitesmoke;
+}
+.login-button:hover{
+    background-color:#87c2b5b1;
+    transform: scale(1.03);
+
+}
+.signup-button{
+    background-color: #fb6888;
+    border: none;
+    color: whitesmoke;
+
+}
+.signup-button:hover{
+    background-color: #da4d6c;
+    transform: scale(1.03);
+}
+
+.demo-button{
+    background-color: #e4d374;
+    border: none;
+    color: whitesmoke;
+
+}
+.demo-button:hover{
+    background-color: #d2c163;
+    transform: scale(1.03);
+}

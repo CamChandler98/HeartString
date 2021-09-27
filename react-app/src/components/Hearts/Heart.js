@@ -15,7 +15,6 @@ const Heart = ({heart}) => {
 
     const [owner, setOwner] = useState(false)
     const[connected, setConnected] = useState(false)
-
     let sessionUser = useSelector(state => state.session.user)
     let sessionUserConnections = useSelector(state => state.connections)
 

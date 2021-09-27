@@ -11,6 +11,7 @@ import './HeartPage.css'
 const HeartPage = () => {
     const [owner,setOwner] = useState()
     const [heartReplies, setHeartReplies] = useState()
+    const [open,setOpen] = useState(false)
     const {heartId} = useParams()
     const dispatch = useDispatch()
 
@@ -68,6 +69,12 @@ const HeartPage = () => {
         }
     },[heartId])
 
+    useEffect(()=> {
+        if(heart){
+            setOpen(heart.open)
+        }
+    },[heart])
+
 
     let replyState = useSelector(state => state.replies.heart)
 
@@ -101,7 +108,12 @@ const HeartPage = () => {
             </div>}
             </div>
             <div>
-             {!owner && sessionUser && <CreateReplyForm heart_id = {heart.id} />}
+             {!owner && open && sessionUser && <CreateReplyForm heart_id = {heart.id} />}
+             {!owner && !open &&
+                <h2 className = 'closed-heart-text'>
+                    Sorry this heart is heart is closed, but you can still take a look at the replies
+                </h2>
+             }
             </div>
             <div>
                 { heartReplies &&

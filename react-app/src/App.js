@@ -14,6 +14,7 @@ import HeartPage from './components/Hearts/HeartPage';
 import Alert from './components/Alert/Alert';
 import { useAlert } from './context/Alert';
 import SideBar from './components/Sidebar/SideBar';
+import SplashPage from './components/SplashPage/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +35,11 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Switch>
+        <Route exact path = '/'>
+            <SplashPage />
+        </Route>
+        <>
       <NavBar />
       <Switch>
         <Route path = '/home' exact = {true}>
@@ -49,6 +55,8 @@ function App() {
         {showAlert&& <Alert/>}
       {!sessionUser &&<AuthReminder />}
       <SideBar />
+        </>
+      </Switch>
     </BrowserRouter>
   );
 }

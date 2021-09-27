@@ -1,15 +1,22 @@
 import { useDispatch } from "react-redux"
+import { Redirect, useHistory } from "react-router"
 import { login } from "../../store/session"
 import './Demo.css'
 
 const DemoLogin = () => {
     const dispatch = useDispatch()
+    let history = useHistory()
+
 
     const loginRomeow = () => {
         let credential = 'Romeow'
         let password = 'password'
 
         dispatch(login(credential, password))
+
+        // if(history.location.pathname === '/'){
+        //     history.push('/home')
+        // }
     }
 
     const loginJulion = () => {
@@ -17,6 +24,11 @@ const DemoLogin = () => {
         let password = 'password'
 
         dispatch(login(credential, password))
+
+
+        // if(history.location.pathname === '/'){
+        //     history.push('/home')
+        // }
     }
 
     return (

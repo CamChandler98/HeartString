@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, db
+
+from app.models.user import user_connections
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +25,4 @@ def user_by_name(username):
     user =  User.query.filter( User.username == username).first()
 
     return user.to_dict()
+
