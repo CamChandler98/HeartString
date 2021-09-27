@@ -54,7 +54,7 @@ def seed_base_replies(seeds = 25):
 
     db.session.commit()
 
-def seed_replies(seeds = 350):
+def seed_replies(seeds = 500):
     user_dict = gen_count_dict(User)
     heart_dict = gen_count_dict(Heart)
 
