@@ -35,3 +35,31 @@
     background-color: #d5506c;
     cursor: pointer;
 }
+
+.connected-profile-picture{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.connected-header{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #393e41
+}
+
+.connected-top span{
+    font-size: 14px;
+
+}
+.connected-top{
+    display: flex;
+    align-items: center;
+    gap : 10px;
+}
+.connected-top p{
+    font-size: 16px;
+    font-weight: bold;
+}

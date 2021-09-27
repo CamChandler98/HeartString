@@ -2,7 +2,7 @@ import './RepliesPage.css'
 import Reply from "./Reply"
 
 
-const RepliesPage = ({replies}) => {
+const RepliesPage = ({replies, heartOwnerId}) => {
 
     return (
         <div className = 'replies-container'>

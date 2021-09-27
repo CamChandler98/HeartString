@@ -21,7 +21,9 @@ class Reply(db.Model):
             'id':self.id,
             'heart_id': self.heart_id,
             'user_id': self.user_id,
+            'user_profile_pic': self.user.profile_picture_url,
             'username': self.user.username,
+            'display_name': self.user.display_name,
             'content': self.content,
             'created_at': self.created_at,
             'updated_at': self.updated_at
