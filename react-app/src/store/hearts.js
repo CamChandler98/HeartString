@@ -101,7 +101,7 @@ export const goGetRecentHearts = () => async (dispatch) => {
 
     if(res.ok){
         let data = await res.json()
-        dispatch(getRecentHearts(data.hearts))
+        dispatch(getRecentHearts(data))
     }
 }
 export const goAddHeart = ({content, time_to_live, image, user_id }) => async (dispatch) => {
@@ -178,7 +178,7 @@ export const goDeleteHeart = (heart_id) => async (dispatch) => {
 }
 
 
-const initialState = {profile:{}, recent: [], popular: [], all: {} ,session_user:{}}
+const initialState = {profile:{}, recent: {}, popular: [], all: {} ,session_user:{}}
 
 
 
@@ -194,7 +194,7 @@ const heartReducer = (state = initialState, action) =>{
         case GET_POPULAR:
             return {...state, popular :[...action.hearts]}
         case GET_RECENT:
-            return {...state, recent : [...action.hearts]}
+            return {...state, recent :{...action.hearts}}
         case GET_ONE:
             return{
                 ...state, all: {...state.all, [action.heart.id]: {...action.heart}}
@@ -203,7 +203,7 @@ const heartReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 session_user: {...state.session_user, [action.heart.id]: {...action.heart}},
-                recent: [action.heart, ...state.recent],
+                recent: {...state.recent, [action.heart.id]: {...action.heart}},
                 all: {...state.all, [action.heart.id]: {...action.heart}},
             }
         case DELETE_HEART:

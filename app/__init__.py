@@ -13,6 +13,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.heart_routes import heart_routes
 from .api.reply_routes import reply_routes
+from .api.connection_routes import connection_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -39,11 +40,12 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(heart_routes, url_prefix = '/api/hearts' )
-
 app.register_blueprint(reply_routes, url_prefix = '/api/replies')
+app.register_blueprint(connection_routes, url_prefix = '/api/connections')
 db.init_app(app)
 Migrate(app, db)
 

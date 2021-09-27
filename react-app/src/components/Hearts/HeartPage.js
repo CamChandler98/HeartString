@@ -46,6 +46,8 @@ const HeartPage = () => {
 
 
     useEffect(() => {
+        let i
+        if (heart){
         const interval = setInterval(() => {
             console.log('starting countdown')
             updateCountdown()
@@ -57,7 +59,7 @@ const HeartPage = () => {
         }
         return () => {
             clearInterval(interval)
-        }
+        }}
     },[expirationCountdown, updateCountdown])
 
     useEffect(() => {
@@ -103,7 +105,7 @@ const HeartPage = () => {
             </div>
             <div>
                 { heartReplies &&
-                <RepliesPage replies = {heartReplies} />
+                <RepliesPage heartOwnerId = {heart.user_id} replies = {heartReplies} />
                 }
             </div>
             </div>

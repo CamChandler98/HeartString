@@ -1,3 +1,4 @@
+from sqlalchemy.orm import backref
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -17,6 +18,14 @@ class User(db.Model, UserMixin):
     hearts = db.relationship('Heart', back_populates = 'user')
     replies = db.relationship('Reply',back_populates = 'user' )
 
+    connections = db.relationship(
+        'User', lambda: user_connections,
+        primaryjoin  = lambda: User.id == user_connections.c.user_id,
+        secondaryjoin = lambda:User.id == user_connections.c.connection_id,
+        backref= 'connectors',
+        cascade = 'all, delete'
+    )
+
     @property
     def password(self):
         return self.hashed_password
@@ -34,5 +43,49 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'display_name': self.display_name,
             'email': self.email,
-            'profile_picture_url': self.profile_picture_url
+            'profile_picture_url': self.profile_picture_url,
+            'connections': {user.id: user.to_dict_short() for user in self.connections}
         }
+    def to_dict_short(self):
+
+        return {
+            'id': self.id,
+            'username': self.username,
+            'display_name': self.display_name,
+            'profile_picture_url': self.profile_picture_url,
+        }
+
+    def make_connection(self, user_id):
+
+        user  = User.query.get(user_id)
+
+        if not user in self.connections:
+            self.connections.append(user)
+            user.connections.append(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
+
+    def sever_connection(self,user_id):
+
+        user = User.query.get(user_id)
+
+        if user in self.connections:
+            self.connections.remove(user)
+            user.connections.remove(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
+    def get_connections(self):
+        return {user.id: user.to_dict_short() for user in self.connections}
+
+user_connections = db.Table(
+    'user_connections',
+    db.Column('user_id' , db.Integer, db.ForeignKey(User.id), primary_key = True),
+
+    db.Column('connection_id', db.Integer, db.ForeignKey(User.id), primary_key = True)
+)

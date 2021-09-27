@@ -22,4 +22,5 @@ body, header, nav {
     position: relative;
     align-items: stretch;
     overflow-x: hidden;
+    max-width: 1500px;
 }

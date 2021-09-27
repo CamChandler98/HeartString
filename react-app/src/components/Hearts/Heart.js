@@ -9,11 +9,27 @@ import EditMarker from '../util/EditMarker';
 
 const Heart = ({heart}) => {
 
+    let history = useHistory()
+
     const [expirationCountdown, setExpirationCountdown] = useState(heart.expires - Math.floor((new Date().getTime()/1000)))
 
     const [owner, setOwner] = useState(false)
-    let history = useHistory()
+    const[connected, setConnected] = useState(false)
+
     let sessionUser = useSelector(state => state.session.user)
+    let sessionUserConnections = useSelector(state => state.connections)
+
+
+        const updateCountdown = () => {
+            let currentTime = Math.floor((new Date().getTime()/1000))
+            let expiresInSec = heart.expires - currentTime
+            setExpirationCountdown(expiresInSec)
+        }
+
+        const redirectToHeartPage = (e) => {
+            console.log('i,' ,e.target, 'am redirecting to heart page')
+            history.push(`/hearts/${heart.id}`)
+        }
 
     useEffect(() => {
         if(sessionUser && sessionUser.id === heart.user_id){
@@ -22,18 +38,6 @@ const Heart = ({heart}) => {
             setOwner(false)
         }
     },[sessionUser])
-
-    const updateCountdown = () => {
-        let currentTime = Math.floor((new Date().getTime()/1000))
-        let expiresInSec = heart.expires - currentTime
-        setExpirationCountdown(expiresInSec)
-    }
-
-    const redirectToHeartPage = (e) => {
-        console.log('i,' ,e.target, 'am redirecting to heart page')
-        history.push(`/hearts/${heart.id}`)
-    }
-
 
 
     useEffect(() => {
@@ -51,10 +55,34 @@ const Heart = ({heart}) => {
         }
     },[expirationCountdown, updateCountdown])
 
+    useEffect(() => {
+        if(sessionUserConnections && sessionUserConnections[heart.user_id]){
+            console.log('looking here', sessionUserConnections)
+            console.log('you and ', heart.username, 'are connected!')
+            setConnected(true)
+        }else if (sessionUserConnections && !sessionUserConnections[heart.user_id]){
+            console.log('looking here', sessionUserConnections)
+            console.log('you and ', heart.username, 'are NOT connected!')
+            setConnected(false)
+        }
+
+        return () => {
+            setConnected(false)
+        }
+    }, [sessionUserConnections])
+
 
 
     return(
         <div className = 'heart-container' onClick = {redirectToHeartPage}>
+            {(connected || owner) &&
+              <div className = 'connected-header'>
+                <div className = 'connected-top'>
+               <img className ='connected-profile-picture' src = {heart.user_profile_pic} alt ={`connection ${heart.username} profile picture`}/>
+               <p>{heart.display_name}</p>
+               </div>
+               <span>@{heart.username}</span>
+               </div>}
                 <p className = 'heart-text'>{heart.content}</p>
                     <h3>Expires in :</h3>
                 { expirationCountdown && !Number.isNaN(expirationCountdown) &&

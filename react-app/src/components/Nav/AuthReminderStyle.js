@@ -13,6 +13,7 @@ const AuthReminderStyle = styled.div`
     padding: 1%;
     justify-content:stretch;
     align-items: center;
+    z-index: 3
 }
 
 .reminder-text{

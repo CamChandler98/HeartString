@@ -59,6 +59,7 @@ const LogoutStyle = styled.div`
     }
     img:hover{
         background-color: #393e411a;
+        cursor: pointer
     }
 
 

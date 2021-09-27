@@ -40,15 +40,19 @@ def recent_hearts():
     hearts = Heart.query.filter(Heart.open == True).order_by(desc(Heart.created_at)).limit(30).all()
 
     if hearts:
-        return {"hearts": [heart.to_dict() for heart in hearts]}
+       return {heart.id:heart.to_dict() for heart in hearts}
     else:
         return {"error": ['Something went wrong']}
+
+
 @heart_routes.route('/<int:id>')
 def heart(id):
 
     heart = Heart.query.get(id)
 
     return heart.to_dict()
+
+
 @heart_routes.route('/user/<int:id>')
 def user_hearts(id):
 

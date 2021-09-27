@@ -20,12 +20,12 @@ const NavBar = () => {
         <NavStyle>
             <div className = 'nav-items'>
                 <div className = 'top'>
-                    <Link to = '/home'>
                         <div className = 'nav-item'>
+                    <Link to = '/home'>
                         <img src = {homeIcon} alt = 'home' />
                         <span>Home</span>
-                     </div>
                     </Link>
+                     </div>
                     <div className = 'nav-item'>
                     {sessionUser && <><CreateHeartModal /><span>Send Heart</span></>}
 
