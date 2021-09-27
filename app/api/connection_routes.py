@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 
-from app.models import User, db
+from app.models import User, Heart, db
 
 connection_routes = Blueprint('connections', __name__)
 @connection_routes.route('/user/<int:id>')
@@ -12,18 +12,24 @@ def user_connections(id):
 def connect():
     data = request.get_json()
 
-    print('look at this conenction data', data)
     chooser_id =  data['user_one']
     chosen_id = data['user_two']
+    heart_id = data['heart_id']
 
     chooser = User.query.get(chooser_id)
     chosen = User.query.get(chosen_id)
+    heart = Heart.query.get(heart_id)
+
 
     chooser.make_connection(chosen_id)
 
+    heart.connect(chosen)
     db.session.add(chooser)
-
+    db.session.add(heart)
+    
     db.session.commit()
+
+
 
     return { chosen_id : chosen.to_dict_short()}
 

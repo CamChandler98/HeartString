@@ -26,6 +26,7 @@ def gen_text():
 def seed_base_hearts(seeds = 26):
 
     for i in range(seeds):
+        
         heart = Heart(
             content = gen_text(),
             content_url = get_image_url(),
