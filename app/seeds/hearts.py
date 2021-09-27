@@ -26,18 +26,20 @@ def gen_text():
 def seed_base_hearts(seeds = 26):
 
     for i in range(seeds):
+
         heart = Heart(
             content = gen_text(),
             content_url = get_image_url(),
             time_to_live = get_ttl(),
             user_id = random.choice([1,2]),
-            open = True
+            open = True,
+            connector_id = random.choice([1,2])
         )
         db.session.add(heart)
 
     db.session.commit()
 
-def seed_hearts(seeds = 250):
+def seed_hearts(seeds = 300):
     user_dict = gen_count_dict(User)
 
     for i in range(seeds):

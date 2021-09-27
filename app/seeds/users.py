@@ -27,7 +27,7 @@ def seed_base_users():
 
     db.session.commit()
 
-def seed_users(seeds=50):
+def seed_users(seeds=75):
 
     for i in range(seeds):
         isJapanese =  fake.boolean(chance_of_getting_true=20)
