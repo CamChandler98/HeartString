@@ -9,6 +9,8 @@ import HomeCreateHeartFormStyle from "./HomeCreateHeartStyle"
 const Home = () => {
 
     const [focus, setFocus] = useState('recent')
+    const [popularHearts, setPopularHearts] = useState([])
+    const [recentHearts, setRecentHearts] = useState([])
 
     const dispatch = useDispatch()
 
@@ -17,8 +19,24 @@ const Home = () => {
         dispatch(goGetRecentHearts())
     },[])
 
-    const popularHearts = useSelector(state => state.hearts.popular)
-    const recentHearts = useSelector(state => state.hearts.recent)
+    const popularHeartsState = useSelector(state => state.hearts.popular)
+    const recentHeartsState = useSelector(state => state.hearts.recent)
+
+
+    useEffect(() => {
+        if (recentHeartsState){
+            let recentArr = [...Object.values(recentHeartsState).sort((a,b) => {
+                console.log('subtracting dates', a.created_at - b.created_at)
+
+                return Date.parse(b.created_at) - Date.parse(a.created_at)
+
+            })]
+
+            console.log('here are the most recent hearts' , recentArr)
+            setRecentHearts([...recentArr])
+        }
+    }, [recentHeartsState])
+
 
     const switchFocus = (e,target) => {
         if(focus === target) return
@@ -63,7 +81,7 @@ const Home = () => {
         </div>
         <div className = 'focus-content'>
             {focus === 'recent' && <HeartsPage hearts = {recentHearts} />}
-            {focus === 'popular' && <HeartsPage hearts = {popularHearts} />}
+            {focus === 'popular' && <HeartsPage hearts = {popularHeartsState} />}
         </div>
         </div>
     )
