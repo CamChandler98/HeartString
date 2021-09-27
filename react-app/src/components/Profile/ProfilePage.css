@@ -1,0 +1,23 @@
+.profile-picture{
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user-info-header{
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    padding-left: 4%;
+    gap: 20px;
+    border-bottom: solid 1px #5b626679;
+}
+
+.profile-header-text{
+    display: flex;
+    flex-direction: column;
+}
+
+#display-name{
+    font-size: 24px;
+}

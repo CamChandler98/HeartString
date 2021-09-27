@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router"
+import { Redirect, useParams } from "react-router"
 import { goGetSessionHearts, goGetUserHearts } from "../../store/hearts"
 import { getUser } from "../../store/profile"
 import HeartsPage from "../Hearts/HeartsPage"
-
+import './ProfilePage.css'
 
 const Profile = () => {
     const [focus, setFocus] = useState('recent')
@@ -34,7 +34,6 @@ const Profile = () => {
         }else{
 
         }
-
         return () => {
             setOwner(false)
             setHearts([])
@@ -85,10 +84,19 @@ const Profile = () => {
 
     },[sessionHearts,profileHearts,profileUser,sessionUser])
 
+
+
     return (
         <div className= 'home-container'>
         <div className ='home-header' >
-            <span>{profileUser.display_name}</span>
+            <span>{profileUser.username}</span>
+        </div>
+        <div className = 'user-info-header' >
+            <img className = 'profile-picture' src = {profileUser.profile_picture_url} />
+            <div className = 'profile-header-text'>
+                <span id = 'display-name'>{profileUser.display_name}</span>
+                <span id = 'username'>@{profileUser.username}</span>
+            </div>
         </div>
         <div className = 'tab-bar'>
             <div className ='bar-item focused yellow'
