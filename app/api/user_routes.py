@@ -61,3 +61,11 @@ def edit_user(id):
         return user.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@user_routes.route('/<int:id>/delete', methods = ['DELETE'])
+def delete_user(id):
+    User.query.get(id).delete()
+
+    db.session.commit()
+
+    return 201
