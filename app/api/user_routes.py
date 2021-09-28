@@ -65,14 +65,18 @@ def edit_user(id):
 
 @user_routes.route('/<int:id>/delete', methods = ['DELETE'])
 def delete_user(id):
-    print('we still love you')
     form = DeleteUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         user = User.query.get(id)
+
+        for connection in user.connections:
+            user.sever_connection(connection.id)
+
+
         db.session.delete(user)
         db.session.commit()
-        return 201
+        return {'deleted': True}
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

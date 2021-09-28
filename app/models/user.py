@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
 
-    replies = db.relationship('Reply',back_populates = 'user' )
+    replies = db.relationship('Reply',back_populates = 'user', cascade="all,delete" )
     connections = db.relationship(
         'User', lambda: user_connections,
         primaryjoin  = lambda: User.id == user_connections.c.user_id,

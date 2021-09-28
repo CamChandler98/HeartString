@@ -21,7 +21,7 @@ class Heart(db.Model):
     user = db.relationship('User',
             foreign_keys = user_id,
             primaryjoin=user_id == User.id,
-            backref=backref('hearts', order_by=id)
+            backref=backref('hearts', order_by=id, cascade="all,delete")
      )
     connector = db.relationship('User',
             foreign_keys=connector_id,
