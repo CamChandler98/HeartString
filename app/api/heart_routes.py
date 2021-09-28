@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy.sql.expression import desc
+from sqlalchemy.sql.expression import desc, false
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms.heart_form import HeartForm
 from app.api.aws import public_file_upload
@@ -52,6 +52,16 @@ def heart(id):
 
     return heart.to_dict()
 
+@heart_routes.route('/<int:id>/close' , methods = ['POST'])
+def close_heart(id):
+    heart = Heart.query.get(id)
+
+    if heart.open == True:
+        heart.open = False
+        db.session.add(heart)
+        db.session.commit()
+
+    return heart.to_dict()
 
 @heart_routes.route('/user/<int:id>')
 def user_hearts(id):

@@ -2,6 +2,7 @@ const GET = 'hearts/GET'
 const GET_USER = 'hearts/GET_USER'
 const ADD_HEART = 'hearts/ADD_HEART'
 const GET_ONE = 'hearts/GET_ONE'
+const CLOSE = 'hearts/CLOSE'
 const GET_SESSION = 'hearts/GET_SESSION'
 const DELETE_HEART = 'hearts/DELETE_HEART'
 const GET_POPULAR = 'hearts/GET_POPULAR'
@@ -48,6 +49,23 @@ const deleteHeart = (heart_id) => ({
     heart_id
 })
 
+const closeHeart = (heart) => ({
+    type: CLOSE,
+    heart
+})
+
+
+export const goCloseHeart = (heart_id) => async(dispatch) => {
+    let res = await fetch(`/api/hearts/${heart_id}/close`, {
+        method: 'POST'
+    })
+
+    if(res.ok){
+        let data = await res.json()
+
+        dispatch(closeHeart(data))
+    }
+}
 export const goGetHearts = () => async (dispatch) => {
     let res = await fetch('/api/hearts/')
 
@@ -188,13 +206,13 @@ const heartReducer = (state = initialState, action) =>{
             return {...state, all:{...action.hearts}}
 
         case GET_USER:
-            return {...state, profile:{...action.hearts}}
+            return {...state, profile:{...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_SESSION:
-            return {...state, session_user: {...action.hearts}}
+            return {...state, session_user: {...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_POPULAR:
             return {...state, popular :[...action.hearts]}
         case GET_RECENT:
-            return {...state, recent :{...action.hearts}}
+            return {...state, recent :{...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_ONE:
             return{
                 ...state, all: {...state.all, [action.heart.id]: {...action.heart}}
@@ -227,6 +245,23 @@ const heartReducer = (state = initialState, action) =>{
             }
 
             return {...newState}
+
+        case CLOSE:
+            let closeState = {...state}
+            if ( closeState.all[action.heart.id]){
+                closeState.all = {...closeState.all, [action.heart.id]: {...action.heart}}
+            }
+            if ( closeState.profile[action.heart.id]){
+                closeState.profile = {...closeState.profile, [action.heart.id]: {...action.heart}}
+            }
+            if ( closeState.session_user[action.heart.id]){
+                closeState.session_user = {...closeState.session_user, [action.heart.id]: {...action.heart}}
+            }
+            if ( closeState.recent[action.heart.id]){
+                closeState.recent = {...closeState.recent, [action.heart.id]: {...action.heart}}
+            }
+
+            return {...closeState}
 
         default:
             return state;
