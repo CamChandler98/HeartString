@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Redirect, useParams } from "react-router"
 import { goGetSessionHearts, goGetUserHearts } from "../../store/hearts"
 import { getUser } from "../../store/profile"
+import ConnectionPage from "../Connections/ConnectionPage"
 import HeartsPage from "../Hearts/HeartsPage"
 import DeleteProfileModal from "./DeleteProfileModal"
 import ManageProfileModal from "./ManageProfileModal"
@@ -14,7 +15,7 @@ const Profile = () => {
     const [hearts, setHearts] = useState([])
     const[openHearts, setOpenHearts] = useState([])
     const [closedHearts, setClosedHearts] = useState([])
-    const [connections, setConnections] = useState([])
+    const [connectedHearts, setConnectedHearts] = useState([])
 
 
     const {username} = useParams()
@@ -22,7 +23,7 @@ const Profile = () => {
 
     let profileUser = useSelector(state => state.profile)
     let sessionUser = useSelector(state => state.session.user)
-    let userCo
+
     useEffect(() => {
         if(username !== undefined){
         dispatch(getUser(username))
@@ -63,6 +64,8 @@ const Profile = () => {
             case 'closed':
                 setFocus('closed')
                 break;
+            case 'connected':
+                setFocus('connected')
             default:
                 break;
         }
@@ -87,6 +90,7 @@ const Profile = () => {
             setHearts([...userHearts])
             setOpenHearts([...userHearts.filter(heart => heart.open === true)])
             setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
+            setConnectedHearts([...closedHearts.filter(heart => heart.connector_id)])
         }
         return () =>{
 
@@ -130,10 +134,15 @@ const Profile = () => {
             onClick = {(e)=> switchFocus(e,'closed')}>
             <span>closed hearts</span>
             </div>
+            <div className ='bar-item yellow'
+            onClick = {(e)=> switchFocus(e,'connected')}>
+            <span>connections</span>
+            </div>
         </div>
         <div className = 'focus-content'>
             {hearts && focus === 'open' && <HeartsPage hearts = {openHearts} />}
             {hearts && focus === 'closed' && <HeartsPage hearts = {closedHearts} />}
+            {hearts && connectedHearts && <ConnectionPage connectedHearts = {connectedHearts} />}
         </div>
         </div>
     )
