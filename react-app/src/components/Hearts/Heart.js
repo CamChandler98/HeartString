@@ -1,13 +1,16 @@
 import { useEffect, useState,  } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import EditHeartModal from './EditHeartFormModal'
 import './Heart.css'
 import DeleteModal from '../util/DeleteModal';
 import EditMarker from '../util/EditMarker';
+import { goCloseHeart } from '../../store/hearts';
 
 const Heart = ({heart}) => {
+
+    let dispatch = useDispatch()
 
     let history = useHistory()
 
@@ -47,6 +50,7 @@ const Heart = ({heart}) => {
 
         if(expirationCountdown <= 0){
             console.log('it ends today', expirationCountdown)
+            dispatch(goCloseHeart(heart.id))
             clearInterval(interval)
         }
         return () => {
