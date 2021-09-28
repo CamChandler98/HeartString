@@ -87,6 +87,11 @@ const Profile = () => {
     },[sessionHearts,profileHearts,profileUser,sessionUser])
 
 
+    if(!sessionUser){
+        return(
+            <Redirect to ={`/home`}/>
+        )
+    }
 
     return (
         <div className= 'home-container'>
