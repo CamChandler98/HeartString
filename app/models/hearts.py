@@ -43,7 +43,7 @@ class Heart(db.Model):
         return{
             'id':self.id,
             'grand_reply_id': self.grand_reply_id,
-            'grand_reply_content': self.getReplyContent(self.grand_reply_id) if self.grand_reply_id else None,
+            'grand_reply_content': self.grand_reply.content if self.grand_reply else None,
             'user_id':self.user_id,
             'connector_id':self.connector_id,
             'connector': self.connector.to_dict_short() if self.connector else None,
@@ -64,15 +64,9 @@ class Heart(db.Model):
 
         return self.connector
 
-    def getGrandReply(self, reply_id):
+    def set_grand_reply(self, reply_id):
 
         for reply in self.replies:
             if reply.id == reply_id:
                 self.grand_reply_id = reply_id
                 return
-
-
-    def getReplyContent(self,reply_id):
-            for reply in self.replies:
-                if reply.id == reply_id:
-                    return reply.content

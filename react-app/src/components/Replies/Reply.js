@@ -83,7 +83,7 @@ const Reply = ({reply, i, heartOwnerId, heart_id}) => {
     }
 
     const goMakeConnection = (user_one, user_two) => {
-        dispatch(addConnection(user_one,user_two,heart.id))
+        dispatch(addConnection(user_one,user_two,heart.id, reply.id))
         dispatch(goCloseHeart(heart.id))
     }
 

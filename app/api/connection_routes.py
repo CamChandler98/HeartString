@@ -1,6 +1,7 @@
+
 from flask import Blueprint, request
 
-from app.models import User, Heart, db
+from app.models import User, Heart, Reply, db
 
 connection_routes = Blueprint('connections', __name__)
 @connection_routes.route('/user/<int:id>')
@@ -15,18 +16,20 @@ def connect():
     chooser_id =  data['user_one']
     chosen_id = data['user_two']
     heart_id = data['heart_id']
+    reply_id = data['reply_id']
 
     chooser = User.query.get(chooser_id)
     chosen = User.query.get(chosen_id)
     heart = Heart.query.get(heart_id)
 
+    heart.set_grand_reply(reply_id)
 
     chooser.make_connection(chosen_id)
 
     heart.connect(chosen)
     db.session.add(chooser)
     db.session.add(heart)
-    
+
     db.session.commit()
 
 
