@@ -77,20 +77,19 @@ const Profile = () => {
 
 
     useEffect(() => {
-        console.log('going to get those hearts for you')
-        console.log(sessionHearts)
+
         if(sessionHearts && owner){
             let userHearts = Object.values(sessionHearts).reverse()
             setHearts([...userHearts])
             setOpenHearts([...userHearts.filter(heart => heart.open === true)])
             setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
-            console.log('got your hearts!')
+            setConnectedHearts([...userHearts.filter(heart => heart.connector_id)])
         }else if(profileHearts){
             let userHearts = Object.values(profileHearts).reverse()
             setHearts([...userHearts])
             setOpenHearts([...userHearts.filter(heart => heart.open === true)])
             setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
-            setConnectedHearts([...closedHearts.filter(heart => heart.connector_id)])
+            setConnectedHearts([...userHearts.filter(heart => heart.connector_id)])
         }
         return () =>{
 
@@ -142,7 +141,7 @@ const Profile = () => {
         <div className = 'focus-content'>
             {hearts && focus === 'open' && <HeartsPage hearts = {openHearts} />}
             {hearts && focus === 'closed' && <HeartsPage hearts = {closedHearts} />}
-            {hearts && connectedHearts && <ConnectionPage connectedHearts = {connectedHearts} />}
+            {hearts && connectedHearts && focus === 'connected' && <ConnectionPage connectedHearts = {connectedHearts} />}
         </div>
         </div>
     )
