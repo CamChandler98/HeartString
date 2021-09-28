@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router"
-import { goGetHeart } from "../../store/hearts"
+import { goCloseHeart, goGetHeart } from "../../store/hearts"
 import { goGetHeartReplies } from "../../store/replies"
 import CreateReplyForm from "../Replies/CreateReplyForm"
 import RepliesPage from "../Replies/RepliesPage"
@@ -48,7 +48,7 @@ const HeartPage = () => {
 
     useEffect(() => {
         let i
-        if (heart){
+        if (heart && heart.open){
         const interval = setInterval(() => {
             console.log('starting countdown')
             updateCountdown()
@@ -56,12 +56,14 @@ const HeartPage = () => {
 
         if(expirationCountdown <= 0){
             console.log('it ends today', expirationCountdown)
+            dispatch(goCloseHeart(heart.id))
+            setOpen(false)
             clearInterval(interval)
         }
         return () => {
             clearInterval(interval)
         }}
-    },[expirationCountdown, updateCountdown])
+    },[expirationCountdown, updateCountdown, heart])
 
     useEffect(() => {
         if(heartId) {
