@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router"
+import { Redirect, useParams } from "react-router"
 import { goGetSessionHearts, goGetUserHearts } from "../../store/hearts"
 import { getUser } from "../../store/profile"
 import HeartsPage from "../Hearts/HeartsPage"
-
+import DeleteProfileModal from "./DeleteProfileModal"
+import ManageProfileModal from "./ManageProfileModal"
+import './ProfilePage.css'
 
 const Profile = () => {
     const [focus, setFocus] = useState('recent')
@@ -34,7 +36,6 @@ const Profile = () => {
         }else{
 
         }
-
         return () => {
             setOwner(false)
             setHearts([])
@@ -85,24 +86,39 @@ const Profile = () => {
 
     },[sessionHearts,profileHearts,profileUser,sessionUser])
 
+
+    if(!sessionUser){
+        return(
+            <Redirect to ={`/home`}/>
+        )
+    }
+
     return (
         <div className= 'home-container'>
         <div className ='home-header' >
-            <span>{profileUser.display_name}</span>
+            <span>{owner ? sessionUser.username: profileUser.username}</span>
+        </div>
+        <div className = 'user-info-header' >
+            <img className = 'profile-picture' src = {owner ? sessionUser.profile_picture_url : profileUser.profile_picture_url} />
+            <div className = 'profile-header-text'>
+                <span id = 'display-name'>{owner ?sessionUser.display_name :profileUser.display_name}</span>
+                <span id = 'username'>@{profileUser.username}</span>
+                <div className = 'manage-profile-buttons'>
+                {owner && <ManageProfileModal user ={sessionUser} />}
+                {owner && <DeleteProfileModal user = {sessionUser}/>}
+                </div>
+            </div>
         </div>
         <div className = 'tab-bar'>
             <div className ='bar-item focused yellow'
             onClick = {(e)=> switchFocus(e,'recent')}>
             <span>recent</span>
             </div>
-            {/* <div className ='bar-item blue '
-            onClick = {(e)=> switchFocus(e,'popular')}>
-            <span>popular</span>
-            </div> */}
+
         </div>
         <div className = 'focus-content'>
             {hearts && focus === 'recent' && <HeartsPage hearts = {hearts} />}
-            {/* {focus === 'popular' && <HeartsPage hearts = {popularHearts} />} */}
+
         </div>
         </div>
     )

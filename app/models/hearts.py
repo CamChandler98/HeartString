@@ -21,14 +21,14 @@ class Heart(db.Model):
     user = db.relationship('User',
             foreign_keys = user_id,
             primaryjoin=user_id == User.id,
-            backref=backref('hearts', order_by=id)
+            backref=backref('hearts', order_by=id, cascade="all,delete")
      )
     connector = db.relationship('User',
             foreign_keys=connector_id,
             primaryjoin=connector_id == User.id,
             backref=backref('connected_hearts')
     )
-    replies = db.relationship('Reply', back_populates = 'heart')
+    replies = db.relationship('Reply', cascade="all,delete", back_populates = 'heart')
 
     @property
     def expiry(self):
