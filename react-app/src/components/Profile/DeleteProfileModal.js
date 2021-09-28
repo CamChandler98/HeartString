@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
 import { Modal } from "../../context/Modal";
-import DeleteProfileModal from "./DeleteProfileModal";
-import ManageProfile from "./ManageProfile";
+import DeleteProfile from "./DeleteProfile";
 
 
 
-const ManageProfileModal = ({user}) => {
+const DeleteProfileModal = ({user}) => {
     const [showModal, setShowModal] = useState(false)
 
     const handleClick = () => {
@@ -19,10 +18,10 @@ const ManageProfileModal = ({user}) => {
 
     return(
         <>
-        <span onClick = {handleClick}>...</span>
+        <span onClick = {handleClick}>Delete Account</span>
         {showModal &&
             <Modal onClose = {() => setShowModal(false)}>
-                <ManageProfile user = {user} closeModal = {closeModal}  />
+                <DeleteProfile user = {user} closeModal = {closeModal}  />
             </Modal>
         }
 
@@ -31,4 +30,4 @@ const ManageProfileModal = ({user}) => {
     )
 }
 
-export default ManageProfileModal
+export default DeleteProfileModal

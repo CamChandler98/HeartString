@@ -18,5 +18,5 @@ def password_matches(form, field):
 
 
 class DeleteUserForm(FlaskForm):
-        user_id = IntegerField('user_id', validators= [DataRequired])
+        user_id = IntegerField('user_id', validators= [DataRequired()])
         password = StringField('password', validators=[DataRequired(), password_matches])

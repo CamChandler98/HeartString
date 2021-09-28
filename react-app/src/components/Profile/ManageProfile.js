@@ -5,6 +5,7 @@ import { editUser } from '../../store/session';
 import FormStyle from '../auth/FormStyle';
 import removeIcon from '../graphics/remove-icon.svg'
 import uploadProfileIcon from '../graphics/upload-profile-picture-icon.svg'
+import DeleteProfileModal from './DeleteProfileModal';
 
 const ManageProfile = ({closeModal, user}) => {
     const dispatch = useDispatch()

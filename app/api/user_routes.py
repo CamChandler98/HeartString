@@ -65,7 +65,7 @@ def edit_user(id):
 
 @user_routes.route('/<int:id>/delete', methods = ['DELETE'])
 def delete_user(id):
-
+    print('we still love you')
     form = DeleteUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 

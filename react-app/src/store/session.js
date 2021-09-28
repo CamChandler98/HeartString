@@ -129,19 +129,23 @@ export const editUser = (user_id, display_name, image, tempImageUrl) => async (d
       }
 }
 
-export const deleteUser = (userId, password, confirmPassword) => async (dispatch) => {
-
-    let res = await fetch(`/api/users/${userId}/delete`, {
-        method = 'DELETE',
+export const deleteUser = (user_id, password) => async (dispatch) => {
+    console.log('just gotta send it to the server... no going back', user_id, password)
+    let res = await fetch(`/api/users/${user_id}/delete`, {
+        method : 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+          },
         body: JSON.stringify({
-            userId,
+            user_id,
             password,
-            confirmPassword
         })
     })
 
     if (res.ok){
         dispatch(removeUser())
+    }else{
+        console.log(await(res.json()))
     }
 
 }

@@ -39,7 +39,7 @@ const SignUpForm = ({closeModal}) => {
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, image, displayName));
       if (data) {
-          console.log('setting these errors on the form ->>>', data)
+
         setErrors({...data})
       }else{
         setAlertText('Signed Up!')

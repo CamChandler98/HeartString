@@ -4,6 +4,7 @@ import { Redirect, useParams } from "react-router"
 import { goGetSessionHearts, goGetUserHearts } from "../../store/hearts"
 import { getUser } from "../../store/profile"
 import HeartsPage from "../Hearts/HeartsPage"
+import DeleteProfileModal from "./DeleteProfileModal"
 import ManageProfileModal from "./ManageProfileModal"
 import './ProfilePage.css'
 
@@ -99,6 +100,7 @@ const Profile = () => {
                 <span id = 'username'>@{profileUser.username}</span>
             </div>
             {owner && <ManageProfileModal user ={sessionUser} />}
+            {owner && <DeleteProfileModal user = {sessionUser}/>}
         </div>
         <div className = 'tab-bar'>
             <div className ='bar-item focused yellow'
