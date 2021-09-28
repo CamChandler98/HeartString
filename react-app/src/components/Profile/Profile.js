@@ -80,7 +80,7 @@ const Profile = () => {
             let userHearts = Object.values(sessionHearts).reverse()
             setHearts([...userHearts])
             setOpenHearts([...userHearts.filter(heart => heart.open === true)])
-            setClosedHearts1([...userHearts.filter(heart => heart.open !== true)])
+            setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
             console.log('got your hearts!')
         }else if(profileHearts){
             let userHearts = Object.values(profileHearts).reverse()
