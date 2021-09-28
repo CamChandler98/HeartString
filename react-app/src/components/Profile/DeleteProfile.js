@@ -48,6 +48,7 @@ const DeleteProfile = ({user, closeModal}) => {
     return (
         <FormStyle>
         <form onSubmit = {goDelete} className = 'form-container'>
+            <h2 className = 'form-header'>Delete Account?</h2>
         <div className = 'form-group'>
         <label>Password</label>
         <input
@@ -91,7 +92,8 @@ const DeleteProfile = ({user, closeModal}) => {
             </ul>
         }
         </div>
-        <button type = 'submit'>
+        <button id =
+        'delete-profile-button' className = 'form-button' type = 'submit'>
             DELETE
         </button>
         </form>

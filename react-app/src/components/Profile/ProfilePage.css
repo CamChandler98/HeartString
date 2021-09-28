@@ -37,3 +37,11 @@
     display: flex;
     gap: 5px;
 }
+
+#delete-profile-button{
+    background-color: rgb(228, 113, 113);
+}
+
+#delete-profile-button:hover{
+    background-color: rgb(175, 76, 76);
+}
