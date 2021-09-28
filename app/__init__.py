@@ -49,10 +49,13 @@ app.register_blueprint(connection_routes, url_prefix = '/api/connections')
 db.init_app(app)
 Migrate(app, db)
 
+# set heart status on interval
 from app.tasks import heart_expiration
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(heart_expiration,'interval',seconds=50)
-sched.start()
+sched.add_job(heart_expiration,'interval',seconds=60)
+# sched.start()
+
+
 # Application Security
 CORS(app)
 

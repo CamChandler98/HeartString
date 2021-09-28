@@ -9,17 +9,20 @@ import ManageProfileModal from "./ManageProfileModal"
 import './ProfilePage.css'
 
 const Profile = () => {
-    const [focus, setFocus] = useState('recent')
+    const [focus, setFocus] = useState('open')
     const [owner,setOwner] = useState(false)
     const [hearts, setHearts] = useState([])
     const[openHearts, setOpenHearts] = useState([])
-    const [closedHearts, setClosedHearts1] = useState([])
+    const [closedHearts, setClosedHearts] = useState([])
+    const [connections, setConnections] = useState([])
+
+
     const {username} = useParams()
     const dispatch = useDispatch()
 
     let profileUser = useSelector(state => state.profile)
     let sessionUser = useSelector(state => state.session.user)
-
+    let userCo
     useEffect(() => {
         if(username !== undefined){
         dispatch(getUser(username))
@@ -83,13 +86,13 @@ const Profile = () => {
             let userHearts = Object.values(profileHearts).reverse()
             setHearts([...userHearts])
             setOpenHearts([...userHearts.filter(heart => heart.open === true)])
-            setClosedHearts1([...userHearts.filter(heart => heart.open !== true)])
+            setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
         }
         return () =>{
 
             setHearts([])
             setOpenHearts([])
-            setClosedHearts1([])
+            setClosedHearts([])
         }
 
 
