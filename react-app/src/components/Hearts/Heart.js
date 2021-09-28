@@ -29,7 +29,7 @@ const Heart = ({heart}) => {
         }
 
         const redirectToHeartPage = (e) => {
-            console.log('i,' ,e.target, 'am redirecting to heart page')
+
             history.push(`/hearts/${heart.id}`)
         }
 
@@ -44,12 +44,12 @@ const Heart = ({heart}) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            console.log('starting countdown')
+
             updateCountdown()
         },1000)
 
         if(expirationCountdown <= 0){
-            console.log('it ends today', expirationCountdown)
+
             dispatch(goCloseHeart(heart.id))
             clearInterval(interval)
         }
@@ -60,12 +60,10 @@ const Heart = ({heart}) => {
 
     useEffect(() => {
         if(sessionUserConnections && sessionUserConnections[heart.user_id]){
-            console.log('looking here', sessionUserConnections)
-            console.log('you and ', heart.username, 'are connected!')
+
             setConnected(true)
         }else if (sessionUserConnections && !sessionUserConnections[heart.user_id]){
-            console.log('looking here', sessionUserConnections)
-            console.log('you and ', heart.username, 'are NOT connected!')
+
             setConnected(false)
         }
 

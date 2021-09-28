@@ -64,7 +64,6 @@ export function ModalProvider({ children }) {
 
 export function Modal({onClose, children, top, bottom, left, right, backgroundColor, borderRadius}) {
 
-    console.log(top, 'modal prop')
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
 

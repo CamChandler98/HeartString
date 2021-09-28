@@ -30,7 +30,7 @@ const DeleteProfile = ({user, closeModal}) => {
         if(password !== repeatPassword){
             setErrors({...errors, confirmPassword: ['sorry looks like your passwords dont match']})
 
-            console.log('password', password, 'repat', repeatPassword)
+
         }
         if(password === repeatPassword){
         const data = await dispatch(deleteUser(user.id, password))

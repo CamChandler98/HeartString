@@ -13,7 +13,7 @@ class Reply(db.Model):
 
     user = db.relationship('User', back_populates = 'replies')
 
-    heart = db.relationship('Heart', back_populates = 'replies')
+    heart = db.relationship('Heart', back_populates = 'replies', foreign_keys = [heart_id] )
 
 
     def to_dict(self):

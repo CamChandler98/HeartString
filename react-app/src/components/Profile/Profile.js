@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Redirect, useParams } from "react-router"
 import { goGetSessionHearts, goGetUserHearts } from "../../store/hearts"
 import { getUser } from "../../store/profile"
+import ConnectionPage from "../Connections/ConnectionPage"
 import HeartsPage from "../Hearts/HeartsPage"
 import DeleteProfileModal from "./DeleteProfileModal"
 import ManageProfileModal from "./ManageProfileModal"
@@ -14,7 +15,7 @@ const Profile = () => {
     const [hearts, setHearts] = useState([])
     const[openHearts, setOpenHearts] = useState([])
     const [closedHearts, setClosedHearts] = useState([])
-    const [connections, setConnections] = useState([])
+    const [connectedHearts, setConnectedHearts] = useState([])
 
 
     const {username} = useParams()
@@ -22,7 +23,7 @@ const Profile = () => {
 
     let profileUser = useSelector(state => state.profile)
     let sessionUser = useSelector(state => state.session.user)
-    let userCo
+
     useEffect(() => {
         if(username !== undefined){
         dispatch(getUser(username))
@@ -63,6 +64,8 @@ const Profile = () => {
             case 'closed':
                 setFocus('closed')
                 break;
+            case 'connected':
+                setFocus('connected')
             default:
                 break;
         }
@@ -74,19 +77,19 @@ const Profile = () => {
 
 
     useEffect(() => {
-        console.log('going to get those hearts for you')
-        console.log(sessionHearts)
+
         if(sessionHearts && owner){
             let userHearts = Object.values(sessionHearts).reverse()
             setHearts([...userHearts])
             setOpenHearts([...userHearts.filter(heart => heart.open === true)])
             setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
-            console.log('got your hearts!')
+            setConnectedHearts([...userHearts.filter(heart => heart.connector_id)])
         }else if(profileHearts){
             let userHearts = Object.values(profileHearts).reverse()
             setHearts([...userHearts])
             setOpenHearts([...userHearts.filter(heart => heart.open === true)])
             setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
+            setConnectedHearts([...userHearts.filter(heart => heart.connector_id)])
         }
         return () =>{
 
@@ -130,10 +133,15 @@ const Profile = () => {
             onClick = {(e)=> switchFocus(e,'closed')}>
             <span>closed hearts</span>
             </div>
+            <div className ='bar-item yellow'
+            onClick = {(e)=> switchFocus(e,'connected')}>
+            <span>connections</span>
+            </div>
         </div>
         <div className = 'focus-content'>
             {hearts && focus === 'open' && <HeartsPage hearts = {openHearts} />}
             {hearts && focus === 'closed' && <HeartsPage hearts = {closedHearts} />}
+            {hearts && connectedHearts && focus === 'connected' && <ConnectionPage connectedHearts = {connectedHearts} />}
         </div>
         </div>
     )

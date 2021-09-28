@@ -26,13 +26,12 @@ const Home = () => {
     useEffect(() => {
         if (recentHeartsState){
             let recentArr = [...Object.values(recentHeartsState).sort((a,b) => {
-                console.log('subtracting dates', a.created_at - b.created_at)
+
 
                 return Date.parse(b.created_at) - Date.parse(a.created_at)
 
             })]
 
-            console.log('here are the most recent hearts' , recentArr)
             setRecentHearts([...recentArr])
         }
     }, [recentHeartsState])

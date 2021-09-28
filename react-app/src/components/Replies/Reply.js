@@ -41,13 +41,11 @@ const Reply = ({reply, i, heartOwnerId, heart_id}) => {
 
     useEffect(() => {
         if(sessionUserConnections && sessionUserConnections[reply.user_id]){
-            console.log('looking here', sessionUserConnections)
-            console.log('you and ', reply.username, 'are connected!')
+
             setConnected(true)
             setAlreadyConnected(true)
         }else if (sessionUserConnections && !sessionUserConnections[reply.user_id]){
-            console.log('looking here', sessionUserConnections)
-            console.log('you and ', reply.username, 'are NOT connected!')
+
             setConnected(false)
             setAlreadyConnected(false)
         }
@@ -60,11 +58,11 @@ const Reply = ({reply, i, heartOwnerId, heart_id}) => {
 
     useEffect(() => {
         if(sessionUser && sessionUser.id === heartOwnerId){
-            console.log(heartOwnerId, 'this number owns it')
+
             setHeartOwner(true)
         }
         else if(sessionUser && sessionUser.id !== heartOwnerId){
-            console.log(heartOwnerId, 'this number owns it')
+
             setHeartOwner(false)
         }
 
@@ -83,7 +81,7 @@ const Reply = ({reply, i, heartOwnerId, heart_id}) => {
     }
 
     const goMakeConnection = (user_one, user_two) => {
-        dispatch(addConnection(user_one,user_two,heart.id))
+        dispatch(addConnection(user_one,user_two,heart.id, reply.id))
         dispatch(goCloseHeart(heart.id))
     }
 

@@ -25,7 +25,7 @@ const HeartPage = () => {
     }
 
     useEffect(()=> {
-        console.log(heartId)
+
         if(heartId){
             dispatch(goGetHeart(heartId))
         }
@@ -50,12 +50,12 @@ const HeartPage = () => {
         let i
         if (heart && heart.open){
         const interval = setInterval(() => {
-            console.log('starting countdown')
+
             updateCountdown()
         },1000)
 
         if(expirationCountdown <= 0){
-            console.log('it ends today', expirationCountdown)
+     
             dispatch(goCloseHeart(heart.id))
             setOpen(false)
             clearInterval(interval)

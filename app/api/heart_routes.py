@@ -25,7 +25,7 @@ def top_hearts():
     # Post.id).order_by(func.count().desc()).all()
     # data = posts[0:10]
 
-    hearts = db.session.query(Heart).filter(Heart.open == True).join(Reply).group_by(Heart.id).order_by(func.count().desc()).limit(30).all()
+    hearts = db.session.query(Heart).filter(Heart.open == True).join(Reply, Heart.replies).group_by(Heart.id).order_by(func.count().desc()).limit(30).all()
 
 
     if hearts:
@@ -69,6 +69,11 @@ def user_hearts(id):
     user_hearts = Heart.query.filter(Heart.user_id == int(id)).order_by(desc(Heart.created_at)).all()
 
     return {heart.id:heart.to_dict() for heart in user_hearts}
+
+
+# @heart_routes.route('/user/<int:id>/connected')
+# def connected_hearts(id):
+#     pass
 
 
 @heart_routes.route('/', methods = ['POST'])

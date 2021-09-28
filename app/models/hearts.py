@@ -10,6 +10,7 @@ class Heart(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     connector_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
+    grand_reply_id = db.Column(db.Integer(), db.ForeignKey('replies.id'))
     content = db.Column(db.Text(), nullable = False)
     open = db.Column(db.Boolean(), nullable = False)
     time_to_live = db.Column(db.Integer(), nullable = False)
@@ -28,7 +29,10 @@ class Heart(db.Model):
             primaryjoin=connector_id == User.id,
             backref=backref('connected_hearts')
     )
-    replies = db.relationship('Reply', cascade="all,delete", back_populates = 'heart')
+
+    grand_reply = db.relationship('Reply', uselist = False, post_update = True, foreign_keys = [grand_reply_id])
+
+    replies = db.relationship('Reply', cascade="all,delete", back_populates = 'heart', foreign_keys = '[Reply.heart_id]')
 
     @property
     def expiry(self):
@@ -38,6 +42,8 @@ class Heart(db.Model):
     def to_dict(self):
         return{
             'id':self.id,
+            'grand_reply_id': self.grand_reply_id,
+            'grand_reply_content': self.grand_reply.content if self.grand_reply else None,
             'user_id':self.user_id,
             'connector_id':self.connector_id,
             'connector': self.connector.to_dict_short() if self.connector else None,
@@ -57,3 +63,10 @@ class Heart(db.Model):
         self.connector = user
 
         return self.connector
+
+    def set_grand_reply(self, reply_id):
+
+        for reply in self.replies:
+            if reply.id == reply_id:
+                self.grand_reply_id = reply_id
+                return
