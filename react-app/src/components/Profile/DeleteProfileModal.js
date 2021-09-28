@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Modal } from "../../context/Modal";
 import DeleteProfile from "./DeleteProfile";
-
+import deleteIcon from '../graphics/delete.svg'
 
 
 const DeleteProfileModal = ({user}) => {
@@ -18,7 +18,7 @@ const DeleteProfileModal = ({user}) => {
 
     return(
         <>
-        <span onClick = {handleClick}>Delete Account</span>
+        <img onClick = {handleClick} className = 'delete-icon' src = {deleteIcon} alt = 'delete profile' />
         {showModal &&
             <Modal onClose = {() => setShowModal(false)}>
                 <DeleteProfile user = {user} closeModal = {closeModal}  />

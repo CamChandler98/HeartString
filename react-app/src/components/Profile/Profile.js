@@ -103,23 +103,22 @@ const Profile = () => {
             <div className = 'profile-header-text'>
                 <span id = 'display-name'>{owner ?sessionUser.display_name :profileUser.display_name}</span>
                 <span id = 'username'>@{profileUser.username}</span>
+                <div className = 'manage-profile-buttons'>
+                {owner && <ManageProfileModal user ={sessionUser} />}
+                {owner && <DeleteProfileModal user = {sessionUser}/>}
+                </div>
             </div>
-            {owner && <ManageProfileModal user ={sessionUser} />}
-            {owner && <DeleteProfileModal user = {sessionUser}/>}
         </div>
         <div className = 'tab-bar'>
             <div className ='bar-item focused yellow'
             onClick = {(e)=> switchFocus(e,'recent')}>
             <span>recent</span>
             </div>
-            {/* <div className ='bar-item blue '
-            onClick = {(e)=> switchFocus(e,'popular')}>
-            <span>popular</span>
-            </div> */}
+
         </div>
         <div className = 'focus-content'>
             {hearts && focus === 'recent' && <HeartsPage hearts = {hearts} />}
-            {/* {focus === 'popular' && <HeartsPage hearts = {popularHearts} />} */}
+
         </div>
         </div>
     )
