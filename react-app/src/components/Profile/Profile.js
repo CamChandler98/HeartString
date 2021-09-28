@@ -9,15 +9,20 @@ import ManageProfileModal from "./ManageProfileModal"
 import './ProfilePage.css'
 
 const Profile = () => {
-    const [focus, setFocus] = useState('recent')
+    const [focus, setFocus] = useState('open')
     const [owner,setOwner] = useState(false)
     const [hearts, setHearts] = useState([])
+    const[openHearts, setOpenHearts] = useState([])
+    const [closedHearts, setClosedHearts] = useState([])
+    const [connections, setConnections] = useState([])
+
+
     const {username} = useParams()
     const dispatch = useDispatch()
 
     let profileUser = useSelector(state => state.profile)
     let sessionUser = useSelector(state => state.session.user)
-
+    let userCo
     useEffect(() => {
         if(username !== undefined){
         dispatch(getUser(username))
@@ -52,11 +57,11 @@ const Profile = () => {
         e.target.classList.add('focused')
 
         switch(target){
-            case 'popular':
-                setFocus('popular')
+            case 'open':
+                setFocus('open')
                 break;
-            case 'recent':
-                setFocus('recent')
+            case 'closed':
+                setFocus('closed')
                 break;
             default:
                 break;
@@ -72,15 +77,22 @@ const Profile = () => {
         console.log('going to get those hearts for you')
         console.log(sessionHearts)
         if(sessionHearts && owner){
-            setHearts(Object.values(sessionHearts).reverse())
+            let userHearts = Object.values(sessionHearts).reverse()
+            setHearts([...userHearts])
+            setOpenHearts([...userHearts.filter(heart => heart.open === true)])
+            setClosedHearts1([...userHearts.filter(heart => heart.open !== true)])
             console.log('got your hearts!')
         }else if(profileHearts){
-            setHearts(Object.values(profileHearts).reverse())
-            console.log('got anothers hearts!')
+            let userHearts = Object.values(profileHearts).reverse()
+            setHearts([...userHearts])
+            setOpenHearts([...userHearts.filter(heart => heart.open === true)])
+            setClosedHearts([...userHearts.filter(heart => heart.open !== true)])
         }
         return () =>{
 
             setHearts([])
+            setOpenHearts([])
+            setClosedHearts([])
         }
 
 
@@ -111,14 +123,17 @@ const Profile = () => {
         </div>
         <div className = 'tab-bar'>
             <div className ='bar-item focused yellow'
-            onClick = {(e)=> switchFocus(e,'recent')}>
-            <span>recent</span>
+            onClick = {(e)=> switchFocus(e,'open')}>
+            <span>open hearts</span>
             </div>
-
+            <div className ='bar-item yellow'
+            onClick = {(e)=> switchFocus(e,'closed')}>
+            <span>closed hearts</span>
+            </div>
         </div>
         <div className = 'focus-content'>
-            {hearts && focus === 'recent' && <HeartsPage hearts = {hearts} />}
-
+            {hearts && focus === 'open' && <HeartsPage hearts = {openHearts} />}
+            {hearts && focus === 'closed' && <HeartsPage hearts = {closedHearts} />}
         </div>
         </div>
     )
