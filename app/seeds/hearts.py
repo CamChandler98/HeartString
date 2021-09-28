@@ -33,6 +33,7 @@ def seed_base_hearts(seeds = 26):
             time_to_live = get_ttl(),
             user_id = random.choice([1,2]),
             open = True,
+
         )
         db.session.add(heart)
 
