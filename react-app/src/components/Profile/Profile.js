@@ -123,7 +123,7 @@ const Profile = () => {
             onClick = {(e)=> switchFocus(e,'open')}>
             <span>open hearts</span>
             </div>
-            <div className ='bar-item focused yellow'
+            <div className ='bar-item yellow'
             onClick = {(e)=> switchFocus(e,'closed')}>
             <span>closed hearts</span>
             </div>
