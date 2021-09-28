@@ -51,12 +51,14 @@ const deleteHeart = (heart_id) => ({
 
 const closeHeart = (heart) => ({
     type: CLOSE,
-    heart_id
+    heart
 })
 
 
 export const goCloseHeart = (heart_id) => async(dispatch) => {
-    let res = await fetch(`/api/hearts/${heart_id}/close`)
+    let res = await fetch(`/api/hearts/${heart_id}/close`, {
+        method: 'POST'
+    })
 
     if(res.ok){
         let data = await res.json()
@@ -256,7 +258,9 @@ const heartReducer = (state = initialState, action) =>{
             if ( closeState.recent[action.heart.id]){
                 closeState.recent = {...closeState.recent, [action.heart.id]: {...action.heart}}
             }
-            
+
+            return {...closeState}
+
         default:
             return state;
     }
