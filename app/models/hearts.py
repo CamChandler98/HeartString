@@ -28,7 +28,7 @@ class Heart(db.Model):
             primaryjoin=connector_id == User.id,
             backref=backref('connected_hearts')
     )
-    replies = db.relationship('Reply', back_populates = 'heart')
+    replies = db.relationship('Reply', cascade="all,delete" back_populates = 'heart')
 
     @property
     def expiry(self):
