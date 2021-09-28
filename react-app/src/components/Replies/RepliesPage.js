@@ -2,7 +2,7 @@ import './RepliesPage.css'
 import Reply from "./Reply"
 
 
-const RepliesPage = ({replies, heartOwnerId}) => {
+const RepliesPage = ({replies, heart_id, heartOwnerId}) => {
 
     return (
         <div className = 'replies-container'>
@@ -10,7 +10,7 @@ const RepliesPage = ({replies, heartOwnerId}) => {
                 replies.map((reply,i) => {
 
                     return(
-                        <Reply heartOwnerId = {heartOwnerId} key ={reply.id} i = {i} reply = {reply} />
+                        <Reply heart_id = {heart_id} heartOwnerId = {heartOwnerId} key ={reply.id} i = {i} reply = {reply} />
                     )
                 })
             }

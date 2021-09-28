@@ -26,7 +26,7 @@ export const getConnections = (userId) => async (dispatch) => {
     }
 }
 
-export const addConnection = (user_one, user_two) => async (dispatch) => {
+export const addConnection = (user_one, user_two, heart_id) => async (dispatch) => {
     let res = await fetch('/api/connections/',{
         method: 'POST',
         headers: {
@@ -34,7 +34,8 @@ export const addConnection = (user_one, user_two) => async (dispatch) => {
           },
         body: JSON.stringify({
             user_one,
-            user_two
+            user_two,
+            heart_id
         })
     })
 

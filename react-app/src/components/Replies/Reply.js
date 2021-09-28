@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addConnection } from "../../store/connections"
+import { goCloseHeart } from "../../store/hearts"
 import DeleteModal from "../util/DeleteModal"
 import EditMarker from "../util/EditMarker"
 import EditReplyModal from "./EditReplyFormModal"
 import './Reply.css'
-const Reply = ({reply, i, heartOwnerId}) => {
+const Reply = ({reply, i, heartOwnerId, heart_id}) => {
 
     const dispatch = useDispatch()
 
@@ -13,9 +14,12 @@ const Reply = ({reply, i, heartOwnerId}) => {
     const [alreadyConnected, setAlreadyConnected] = useState(true)
     const[connected, setConnected] = useState(false)
     const [heartOwner, setHeartOwner] = useState(false)
+    const [heart, setHeart] = useState({})
 
     let sessionUser = useSelector(state => state.session.user)
     let sessionUserConnections = useSelector(state => state.connections)
+
+    let heartState = useSelector(state => state.hearts.all[heart_id])
 
     useEffect(() => {
         if(sessionUser && sessionUser.id === reply.user_id){
@@ -24,6 +28,16 @@ const Reply = ({reply, i, heartOwnerId}) => {
             setOwner(false)
         }
     },[sessionUser])
+
+    useEffect(() => {
+        if(heart){
+            setHeart({...heartState})
+        }
+
+        return () => {
+            setHeart({})
+        }
+    },[heartState])
 
     useEffect(() => {
         if(sessionUserConnections && sessionUserConnections[reply.user_id]){
@@ -69,7 +83,8 @@ const Reply = ({reply, i, heartOwnerId}) => {
     }
 
     const goMakeConnection = (user_one, user_two) => {
-        dispatch(addConnection(user_one,user_two))
+        dispatch(addConnection(user_one,user_two,heart.id))
+        dispatch(goCloseHeart(heart.id))
     }
 
 
@@ -95,7 +110,7 @@ const Reply = ({reply, i, heartOwnerId}) => {
                         <DeleteModal id = {reply.id} type = {'reply'} onClick= {e => e.stopPropagation()} />
                 </div>}
            </div>
-                {heartOwner && !owner && !alreadyConnected &&
+                {heart.open && heartOwner && !owner && !alreadyConnected &&
                     <div>
                         <button className = 'connect-button'
                         onClick ={() => goMakeConnection(sessionUser.id, reply.user_id)}

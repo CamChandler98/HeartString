@@ -119,7 +119,7 @@ const HeartPage = () => {
             </div>
             <div>
                 { heartReplies &&
-                <RepliesPage heartOwnerId = {heart.user_id} replies = {heartReplies} />
+                <RepliesPage heart_id = {heart.id} heartOwnerId = {heart.user_id} replies = {heartReplies} />
                 }
             </div>
             </div>

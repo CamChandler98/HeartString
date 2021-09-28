@@ -206,13 +206,13 @@ const heartReducer = (state = initialState, action) =>{
             return {...state, all:{...action.hearts}}
 
         case GET_USER:
-            return {...state, profile:{...action.hearts}}
+            return {...state, profile:{...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_SESSION:
-            return {...state, session_user: {...action.hearts}}
+            return {...state, session_user: {...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_POPULAR:
             return {...state, popular :[...action.hearts]}
         case GET_RECENT:
-            return {...state, recent :{...action.hearts}}
+            return {...state, recent :{...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_ONE:
             return{
                 ...state, all: {...state.all, [action.heart.id]: {...action.heart}}
@@ -248,7 +248,9 @@ const heartReducer = (state = initialState, action) =>{
 
         case CLOSE:
             let closeState = {...state}
-
+            if ( closeState.all[action.heart.id]){
+                closeState.all = {...closeState.all, [action.heart.id]: {...action.heart}}
+            }
             if ( closeState.profile[action.heart.id]){
                 closeState.profile = {...closeState.profile, [action.heart.id]: {...action.heart}}
             }
