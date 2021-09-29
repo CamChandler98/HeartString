@@ -28,7 +28,7 @@ const Messages = ({partner}) => {
             window.alert('HELLO')
         })
         socketio.on(`message_to_${user.id}_from_${partner.id}`, async () => {
-            console.log('OOOOOOH WEEEE someone is calling')
+            window.alert('OOOOOOH WEEEE someone is calling')
         })
     },[user,partner])
     const messagesState = useSelector( state => state.messages.conversation)
