@@ -13,6 +13,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.heart_routes import heart_routes
 from .api.reply_routes import reply_routes
+from .api.message_routes import message_routes
 from .api.connection_routes import connection_routes
 from .seeds import seed_commands
 
@@ -46,6 +47,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(heart_routes, url_prefix = '/api/hearts' )
 app.register_blueprint(reply_routes, url_prefix = '/api/replies')
 app.register_blueprint(connection_routes, url_prefix = '/api/connections')
+app.register_blueprint(message_routes, url_prefix = '/api/messages' )
 db.init_app(app)
 Migrate(app, db)
 
@@ -53,7 +55,7 @@ Migrate(app, db)
 from app.tasks import heart_expiration
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(heart_expiration,'interval',seconds=60)
-sched.start()
+# sched.start()
 
 
 # Application Security

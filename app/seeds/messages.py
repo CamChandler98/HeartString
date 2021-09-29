@@ -25,7 +25,7 @@ def seed_base_messages():
     message = Message(
         user_id = 1,
         content = 'message test',
-        connection_id = 1,
+        receiver_id = 2,
         created_at = datetime.now(),
     )
     db.session.add(message)
@@ -33,11 +33,19 @@ def seed_base_messages():
     message2 = Message(
         user_id = 2,
         content = 'message test 2',
-        connection_id = 1,
+        receiver_id = 1,
         created_at = datetime.now(),
     )
-    db.session.add(message2)
 
+    message3 = Message(
+        user_id = 3,
+        content = 'message test 3',
+        receiver_id = 1,
+        created_at = datetime.now(),
+    )
+
+    db.session.add(message2)
+    db.session.add(message3)
     db.session.commit()
 
 def seed_messages(seeds = 500):

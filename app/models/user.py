@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     profile_picture_url = db.Column(db.String(), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    messages = db.relationship('Message',back_populates = 'user', cascade="all,delete" )
+
     replies = db.relationship('Reply',back_populates = 'user', cascade="all,delete" )
     connections = db.relationship(
         'User', lambda: user_connections,
@@ -24,6 +24,10 @@ class User(db.Model, UserMixin):
         backref= 'connectors',
         cascade = 'all, delete'
     )
+
+    sent_messages = db.relationship("Message", back_populates="user", foreign_keys='Message.user_id')
+
+    received_messages = db.relationship("Message", back_populates="receiver", foreign_keys='Message.receiver_id')
 
     @property
     def password(self):
@@ -84,7 +88,7 @@ class User(db.Model, UserMixin):
 
 user_connections = db.Table(
     'user_connections',
-    db.Column('id', db.Integer, db.Identity(cycle=True), primary_key=True, unique = True),
+
     db.Column('user_id' , db.Integer, db.ForeignKey(User.id), primary_key = True),
 
     db.Column('connection_id', db.Integer, db.ForeignKey(User.id), primary_key = True)

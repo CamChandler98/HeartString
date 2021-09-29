@@ -1,4 +1,4 @@
-from app.seeds.messages import seed_messages, undo_messages
+from app.seeds.messages import seed_base_messages, undo_messages
 from flask.cli import AppGroup
 from .users import seed_users, seed_base_users,undo_users
 from .hearts import seed_hearts, seed_base_hearts ,undo_hearts
@@ -19,7 +19,7 @@ def seed():
     seed_base_replies()
     seed_replies()
     seed_connections()
-    seed_messages()
+    seed_base_messages()
     # Add other seed functions here
 
 
