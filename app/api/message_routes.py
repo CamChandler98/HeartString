@@ -26,7 +26,7 @@ def get_conversation():
     return {message.id: message.to_dict() for message in messages}
 
 @message_routes.route('/', methods = ['POST'])
-def create_reply():
+def create_message():
     form = MessageForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -44,3 +44,13 @@ def create_reply():
         return message.to_dict()
 
     return{'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@message_routes.route('/<int:id>' ,methods = ['DELETE'])
+def delete_reply(id):
+
+    message = Message.query.get(id)
+
+    db.session.delete(message)
+    db.session.commit()
+
+    return {'deleted': message.id}
