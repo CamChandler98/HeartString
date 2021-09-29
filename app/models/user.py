@@ -1,3 +1,4 @@
+from enum import unique
 from sqlalchemy.orm import backref, relation
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -83,7 +84,7 @@ class User(db.Model, UserMixin):
 
 user_connections = db.Table(
     'user_connections',
-    db.Column('id', db.Integer, db.Identity(cycle=True), primary_key=True),
+    db.Column('id', db.Integer, db.Identity(cycle=True), primary_key=True, unique = True),
     db.Column('user_id' , db.Integer, db.ForeignKey(User.id), primary_key = True),
 
     db.Column('connection_id', db.Integer, db.ForeignKey(User.id), primary_key = True)
