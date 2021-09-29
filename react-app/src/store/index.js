@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import connectionReducer from './connections';
 import heartReducer from './hearts';
+import messageReducer from './messages';
 import profileReducer from './profile';
 import replyReducer from './replies';
 import session from './session'
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   hearts: heartReducer,
   replies: replyReducer,
   profile: profileReducer,
-  connections: connectionReducer
+  connections: connectionReducer,
+  messages: messageReducer
 });
 
 

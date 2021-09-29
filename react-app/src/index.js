@@ -9,6 +9,8 @@ import { BrowserRouter } from 'react-router-dom';
 import * as heartActions from './store/hearts'
 import * as replyActions from './store/replies'
 import  * as connectionActions from './store/connections'
+import * as messageActions from './store/messages'
+
 import AlertProvider from './context/Alert';
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
@@ -20,6 +22,7 @@ if (process.env.NODE_ENV !== "production") {
     window.heartActions = heartActions
     window.replyActions = replyActions
     window.connectionActions = connectionActions
+    window.messageActions = messageActions
   }
 ReactDOM.render(
   <React.StrictMode>
