@@ -32,8 +32,12 @@ const SideBar = () => {
             }
             </div>
             <div className = 'message-container'>
+                {partner && sessionUser &&<>
+                <h2>{partner.display_name}</h2>
                 <Messages partner = {partner} />
                 <MessageForm partner = {partner} />
+                </>
+                }
             </div>
         </div>
     )

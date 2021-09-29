@@ -1,5 +1,5 @@
 import Messages from "./Messages"
-
+import './Message.css'
 
 const Message = ({content, user_pic}) => {
 
