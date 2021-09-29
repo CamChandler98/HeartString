@@ -4,8 +4,8 @@ import os
 
 if os.environ.get("FLASK_ENV") == "production":
     origins = [
-        "https://heart-string.herokuapp.com/home",
-        "http://heart-string.herokuapp.com/home"
+        "https://heart-string.herokuapp.com",
+        "http://heart-string.herokuapp.com"
     ]
 else:
     origins = "*"
