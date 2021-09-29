@@ -21,6 +21,8 @@ class Message(db.Model):
             "id": self.id,
             "content": self.content,
             "sender_id": self.user_id,
+            "sender_name": self.user.display_name,
+            "sender_pic": self.user.profile_picture_url,
             "recevier_id": self.receiver_id,
             "created_at": self.created_at,
             "updated_at": self.updated_at
