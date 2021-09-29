@@ -113,11 +113,11 @@ const messageReducer = (state = initialState, action ) => {
             }
 
             if(deleteState.all[action.message_id]){
-                delete deleteState.all[action.message]
+                delete deleteState.all[action.message_id]
             }
 
             if(deleteState.conversation[action.message_id]){
-                delete deleteState.conversation[action.message]
+                delete deleteState.conversation[action.message_id]
             }
             return {...deleteState}
         default:
