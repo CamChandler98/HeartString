@@ -3,7 +3,6 @@ import './Connection.css'
 
 const Connection = ({connectedHeart}) => {
 
-    console.log(`it's mine now!`, connectedHeart)
     return (
         <div className = 'connection-card'>
             <div className = 'connector-info'>

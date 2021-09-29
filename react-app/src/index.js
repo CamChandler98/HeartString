@@ -12,6 +12,7 @@ import  * as connectionActions from './store/connections'
 import * as messageActions from './store/messages'
 
 import AlertProvider from './context/Alert';
+import SocketProvider from './context/Socket';
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
     window.store = store;
@@ -27,11 +28,13 @@ if (process.env.NODE_ENV !== "production") {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+        <SocketProvider>
         <AlertProvider>
         <ModalProvider>
              <App />
         </ModalProvider>
         </AlertProvider>
+        </SocketProvider>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')

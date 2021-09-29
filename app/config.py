@@ -10,7 +10,7 @@ class Config:
     # so the connection uri must be updated here
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
-    SQLALCHEMY_ECHO = True
+    # SQLALCHEMY_ECHO = True
 
     # JOBS = [
     #     {

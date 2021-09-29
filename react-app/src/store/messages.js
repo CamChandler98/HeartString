@@ -72,6 +72,7 @@ export const goSendMessage = (content,user_id,receiver_id) => async (dispatch) =
         let data = await res.json()
 
         dispatch(sendMessage(data))
+        return 'ok'
     }
 }
 

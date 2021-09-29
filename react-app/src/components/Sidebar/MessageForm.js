@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useSocket } from "../../context/Socket"
 import { goSendMessage } from "../../store/messages"
 import sendIcon from "../graphics/send-icon.svg"
 
 const MessageForm = ({partner}) => {
+
+    let {socketio} = useSocket()
+
     const dispatch = useDispatch()
     let initialState = {content:''}
     const errorObj = {
@@ -15,22 +19,27 @@ const MessageForm = ({partner}) => {
 
     const user = useSelector(state => state.session.user)
 
-    const messagePartner = (e) => {
+    const messagePartner = async (e) => {
         e.preventDefault()
-        console.log(content)
         let message = content.content
         content.content = ''
-        console.log('clesarinf')
+
+        let res = await dispatch(goSendMessage(message,user.id,partner.id))
+        if(res === 'ok'){
+            let addy = {sent_from: user.id , sent_to: partner.id }
+            
+            socketio.emit('connection_message', addy)
+        }
+
         setContent({...initialState})
 
         let boxINeed= document.getElementById('send-message-input')
 
         boxINeed.innerText = ''
-        dispatch(goSendMessage(message,user.id,partner.id))
     }
 
     const updateContent = (e) => {
-        console.log(content)
+
            content.content = e.target.innerText
     }
 

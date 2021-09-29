@@ -4,17 +4,20 @@ import UserConnections from "./UserConnections"
 import './SideBar.css'
 import Messages from "./Messages"
 import MessageForm from "./MessageForm"
+import { useSocket } from "../../context/Socket"
 
 
 const SideBar = () => {
     const [partner, setPartner] = useState()
     const sessionUser = useSelector(state => state.session.user)
+    const {socketio} = useSocket()
 
     useEffect(()=> {
-
+        socketio.on('hi' , async () => {
+            console.log(`YOU'LL NEVER DEFEAT ME COWARD`)
+        })
     }, [sessionUser])
     useEffect(() => {
-        console.log('switching partners!', partner)
     }, [partner])
     return(
         <div className = 'side-bar'>

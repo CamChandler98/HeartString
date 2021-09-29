@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useSocket } from "../../context/Socket"
 import { goGetConversation } from "../../store/messages"
 import Message from "./Message"
 
 
 const Messages = ({partner}) => {
+    let {socketio} = useSocket()
 
     const dispatch = useDispatch()
     const [messages, setMessages] = useState([])
@@ -21,11 +23,18 @@ const Messages = ({partner}) => {
     }
     }, [partner,user])
 
-
+    useEffect(() => {
+        socketio.on(`hi` , async () => {
+            window.alert('HELLO')
+        })
+        socketio.on(`message_to_${user.id}_from_${partner.id}`, async () => {
+            console.log('OOOOOOH WEEEE someone is calling')
+        })
+    },[user,partner])
     const messagesState = useSelector( state => state.messages.conversation)
 
     useEffect(() => {
-        console.log('setting those messages from the store' , messagesState)
+
         setMessages([...Object.values(messagesState)])
     }, [messagesState])
 
@@ -34,8 +43,7 @@ const Messages = ({partner}) => {
         <div>
             <div>
             {messages && messages.map( message => {
-                console.log(`this is what i'm looking at`, messages)
-                console.log('got those messages lemme organize them a bit', message)
+
 
                 return (<Message content = {message.content} user_pic = {message.sender_pic} key = {message.id} />)
             })}
