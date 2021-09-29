@@ -9,7 +9,7 @@ const getMessages = (messages) => ({
 })
 
 const getConversation = (messages) => ({
-    type: GET,
+    type: GET_CON,
     messages
 })
 
@@ -37,6 +37,7 @@ export const goGetMessages = (user_id) => async (dispatch) => {
 
 export const goGetConversation = (user_one_id, user_two_id) => async (dispatch) => {
     let res = await fetch(`/api/messages/convo`,{
+        method :'POST',
         headers: {
             'Content-Type': 'application/json'
           },
@@ -53,7 +54,7 @@ export const goGetConversation = (user_one_id, user_two_id) => async (dispatch) 
     }
 }
 
-export const sendMessage = (content,user_id,receiver_id) => async (dispatch) => {
+export const goSendMessage = (content,user_id,receiver_id) => async (dispatch) => {
     let res = await fetch(`/api/messages/`, {
         method: 'POST',
         headers: {
@@ -70,11 +71,11 @@ export const sendMessage = (content,user_id,receiver_id) => async (dispatch) => 
     if(res.ok){
         let data = await res.json()
 
-        dispatch(sendMessage(message))
+        dispatch(sendMessage(data))
     }
 }
 
-export const deleteMessage = (message_id) => async (dispatch) =>  {
+export const goDeleteMessage = (message_id) => async (dispatch) =>  {
     const res = await fetch(`/api/messages/${message_id}`,{
         method: 'DELETE'
     })
@@ -94,7 +95,11 @@ const messageReducer = (state = initialState, action ) => {
         case GET:
             return{...state, all:{...action.messages}}
         case GET_CON:
-            return {...state, all:{...state.all, ...action.messages}, conversation: {...action.messages}}
+            return {...state,
+                all:{...state.all, ...action.messages},
+
+                conversation: {...action.messages}
+        }
         case SEND:
             return {
                 ...state,

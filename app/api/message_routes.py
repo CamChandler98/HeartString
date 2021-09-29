@@ -13,7 +13,7 @@ def messages(id):
     return {message.id: message.to_dict() for message in messages}
 
 
-@message_routes.route('/convo')
+@message_routes.route('/convo', methods = ["POST"])
 def get_conversation():
     data = request.get_json()
 

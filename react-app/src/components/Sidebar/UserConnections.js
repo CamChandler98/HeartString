@@ -32,14 +32,14 @@ const UserConnections = () => {
             {sessionUser && connections &&
                 connections.map(connection => {
                     return(
-                        <>
+                        <div key = {connection.id}>
                             <div className = 'connected-header'>
                                 <div className = 'connected-top'>
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
                             </div>
                             </div>
-                        </>
+                        </div>
                     )
                 })
             }
