@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { io } from 'socket.io-client';
 
-let endPoint = 'http://localhost:5000';
+// let endPoint = 'http://localhost:5000';
 
-let socketio = io.connect(`${endPoint}`);
+let socketio = io.connect();
 
 
 
