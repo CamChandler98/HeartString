@@ -54,15 +54,14 @@
 
 .cb1:before {
     content: "";
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     position: absolute;
-    border-left: 10px solid #fdc1ce38;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #fdc1ce38;
-    border-bottom: 10px solid transparent;
-    right: -20px;
-    top: 6px;
+    border-style: solid;
+    border-width: 15px;
+    top: 1px;
+    z-index: 3;
+    border-color: rgb(253 193 206 / 24%) transparent transparent rgb(253 193 206 / 8%);
   }
 .cb2:before {
     content: "";
