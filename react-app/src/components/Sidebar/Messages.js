@@ -28,7 +28,7 @@ const Messages = ({partner}) => {
             window.alert('HELLO')
         })
         socketio.on(`message_to_${user.id}_from_${partner.id}`, async () => {
-            window.alert('OOOOOOH WEEEE someone is calling')
+            dispatch(goGetConversation(user.id, partner.id))
         })
     },[user,partner])
     const messagesState = useSelector( state => state.messages.conversation)
