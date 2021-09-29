@@ -57,10 +57,10 @@
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 10px solid #fdc1ce38;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #fdc1ce38;
-    border-bottom: 10px solid transparent;
+    border-style: solid;
+    border-width: 15px;;
+    border-color: rgb(253 193 206 / 24%) transparent transparent rgb(253 193 206 / 8%);
+    right: -15px;
     right: -20px;
     top: 6px;
   }
@@ -69,10 +69,10 @@
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 10px solid transparent;
-    border-right: 10px solid #a2e8d93d;
-    border-top: 10px solid #a2e8d93d;
-    border-bottom: 10px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid #bbe0d83d;
+    border-top: 15px solid #a2e8d93d;
+    border-bottom: 15px solid transparent;
     left: -19px;
     top: 6px;
 }

@@ -1,4 +1,5 @@
-from sqlalchemy.orm import backref
+from enum import unique
+from sqlalchemy.orm import backref, relation
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -23,6 +24,10 @@ class User(db.Model, UserMixin):
         backref= 'connectors',
         cascade = 'all, delete'
     )
+
+    sent_messages = db.relationship("Message", back_populates="user", foreign_keys='Message.user_id')
+
+    received_messages = db.relationship("Message", back_populates="receiver", foreign_keys='Message.receiver_id')
 
     @property
     def password(self):
@@ -83,6 +88,7 @@ class User(db.Model, UserMixin):
 
 user_connections = db.Table(
     'user_connections',
+
     db.Column('user_id' , db.Integer, db.ForeignKey(User.id), primary_key = True),
 
     db.Column('connection_id', db.Integer, db.ForeignKey(User.id), primary_key = True)

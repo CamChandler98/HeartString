@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getConnections } from "../../store/connections"
 
 
-const UserConnections = () => {
+const UserConnections = ({setPartner}) => {
     const [connections, setConnections] = useState([])
     const dispatch = useDispatch()
 
@@ -27,23 +27,31 @@ const UserConnections = () => {
         }
     },[connectionState, sessionUser])
 
+    const handlePartner = (connection) => {
+        setPartner(connection)
+    }
+
     return (
+        <>
         <div>
             {sessionUser && connections &&
                 connections.map(connection => {
                     return(
-                        <>
+                        <div
+                        onClick = {() => handlePartner(connection)}
+                        key = {connection.id}>
                             <div className = 'connected-header'>
                                 <div className = 'connected-top'>
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
                             </div>
                             </div>
-                        </>
+                        </div>
                     )
                 })
             }
         </div>
+        </>
     )
 }
 

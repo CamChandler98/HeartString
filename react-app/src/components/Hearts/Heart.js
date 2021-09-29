@@ -50,13 +50,13 @@ const Heart = ({heart}) => {
 
         if(expirationCountdown <= 0){
 
-            dispatch(goCloseHeart(heart.id))
             clearInterval(interval)
+            return dispatch(goCloseHeart(heart.id))
         }
         return () => {
             clearInterval(interval)
         }
-    },[expirationCountdown, updateCountdown])
+    },[])
 
     useEffect(() => {
         if(sessionUserConnections && sessionUserConnections[heart.user_id]){

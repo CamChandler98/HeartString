@@ -1,7 +1,7 @@
 from flask_sqlalchemy.model import Model
 from app.seeds.utils import assign_from_dict, gen_count_dict
 from app.models.user import User
-import faker
+
 from app.models import Heart, Reply, db
 from faker import Faker
 Faker.seed(0)

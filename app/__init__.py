@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, session, redirect
+from app.socket import socketio
 
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -13,6 +14,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.heart_routes import heart_routes
 from .api.reply_routes import reply_routes
+from .api.message_routes import message_routes
 from .api.connection_routes import connection_routes
 from .seeds import seed_commands
 
@@ -25,7 +27,6 @@ def sensor():
 
 
 app = Flask(__name__)
-
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
@@ -41,19 +42,24 @@ app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
 
+
+
+
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(heart_routes, url_prefix = '/api/hearts' )
 app.register_blueprint(reply_routes, url_prefix = '/api/replies')
 app.register_blueprint(connection_routes, url_prefix = '/api/connections')
+app.register_blueprint(message_routes, url_prefix = '/api/messages' )
 db.init_app(app)
+socketio.init_app(app)
 Migrate(app, db)
 
 # set heart status on interval
 from app.tasks import heart_expiration
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(heart_expiration,'interval',seconds=60)
-sched.start()
+sched.add_job(heart_expiration,'interval',minutes=3)
+# sched.start()
 
 
 # Application Security
@@ -92,3 +98,7 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+if __name__ =='__main__':
+    socketio.run(app)
