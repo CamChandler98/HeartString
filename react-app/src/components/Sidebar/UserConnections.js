@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getConnections } from "../../store/connections"
 import NotificationCount from "./NotificationCount"
+import { getMessageNotifications, goSeeMessageNotification } from "../../store/notification"
 
 
 const UserConnections = ({setPartner}) => {
     const [connections, setConnections] = useState([])
-
+    const [notifications, setNotifications] = useState([])
 
 
 
@@ -14,12 +15,15 @@ const UserConnections = ({setPartner}) => {
 
     const sessionUser = useSelector (state => state.session.user)
 
-    let notificationsState = useSelector( state => state.notifications.messages)
 
 
     useEffect(() => {
         dispatch(getMessageNotifications(sessionUser.id))
     },[sessionUser])
+
+    let notificationsState = useSelector( state => state.notifications.messages)
+
+
 
     useEffect(() => {
         if(sessionUser){
@@ -28,6 +32,16 @@ const UserConnections = ({setPartner}) => {
     }, [dispatch, sessionUser])
 
 
+    const clearNotification = (connection_id) => {
+        for(let noti in notificationsState){
+            let currentNotification = notificationsState[noti]
+
+            if(+currentNotification.sender_id === +connection_id){
+
+                dispatch(goSeeMessageNotification(currentNotification.id))
+            }
+        }
+    }
 
     const connectionState = useSelector (state => state.connections)
 
@@ -47,17 +61,20 @@ const UserConnections = ({setPartner}) => {
     return (
         <>
 
-            {sessionUser && connections &&
+            {sessionUser && connections && notificationsState &&
                 connections.map(connection => {
                     return(
                         <div
-                        onClick = {() => handlePartner(connection)}
+                        onClick = {() => {
+                            handlePartner(connection)
+                            clearNotification(connection.id)
+                        }}
                         key = {connection.id}>
                             <div className = 'connected-header bar-connection'>
                                 <div className = 'connected-top'>
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
-                            <NotificationCount user_id = {sessionUser.id} connection_id ={connection.id} />
+                            <NotificationCount notifications = {notificationsState} connection_id ={connection.id} />
                             </div>
                             </div>
                         </div>

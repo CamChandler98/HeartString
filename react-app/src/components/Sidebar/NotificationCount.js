@@ -4,29 +4,22 @@ import { getMessageNotifications } from "../../store/notification"
 
 
 const NotificationCount = ({connection_id, notifications}) => {
-    const [notifications, setNotifications] = useState([])
+    const [connectionNotifications, setConnectionNotifications] = useState([])
 
 
-    let notificationsState = useSelector( state => state.notifications.messages)
-
-    const dispatch = useDispatch()
 
     useEffect(() => {
-            dispatch(getMessageNotifications(user_id))
-    },[connection_id])
-
-    useEffect(() => {
-        if(notificationsState){
-            setNotifications(Object.values(notificationsState).filter(notification => +notification.sender_id === +connection_id))
+        if(notifications){
+            setConnectionNotifications(Object.values(notifications).filter(notification => +notification.sender_id === +connection_id))
         }
-    },[notificationsState])
+    },[notifications])
 
     return (
         <>
-        { notifications &&
+        { connectionNotifications && connectionNotifications.length > 0 &&
             <div>
                 <span>
-                    {notifications.length}
+                    {connectionNotifications.length}
                 </span>
             </div>
         }
