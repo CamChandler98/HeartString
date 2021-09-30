@@ -26,3 +26,7 @@ def send_message(json):
     print('Hey got the message, what should I do with it?')
     print('the adress looks like this', addy)
     socketio.emit(addy)
+@socketio.on('notify-user')
+def send_notification(data):
+    noti = f'notification_to_{data["data"]}'
+    socketio.emit(noti)

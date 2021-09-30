@@ -27,8 +27,9 @@ const MessageForm = ({partner}) => {
         let res = await dispatch(goSendMessage(message,user.id,partner.id))
         if(res === 'ok'){
             let addy = {sent_from: user.id , sent_to: partner.id }
-            
+
             socketio.emit('connection_message', addy)
+            socketio.emit('notify-user', {data: partner.id})
         }
 
         setContent({...initialState})

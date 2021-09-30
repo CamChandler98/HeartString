@@ -1,3 +1,5 @@
+import { REMOVE_USER } from "./session"
+
 const GET_MESSAGE = 'notifications/GET_MESSAGE'
 const SEE = 'notifications/SEE'
 
@@ -50,6 +52,9 @@ export default function notificationReducer(state = initialState, action) {
             delete deleteState.messages[action.notification_id]
             return {...deleteState}
 
+        }
+        case REMOVE_USER: {
+            return {...initialState}
         }
         default:
             return {...state}
