@@ -13,9 +13,9 @@ class MessageNotification ():
     created_at = db.Column(db.DateTime(), default= now)
 
 
-    user = db.relationship("User", back_populates = 'received_notifications', foreign_keys='Message.user_id')
+    user = db.relationship("User", back_populates = 'received_notifications', foreign_keys='MessageNotification.user_id')
 
-    sender = db.relationship("User", back_populates = 'sent_notifications', foreign_keys='Message.receiver_id')
+    sender = db.relationship("User", back_populates = 'sent_notifications', foreign_keys='MessageNotification.receiver_id')
 
 
     def to_dict(self):
