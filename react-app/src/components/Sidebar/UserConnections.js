@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getConnections } from "../../store/connections"
+import NotificationCount from "./NotificationCount"
 
 
 const UserConnections = ({setPartner}) => {
@@ -45,6 +46,7 @@ const UserConnections = ({setPartner}) => {
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
                             </div>
+                            <NotificationCount user_id = {sessionUser.id} connection_id ={connection.id} />
                             </div>
                         </div>
                     )

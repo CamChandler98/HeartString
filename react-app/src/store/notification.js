@@ -23,7 +23,17 @@ export const getMessageNotifications = (user_id) => async (dispatch) => {
 
 }
 
-export 
+export const goSeeMessageNotification = (notification_id) => async (dispatch) => {
+    let res = await fetch(`/api/message/${notification_id}`, {
+        method: 'DELETE'
+    })
+
+    if(res.ok){
+        const data = await res.json()
+
+        dispatch(seeNotification(data.deleted))
+    }
+}
 
 const initialState = {messages: {}, hearts:{}}
 
@@ -35,6 +45,12 @@ export default function notificationReducer(state = initialState, action) {
                 ...state,
                 messages: {...action.notifications}
             }
+        case SEE: {
+            let deleteState = {...state, messages: {...state.messages}}
+            delete deleteState.messages[action.notification_id]
+            return {...deleteState}
+
+        }
         default:
             return {...state}
     }
