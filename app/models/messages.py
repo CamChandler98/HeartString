@@ -2,6 +2,8 @@ from .db import db
 from .user import User
 import datetime
 now = datetime.datetime.now()
+
+
 class Message(db.Model):
     __tablename__ = 'messages'
 

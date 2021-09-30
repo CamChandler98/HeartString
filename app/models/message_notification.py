@@ -2,7 +2,9 @@ from .db import db
 from .user import User
 import datetime
 now = datetime.datetime.now()
-class MessageNotification ():
+
+
+class MessageNotification (db.Model):
 
     __tablename__ = 'messsage_notifications'
 
@@ -15,7 +17,7 @@ class MessageNotification ():
 
     user = db.relationship("User", back_populates = 'received_notifications', foreign_keys='MessageNotification.user_id')
 
-    sender = db.relationship("User", back_populates = 'sent_notifications', foreign_keys='MessageNotification.receiver_id')
+    sender = db.relationship("User", back_populates = 'sent_notifications', foreign_keys='MessageNotification.sender_id')
 
 
     def to_dict(self):

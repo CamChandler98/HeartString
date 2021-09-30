@@ -16,6 +16,7 @@ from .api.heart_routes import heart_routes
 from .api.reply_routes import reply_routes
 from .api.message_routes import message_routes
 from .api.connection_routes import connection_routes
+from .models import MessageNotification
 from .seeds import seed_commands
 
 from .config import Config
