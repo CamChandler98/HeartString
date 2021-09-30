@@ -3,7 +3,7 @@ import { connect, useDispatch, useSelector } from "react-redux"
 import { getMessageNotifications } from "../../store/notification"
 import notificationIcon from '../graphics/notification-icon.svg'
 
-const NotificationCount = ({connection_id, clearNotifications, partner,  notifications}) => {
+const NotificationCount = ({connection_id,  partner,  notifications}) => {
     const [connectionNotifications, setConnectionNotifications] = useState([])
     const [showNotification, setShowNotification] = useState(true)
 
@@ -17,7 +17,7 @@ const NotificationCount = ({connection_id, clearNotifications, partner,  notific
     useEffect(() => {
         if(partner.id === connection_id){
             setShowNotification(false)
-            clearNotifications(connection_id)
+            // clearNotifications(connection_id)
         }else{
             setShowNotification(true)
         }
