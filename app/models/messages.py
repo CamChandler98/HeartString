@@ -1,6 +1,8 @@
 from .db import db
 from .user import User
 import datetime
+now = datetime.datetime.now()
+
 
 class Message(db.Model):
     __tablename__ = 'messages'
@@ -9,8 +11,8 @@ class Message(db.Model):
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     receiver_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     content = db.Column(db.Text(), nullable = False)
-    created_at = db.Column(db.DateTime(), default= datetime.datetime.now())
-    updated_at = db.Column(db.DateTime(), default= datetime.datetime.now())
+    created_at = db.Column(db.DateTime(), default= now)
+    updated_at = db.Column(db.DateTime(), default= now)
 
     user = db.relationship("User", back_populates = 'sent_messages', foreign_keys='Message.user_id')
 

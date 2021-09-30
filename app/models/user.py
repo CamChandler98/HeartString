@@ -29,6 +29,12 @@ class User(db.Model, UserMixin):
 
     received_messages = db.relationship("Message", back_populates="receiver", foreign_keys='Message.receiver_id')
 
+    sent_notifications = db.relationship("MessageNotification", back_populates = 'user', foreign_keys = 'MessageNotification.user_id')
+
+
+    received_notifications = db.relationship("MessageNotification", back_populates = 'user', foreign_keys = 'MessageNotification.user_id')
+
+
     @property
     def password(self):
         return self.hashed_password

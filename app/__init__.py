@@ -16,6 +16,7 @@ from .api.heart_routes import heart_routes
 from .api.reply_routes import reply_routes
 from .api.message_routes import message_routes
 from .api.connection_routes import connection_routes
+from .api.notification_routes import notification_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -51,6 +52,7 @@ app.register_blueprint(heart_routes, url_prefix = '/api/hearts' )
 app.register_blueprint(reply_routes, url_prefix = '/api/replies')
 app.register_blueprint(connection_routes, url_prefix = '/api/connections')
 app.register_blueprint(message_routes, url_prefix = '/api/messages' )
+app.register_blueprint(notification_routes, url_prefix = '/api/notifications')
 db.init_app(app)
 socketio.init_app(app)
 Migrate(app, db)

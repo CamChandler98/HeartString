@@ -83,6 +83,7 @@ const Heart = ({heart}) => {
                <p>{heart.display_name}</p>
                </div>
                <span>@{heart.username}</span>
+               {heart.content_url && <img className = 'heart-image' src = {heart.content_url} /> }
                </div>}
                 <p className = 'heart-text'>{heart.content}</p>
                     <h3>Expires in :</h3>

@@ -70,3 +70,10 @@ h3{
     background-color: #d5506c;
     cursor: pointer;
 }
+
+.heart-image{
+    height: auto;
+    width: auto;
+    max-width: 600px;
+    max-height: 600px;
+}

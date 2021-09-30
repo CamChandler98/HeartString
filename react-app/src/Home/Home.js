@@ -27,14 +27,17 @@ const Home = () => {
         if (recentHeartsState){
             let recentArr = [...Object.values(recentHeartsState).sort((a,b) => {
 
-
                 return Date.parse(b.created_at) - Date.parse(a.created_at)
 
             })]
 
             setRecentHearts([...recentArr])
         }
-    }, [recentHeartsState])
+
+        if(popularHeartsState){
+            setPopularHearts([...Object.values(popularHeartsState)])
+        }
+    }, [recentHeartsState, popularHeartsState])
 
 
     const switchFocus = (e,target) => {
@@ -80,7 +83,7 @@ const Home = () => {
         </div>
         <div className = 'focus-content'>
             {focus === 'recent' && <HeartsPage hearts = {recentHearts} />}
-            {focus === 'popular' && <HeartsPage hearts = {popularHeartsState} />}
+            {focus === 'popular' && <HeartsPage hearts = {popularHearts} />}
         </div>
         </div>
     )

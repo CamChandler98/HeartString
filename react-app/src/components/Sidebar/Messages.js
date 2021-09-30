@@ -5,7 +5,7 @@ import { goGetConversation } from "../../store/messages"
 import Message from "./Message"
 
 
-const Messages = ({partner}) => {
+const Messages = ({partner, setPartner}) => {
     let {socketio} = useSocket()
 
     const dispatch = useDispatch()
@@ -18,18 +18,16 @@ const Messages = ({partner}) => {
 
     useEffect(() => {
         if(partner && user){
-
         dispatch(goGetConversation(user.id, partner.id))
     }
     }, [partner,user])
 
     useEffect(() => {
-        socketio.on(`hi` , async () => {
-            window.alert('HELLO')
-        })
+        if(user && partner){
+ 
         socketio.on(`message_to_${user.id}_from_${partner.id}`, async () => {
             dispatch(goGetConversation(user.id, partner.id))
-        })
+        })}
     },[user,partner])
     const messagesState = useSelector( state => state.messages.conversation)
 
@@ -38,14 +36,21 @@ const Messages = ({partner}) => {
         setMessages([...Object.values(messagesState)])
     }, [messagesState])
 
+    useEffect(() => {
+        return () => {
+            console.log('clearing')
+            setPartner()
+            setMessages([])
+        }
+    },[user])
 
     return (
         <>
 
-            {messages && messages.map( (message, i) => {
+            {messages && partner && messages.map( (message, i) => {
 
 
-                return (<Message message_user_id = {message.sender_id}content = {message.content} user_pic = {message.sender_pic} key = {message.id} user_id = {user.id} />)
+                return (<Message message_user_id = {message.sender_id}content = {message.content} user_pic = {message.sender_pic} key = {message.id} user_id = {user?.id} />)
             })}
 
         </>

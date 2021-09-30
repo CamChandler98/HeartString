@@ -1,3 +1,5 @@
+import { REMOVE_USER } from "./session"
+
 const GET = 'messages/GET'
 const GET_CON = 'messages/GET_CONVERSATION'
 const SEND = 'messages/SEND'
@@ -70,9 +72,15 @@ export const goSendMessage = (content,user_id,receiver_id) => async (dispatch) =
 
     if(res.ok){
         let data = await res.json()
-
         dispatch(sendMessage(data))
         return 'ok'
+    }else if (res.status < 500){
+        const data = await res.json()
+        if(data.errors){
+            return data.errors
+        }
+    }else{
+        return ['An error occurred. Please try again']
     }
 }
 
@@ -97,7 +105,7 @@ const messageReducer = (state = initialState, action ) => {
             return{...state, all:{...action.messages}}
         case GET_CON:
             return {...state,
-                all:{...state.all, ...action.messages},
+                all:{ ...action.messages},
 
                 conversation: {...action.messages}
         }
@@ -121,6 +129,8 @@ const messageReducer = (state = initialState, action ) => {
                 delete deleteState.conversation[action.message_id]
             }
             return {...deleteState}
+        case REMOVE_USER:
+            return {...initialState}
         default:
             return {...state}
     }
