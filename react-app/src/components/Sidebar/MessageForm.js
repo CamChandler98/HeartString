@@ -30,6 +30,8 @@ const MessageForm = ({partner}) => {
 
             socketio.emit('connection_message', addy)
             socketio.emit('notify-user', {data: partner.id})
+        }else{
+            setErrors({...res})
         }
 
         setContent({...initialState})
@@ -40,7 +42,6 @@ const MessageForm = ({partner}) => {
     }
 
     const updateContent = (e) => {
-
            content.content = e.target.innerText
     }
 
@@ -57,7 +58,7 @@ const MessageForm = ({partner}) => {
             <div className = 'message-box'>
             <div className = 'message-input'
                 id = 'send-message-input'
-                innerText = {content.content}
+                innertext = { errors.content ? errors.content[0] : content.content}
                 onInput = {updateContent}
                 value = {content.content}
                 contentEditable = {true}

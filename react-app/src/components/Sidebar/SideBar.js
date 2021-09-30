@@ -25,7 +25,7 @@ const SideBar = () => {
              {sessionUser &&
                 <>
                 <h2>Your Connections</h2>
-                <UserConnections setPartner = {setPartner} />
+                <UserConnections partner = {partner} setPartner = {setPartner} />
                 </>
             }
             {!sessionUser &&

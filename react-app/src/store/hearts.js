@@ -175,7 +175,6 @@ export const goUpdateHeart = ({heart_id,content_url,time_to_live, user_id, conte
         const data = await res.json()
 
         if(data.errors){
-            console.log('sending these error to the edit heart form ->>', data.errors)
             return data.errors
         }
     }else{
@@ -196,7 +195,7 @@ export const goDeleteHeart = (heart_id) => async (dispatch) => {
 }
 
 
-const initialState = {profile:{}, recent: {}, popular: [], all: {} ,session_user:{}}
+const initialState = {profile:{}, recent: {}, popular: {}, all: {} ,session_user:{}}
 
 
 
@@ -210,7 +209,11 @@ const heartReducer = (state = initialState, action) =>{
         case GET_SESSION:
             return {...state, session_user: {...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_POPULAR:
-            return {...state, popular :[...action.hearts]}
+            let popularHearts = action.hearts.reduce((accum, heart) => {
+                accum[heart.id] = heart
+                return accum
+            }, {})
+            return {...state, popular: {...popularHearts}}
         case GET_RECENT:
             return {...state, recent :{...action.hearts}, all: {...state.all, ...action.hearts}}
         case GET_ONE:
@@ -228,12 +231,12 @@ const heartReducer = (state = initialState, action) =>{
             let newState = {
                 ...state,
                 session_user: {...state.session_user},
-                home: {...state.home},
+                recent: {...state.recent},
                 all: {...state.all}
             }
 
-            if(newState.home[action.heart_id]){
-                delete newState.home[action.heart_id]
+            if(newState.recent[action.heart_id]){
+                delete newState.recent[action.heart_id]
             }
 
             if(newState.session_user[action.heart_id]){
@@ -243,8 +246,13 @@ const heartReducer = (state = initialState, action) =>{
             if(newState.all[action.heart_id]){
                 delete newState.all[action.heart_id]
             }
+            if(newState.popular[action.heart_id]){
+                delete newState.popular[action.heart_id]
+            }
 
             return {...newState}
+
+
 
         case CLOSE:
             let closeState = {...state}

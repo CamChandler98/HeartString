@@ -24,7 +24,7 @@ const Messages = ({partner, setPartner}) => {
 
     useEffect(() => {
         if(user && partner){
-        socketio.emit('join' , {channel : `${user.id}`})
+ 
         socketio.on(`message_to_${user.id}_from_${partner.id}`, async () => {
             dispatch(goGetConversation(user.id, partner.id))
         })}

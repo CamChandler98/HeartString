@@ -119,3 +119,9 @@
     cursor: pointer;
     background-color: #424b5029;
 }
+
+.heart-noti img {
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
+}

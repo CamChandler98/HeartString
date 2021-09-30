@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { connect, useDispatch, useSelector } from "react-redux"
 import { getConnections } from "../../store/connections"
 import NotificationCount from "./NotificationCount"
 import { getMessageNotifications, goSeeMessageNotification } from "../../store/notification"
 import { useSocket } from "../../context/Socket"
 
 
-const UserConnections = ({setPartner}) => {
+const UserConnections = ({setPartner , partner}) => {
     const [connections, setConnections] = useState([])
     const [notifications, setNotifications] = useState([])
-
+    const[activeConnection, setActiveConnection] = useState(null)
     const {socketio} = useSocket()
 
     const dispatch = useDispatch()
@@ -63,6 +63,7 @@ const UserConnections = ({setPartner}) => {
 
     const handlePartner = (connection) => {
         setPartner(connection)
+        setActiveConnection(connection)
     }
 
 
@@ -90,7 +91,7 @@ const UserConnections = ({setPartner}) => {
                                 <div className = 'connected-top'>
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
-                            <NotificationCount notifications = {notificationsState} connection_id ={connection.id} />
+                           { partner && <NotificationCount notifications = {notificationsState}  clearNotifications = {clearNotification} partner ={partner} user = {sessionUser} connection_id ={connection.id} /> }
                             </div>
                             </div>
                         </div>
