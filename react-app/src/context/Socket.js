@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 
 let endPoint = 'http://localhost:5000';
 
-let socketio = io().connect('http://127.0.0.1:5000/')
+let socketio = io().connect('https://127.0.0.1:5000/')
 
 
 
