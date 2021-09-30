@@ -35,13 +35,12 @@ const SideBar = () => {
             }
             </div>
             <div className = 'message-container'>
-                {partner && sessionUser &&<>
+                {partner && <>
                 <div className = 'messages-partner-header'>
                     <img className = 'connected-profile-picture' src = {partner.profile_picture_url} />
                     <h2>{partner.display_name}</h2>
                 </div>
-
-                <Messages partner = {partner} />
+                <Messages partner = {partner} setPartner = {setPartner} />
                 <MessageForm partner = {partner} />
                 </>
                 }

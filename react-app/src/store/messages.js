@@ -1,3 +1,5 @@
+import { REMOVE_USER } from "./session"
+
 const GET = 'messages/GET'
 const GET_CON = 'messages/GET_CONVERSATION'
 const SEND = 'messages/SEND'
@@ -97,7 +99,7 @@ const messageReducer = (state = initialState, action ) => {
             return{...state, all:{...action.messages}}
         case GET_CON:
             return {...state,
-                all:{...state.all, ...action.messages},
+                all:{ ...action.messages},
 
                 conversation: {...action.messages}
         }
@@ -121,6 +123,8 @@ const messageReducer = (state = initialState, action ) => {
                 delete deleteState.conversation[action.message_id]
             }
             return {...deleteState}
+        case REMOVE_USER:
+            return {...initialState}
         default:
             return {...state}
     }

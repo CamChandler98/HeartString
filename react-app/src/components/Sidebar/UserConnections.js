@@ -43,7 +43,7 @@ const UserConnections = ({setPartner}) => {
         }
     }
 
-    const connectionState = useSelector (state => state.connections)
+    let connectionState = useSelector (state => state.connections)
 
     useEffect(() => {
         if(connectionState){
@@ -58,6 +58,15 @@ const UserConnections = ({setPartner}) => {
         setPartner(connection)
     }
 
+
+    useEffect(() => {
+
+        return() => {
+            setPartner()
+            setConnections([])
+            connectionState = {}
+        }
+    }, [sessionUser])
     return (
         <>
 

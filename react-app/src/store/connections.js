@@ -1,3 +1,5 @@
+import { REMOVE_USER } from "./session"
+
 const GET = 'connections/GET'
 const ADD = 'connections/ADD'
 const DELETE = 'connections/DELTE'
@@ -79,7 +81,8 @@ const connectionReducer = (state = initialState , action) => {
                 delete newState[action.connectionId]
             }
             return{...newState}
-
+        case REMOVE_USER:
+            return {...initialState}
         default:
             return {...state}
     }
