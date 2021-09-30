@@ -19,7 +19,7 @@
 
 .text-container{
     flex-direction: column;
-    width: 200px;
+    width: 180px;
     word-wrap: break-word;
     padding: 1% 4% 5px ;
     border-radius: 20px;;
