@@ -11,7 +11,7 @@ const ModalStyle = styled.div`
     position: fixed;
     top: 0;
     right: 0;
-    left: 0;
+    left: -175px;
     bottom: 0;
     display: flex;
     justify-content: center;

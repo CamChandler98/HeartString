@@ -33,14 +33,14 @@ const UserConnections = ({setPartner}) => {
 
     return (
         <>
-        <div>
+
             {sessionUser && connections &&
                 connections.map(connection => {
                     return(
                         <div
                         onClick = {() => handlePartner(connection)}
                         key = {connection.id}>
-                            <div className = 'connected-header'>
+                            <div className = 'connected-header bar-connection'>
                                 <div className = 'connected-top'>
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
@@ -50,7 +50,6 @@ const UserConnections = ({setPartner}) => {
                     )
                 })
             }
-        </div>
         </>
     )
 }

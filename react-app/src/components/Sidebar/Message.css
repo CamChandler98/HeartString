@@ -1,0 +1,41 @@
+.message{
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    padding: 1%;
+    margin-top: 10px;
+    margin-bottom: 10px;;
+}
+
+.right-message{
+    flex-direction: row-reverse;
+    margin-left: auto;
+}
+.left-message{
+    flex-direction: row;
+    margin-right: auto;
+}
+
+
+.text-container{
+    flex-direction: column;
+    width: 180px;
+    word-wrap: break-word;
+    padding: 1% 4% 5px ;
+    border-radius: 20px;;
+}
+.text-container p{
+    margin-bottom: 5px;;
+    color: #424648;
+}
+.right-message p{
+    text-align: right;
+}
+
+.right-message .text-container {
+    background: #fdc1ce38;
+}
+
+.left-message .text-container {
+    background: #a2e8d93d;
+}

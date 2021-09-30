@@ -93,3 +93,11 @@
     flex-direction: column;
     margin-right: auto;
 }
+
+
+.session-connections > h2{
+    font-size: 16px;
+    padding: 5px;
+    border-bottom: 1px solid #393e412e;
+    text-align: center;
+}

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const NavStyle = styled.nav`
 
     background-color: #fb6888;
-    min-width: 70px;
+    min-width: 100px;
     padding: 2%;
     display: flex;
     flex-direction: column;

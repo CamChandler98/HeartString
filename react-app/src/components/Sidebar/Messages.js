@@ -40,15 +40,15 @@ const Messages = ({partner}) => {
 
 
     return (
-        <div>
-            <div>
-            {messages && messages.map( message => {
+        <>
+
+            {messages && messages.map( (message, i) => {
 
 
-                return (<Message content = {message.content} user_pic = {message.sender_pic} key = {message.id} />)
+                return (<Message message_user_id = {message.sender_id}content = {message.content} user_pic = {message.sender_pic} key = {message.id} user_id = {user.id} />)
             })}
-            </div>
-        </div>
+
+        </>
     )
 
 }
