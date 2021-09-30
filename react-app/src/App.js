@@ -5,7 +5,7 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-
+import packageJson from '../package.json';
 import { authenticate } from './store/session';
 import AuthReminder from './components/Nav/AuthReminder';
 import Home from './Home/Home';
@@ -15,7 +15,7 @@ import Alert from './components/Alert/Alert';
 import { useAlert } from './context/Alert';
 import SideBar from './components/Sidebar/SideBar';
 import SplashPage from './components/SplashPage/SplashPage';
-
+console.log(packageJson.proxy)
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

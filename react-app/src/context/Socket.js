@@ -1,14 +1,11 @@
 import { createContext, useContext } from "react";
 import { io } from 'socket.io-client';
 
-let endPoint
 
 
-if(process.env.NODE_ENV !== 'production'){
-    endPoint = 'http://localhost:5000';
-}else{
-    endPoint =   'http://localhost:58620';
-}
+
+   let endPoint = 'http://localhost:5000';
+
 let socketio = io(endPoint)
 
 
