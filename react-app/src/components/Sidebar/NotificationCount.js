@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getMessageNotifications } from "../../store/notification"
 
 
-const NotificationCount = ({connection_id, user_id}) => {
+const NotificationCount = ({connection_id, notifications}) => {
     const [notifications, setNotifications] = useState([])
 
 

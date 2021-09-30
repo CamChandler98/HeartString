@@ -6,16 +6,28 @@ import NotificationCount from "./NotificationCount"
 
 const UserConnections = ({setPartner}) => {
     const [connections, setConnections] = useState([])
+
+
+
+
     const dispatch = useDispatch()
 
     const sessionUser = useSelector (state => state.session.user)
 
+    let notificationsState = useSelector( state => state.notifications.messages)
+
+
+    useEffect(() => {
+        dispatch(getMessageNotifications(sessionUser.id))
+    },[sessionUser])
 
     useEffect(() => {
         if(sessionUser){
             dispatch(getConnections(sessionUser.id))
         }
     }, [dispatch, sessionUser])
+
+
 
     const connectionState = useSelector (state => state.connections)
 
@@ -45,8 +57,8 @@ const UserConnections = ({setPartner}) => {
                                 <div className = 'connected-top'>
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
-                            </div>
                             <NotificationCount user_id = {sessionUser.id} connection_id ={connection.id} />
+                            </div>
                             </div>
                         </div>
                     )
