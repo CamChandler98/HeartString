@@ -15,12 +15,12 @@ import Alert from './components/Alert/Alert';
 import { useAlert } from './context/Alert';
 import SideBar from './components/Sidebar/SideBar';
 import SplashPage from './components/SplashPage/SplashPage';
-console.log(packageJson.proxy)
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const {showAlert} = useAlert()
    const sessionUser = useSelector(state => state.session.user)
+   console.log(packageJson.proxy, 'hi from heroku')
 
   useEffect(() => {
     (async() => {
