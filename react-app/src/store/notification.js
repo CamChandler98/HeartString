@@ -14,7 +14,7 @@ const seeNotification = (notification_id) => ({
 })
 export const getMessageNotifications = (user_id) => async (dispatch) => {
 
-    let res = await fetch(`/api/message/user/${user_id}`)
+    let res = await fetch(`/api/notifications/message/user/${user_id}`)
 
     if (res.ok){
         let data = await res.json()
@@ -24,7 +24,7 @@ export const getMessageNotifications = (user_id) => async (dispatch) => {
 }
 
 export const goSeeMessageNotification = (notification_id) => async (dispatch) => {
-    let res = await fetch(`/api/message/${notification_id}`, {
+    let res = await fetch(`/api/notifications/message/${notification_id}`, {
         method: 'DELETE'
     })
 

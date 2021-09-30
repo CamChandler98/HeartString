@@ -12,16 +12,14 @@ const NotificationCount = ({connection_id, user_id}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if(!notificationsState){
             dispatch(getMessageNotifications(user_id))
-        }
-    },[notificationsState])
+    },[connection_id])
 
     useEffect(() => {
         if(notificationsState){
-            setNotifications(Object.values.filter(notification => +notification.sender_id === +connection_id))
+            setNotifications(Object.values(notificationsState).filter(notification => +notification.sender_id === +connection_id))
         }
-    })
+    },[notificationsState])
 
     return (
         <>
@@ -37,4 +35,4 @@ const NotificationCount = ({connection_id, user_id}) => {
 }
 
 
-export default NotificationCount()
+export default NotificationCount
