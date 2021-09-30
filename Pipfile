@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 click = "==7.1.2"
-gunicorn = {extras = ["eventlet"], version = "*"}
+gunicorn = "==20.1.0"
 itsdangerous = "==2.0.1"
 python-dotenv = "==0.14.0"
 six = "==1.15.0"
@@ -29,7 +29,7 @@ boto3 = "*"
 flask-apscheduler = "*"
 faker = "*"
 flask-socketio = "*"
-eventlet = "*"
+eventlet = "==0.30.2"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
