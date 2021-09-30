@@ -1,7 +1,7 @@
 .side-bar{
     background-color: #fb6888;
-    min-width: 200px;
-    max-width: 250px;
+    min-width: 300px;
+    /* max-width: 400px; */
     padding: 1.5%;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,8 @@
     position:relative;
     margin-left: 0;
     justify-content: space-evenly;
+    z-index: 3;
+    /* margin-right: 100px;; */
 }
 
 
@@ -16,7 +18,7 @@
     display: flex;
     flex-direction: column;
     min-width: 80%;
-    padding: 2% 9%;
+    padding: 2% 5%;
     min-height: 200px;
     max-height: 300px;
     background-color: whitesmoke;
@@ -30,7 +32,7 @@
     flex-direction: column;
     min-width: 80%;
     max-width: 80%;
-    padding: 2% 9%;
+    padding: 2% 4%;
     min-height: 300px;
     height: 400px;
     background-color: whitesmoke;
@@ -59,7 +61,6 @@
 
 .message-form{
     display: flex;
-    width: 150px;
     /* border: 1px solid black; */
     margin: 1% -10px -10px;
     margin-top:auto;
@@ -67,16 +68,17 @@
     background: #b8ebe075;
     color: #292d30;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 .message-input{
     display:flex;
     flex-direction: column;
-    min-height: 40px;
-    width: 140px;
+    min-height: 25px;
+    width: 200px;
     border-radius: 20px;
     color: #292d30;
     padding: 5%;
+    /* justify-content: flex-end; */
 }
 .message-input:hover{
     cursor: pointer;
@@ -86,6 +88,34 @@
 }
 
 .send-icon{
+    margin-top: auto;
+    padding-bottom: 7px;;
     height: 30px;
     width: 30px;
+}
+
+.messages-partner-header{
+    display: flex;
+    padding: 3%;
+    border-bottom: 1px solid #393e412e;
+    margin-left: -11px;
+    margin-right: -27px;
+    align-items: center;
+    gap: 10px;
+}
+
+.messages-partner-header h2{
+    font-size: 16px;
+    color: #292d30;
+    font-weight: bold;
+}
+
+.bar-connection{
+    border-radius: 10px;;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.bar-connection:hover{
+    cursor: pointer;
+    background-color: #424b5029;
 }
