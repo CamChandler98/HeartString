@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useSocket } from "../../context/Socket"
 import { goGetConversation } from "../../store/messages"
+import { getMessageNotifications } from "../../store/notification"
 import Message from "./Message"
 
 
@@ -32,7 +33,16 @@ const Messages = ({partner, setPartner}) => {
 
             console.log('looks like a message from', user.id, 'to,' , partner.id)
             await dispatch(goGetConversation(user.id, partner.id))
-        })}
+        })
+        socketio.on(`notification_to_${user.id}`, async () => {
+            console.log('got a noti!')
+            dispatch(getMessageNotifications(user.id))
+        })
+    }
+
+
+
+
 
         return  async () => {
             console.log('looks like this' , socketio)

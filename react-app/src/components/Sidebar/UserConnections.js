@@ -18,11 +18,11 @@ const UserConnections = ({setPartner , partner}) => {
 
 
 
-    // useEffect(() => {
-    //     dispatch(getMessageNotifications(sessionUser.id))
-    // },[sessionUser])
+    useEffect(() => {
+        dispatch(getMessageNotifications(sessionUser.id))
+    },[sessionUser])
 
-    // let notificationsState = useSelector( state => state.notifications.messages)
+    let notificationsState = useSelector( state => state.notifications.messages)
 
 
 
@@ -32,23 +32,24 @@ const UserConnections = ({setPartner , partner}) => {
         }
     }, [dispatch, sessionUser])
 
-    // useEffect(() => {
-    //     if(sessionUser){
-    //         socketio.on(`notification_to_${sessionUser.id}`, async () => {
-    //             dispatch(getMessageNotifications(sessionUser.id))
-    //         })
-    //     }
-    // }, [sessionUser])
-    // const clearNotification = (connection_id) => {
-    //     for(let noti in notificationsState){
-    //         let currentNotification = notificationsState[noti]
+    useEffect(() => {
+        if(sessionUser){
+            socketio.on(`notification_to_${sessionUser.id}`, async () => {
+                console.log('got a noti!')
+                dispatch(getMessageNotifications(sessionUser.id))
+            })
+        }
+    }, [sessionUser])
+    const clearNotification = (connection_id) => {
+        for(let noti in notificationsState){
+            let currentNotification = notificationsState[noti]
 
-    //         if(+currentNotification.sender_id === +connection_id){
+            if(+currentNotification.sender_id === +connection_id){
 
-    //             dispatch(goSeeMessageNotification(currentNotification.id))
-    //         }
-    //     }
-    // }
+                dispatch(goSeeMessageNotification(currentNotification.id))
+            }
+        }
+    }
 
     let connectionState = useSelector (state => state.connections)
 
@@ -63,7 +64,7 @@ const UserConnections = ({setPartner , partner}) => {
 
     const handlePartner = (connection) => {
         setPartner(connection)
-        // setActiveConnection(connection)
+        setActiveConnection(connection)
     }
 
 
@@ -84,14 +85,14 @@ const UserConnections = ({setPartner , partner}) => {
                         <div
                         onClick = {() => {
                             setPartner(connection)
-                            // clearNotification(connection.id)
+                            clearNotification(connection.id)
                         }}
                         key = {connection.id}>
                             <div className = 'connected-header bar-connection'>
                                 <div className = 'connected-top'>
                             <img className ='connected-profile-picture' src = {connection.profile_picture_url} alt ={`connection ${connection.username} profile picture`}/>
                             <p>{connection.display_name}</p>
-                           {/* { partner && <NotificationCount notifications = {notificationsState}  partner ={partner} user = {sessionUser} connection_id ={connection.id} /> } */}
+                           { partner && <NotificationCount notifications = {notificationsState} clearNotification = {clearNotification} partner ={partner} user = {sessionUser} connection_id ={connection.id} /> }
                             </div>
                             </div>
                         </div>
