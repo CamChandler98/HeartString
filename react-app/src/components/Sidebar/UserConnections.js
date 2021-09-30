@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { getConnections } from "../../store/connections"
 import NotificationCount from "./NotificationCount"
 import { getMessageNotifications, goSeeMessageNotification } from "../../store/notification"
+import { useSocket } from "../../context/Socket"
 
 
 const UserConnections = ({setPartner}) => {
     const [connections, setConnections] = useState([])
     const [notifications, setNotifications] = useState([])
 
-
+    const {socketio} = useSocket()
 
     const dispatch = useDispatch()
 
@@ -31,7 +32,13 @@ const UserConnections = ({setPartner}) => {
         }
     }, [dispatch, sessionUser])
 
-
+    useEffect(() => {
+        if(sessionUser){
+            socketio.on(`notification_to_${sessionUser.id}`, async () => {
+                dispatch(getMessageNotifications(sessionUser.id))
+            })
+        }
+    })
     const clearNotification = (connection_id) => {
         for(let noti in notificationsState){
             let currentNotification = notificationsState[noti]

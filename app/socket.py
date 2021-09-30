@@ -29,4 +29,5 @@ def send_message(json):
 @socketio.on('notify-user')
 def send_notification(data):
     noti = f'notification_to_{data["data"]}'
+    print('sending this noti', noti)
     socketio.emit(noti)
