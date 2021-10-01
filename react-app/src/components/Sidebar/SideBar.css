@@ -57,6 +57,7 @@
     margin-top: auto;
     margin-bottom: auto;
     text-align: center;
+    color: #393e41
 }
 
 .message-form{
@@ -124,4 +125,11 @@
     height: 24px;
     width: 24px;
     object-fit: contain;
+}
+
+.empty-text{
+    color: #393e41;
+    margin-top: 2%;
+    font-size: 20px;
+    text-align: center;
 }

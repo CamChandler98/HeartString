@@ -24,7 +24,7 @@ def seed_base_messages():
 
     message = Message(
         user_id = 1,
-        content = 'message test',
+        content = 'Hi Julion!',
         receiver_id = 2,
         created_at = datetime.now(),
     )
@@ -32,7 +32,7 @@ def seed_base_messages():
 
     message2 = Message(
         user_id = 2,
-        content = 'message test 2',
+        content = 'Hi Romeow!',
         receiver_id = 1,
         created_at = datetime.now(),
     )

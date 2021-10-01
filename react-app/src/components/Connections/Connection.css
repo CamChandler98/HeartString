@@ -101,3 +101,18 @@
     border-bottom: 1px solid #393e412e;
     text-align: center;
 }
+
+
+.no-connected-hearts{
+    gap: 20px;
+    text-align: center;
+}
+
+.no-connected-hearts h1{
+    font-size: 44px;
+   color: #393e41;
+}
+.no-connected-hearts h2{
+    font-size: 26px;
+    color: #393e41;
+}

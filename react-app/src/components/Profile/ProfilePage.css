@@ -45,3 +45,25 @@
 #delete-profile-button:hover{
     background-color: rgb(175, 76, 76);
 }
+
+
+.dummy-header{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    color:#393e41   ;
+}
+
+.dummy-top h1{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.dummy-top h2{
+    font-size: 18px;
+}
+
+
+.dummy-header p {
+    font-size:  24px;;
+}
