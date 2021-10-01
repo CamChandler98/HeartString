@@ -34,6 +34,9 @@ const NavStyle = styled.nav`
         justify-content: center;
         align-items:center;
         flex-direction: column;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+         user-select: none;
     }
     .nav-item:hover{
         cursor:pointer;

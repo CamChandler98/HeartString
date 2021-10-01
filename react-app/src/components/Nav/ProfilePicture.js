@@ -15,6 +15,9 @@ const ProfilePictureStyle = styled.div`
         width:70px;
         height:70px;
         background-color: white;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+         user-select: none;
     }
 
     .profile-pic:hover{
