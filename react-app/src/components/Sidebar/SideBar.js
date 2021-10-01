@@ -34,7 +34,7 @@ const SideBar = () => {
                 </p>
             }
             </div>
-            <div className = 'message-container'>
+           {sessionUser && <div className = 'message-container'>
                 {partner && <>
                 <div className = 'messages-partner-header'>
                     <img className = 'connected-profile-picture' src = {partner.profile_picture_url} />
@@ -44,7 +44,13 @@ const SideBar = () => {
                 <MessageForm partner = {partner} />
                 </>
                 }
-            </div>
+                {!partner && sessionUser &&
+                <p className=' connection-auth-reminder'>
+                    Click on a connection to send them a message! Don't have any? Try sending a heart out there, I'm sure you'll make a friend.
+                </p>
+                }
+
+            </div> }
         </div>
     )
 }
