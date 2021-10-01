@@ -8,6 +8,7 @@ import CreateHeartModal from '../Hearts/CreateHeartModal';
 import  NavStyle  from './NavStyle';
 import ProfilePicture from './ProfilePicture';
 import homeIcon from '../graphics/home-icon.svg'
+import About from './About';
 // import './NavBar.css'
 
 
@@ -20,6 +21,9 @@ const NavBar = () => {
         <NavStyle>
             <div className = 'nav-items'>
                 <div className = 'top'>
+                    <div className = 'nav-item'>
+                        <About />
+                    </div>
                         <div className = 'nav-item'>
                     <Link to = '/home'>
                         <img src = {homeIcon} alt = 'home' />
@@ -28,7 +32,6 @@ const NavBar = () => {
                      </div>
                     <div className = 'nav-item'>
                     {sessionUser && <><CreateHeartModal /><span>Send Heart</span></>}
-
                     </div>
                     </div>
             <div className = 'bottom'>

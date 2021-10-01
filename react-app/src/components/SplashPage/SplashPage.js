@@ -24,6 +24,9 @@ const SplashPage = () => {
                 <h2>
                    Put your heart out there and make a connection
                 </h2>
+                <p className = 'intro-copy'>
+                    HeartString is a different kind of social media. Post anonymous Hearts and see which replies move you!. From the replies on your Hearts you can choose one person to connect with! Once connected you can see each others Hearts
+                </p>
             </div>
             <div className = 'auth-links'>
                 <LoginFormModal />
