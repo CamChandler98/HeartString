@@ -73,8 +73,8 @@ h3{
 }
 
 .heart-image{
-    height: auto;
-    width: auto;
-    max-width: 600px;
-    max-height: 600px;
+
+   width: 600px;
+   height: 600px;
+   object-fit: cover;
 }

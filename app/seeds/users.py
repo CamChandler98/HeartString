@@ -36,7 +36,7 @@ def seed_users(seeds=75):
 
         display_name = fake_japanese.romanized_name() if isJapanese else fake_english.name_nonbinary()
 
-        email = fake_japanese.email() if isJapanese else fake_english.user_name()
+        email = fake_japanese.email() if isJapanese else fake_english.email()
 
         password = 'password'
 

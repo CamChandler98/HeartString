@@ -6,6 +6,7 @@ import { getUser } from "../../store/profile"
 import ConnectionPage from "../Connections/ConnectionPage"
 import HeartsPage from "../Hearts/HeartsPage"
 import DeleteProfileModal from "./DeleteProfileModal"
+import DummyHeart from "./DummyHeart"
 import ManageProfileModal from "./ManageProfileModal"
 import './ProfilePage.css'
 
@@ -49,14 +50,19 @@ const Profile = () => {
     }, [profileUser,sessionUser])
 
     const switchFocus = (e,target) => {
+        console.log('checking', focus, target)
         if(focus === target) return
         console.log('switching focus to ', target)
         let barItems = document.querySelectorAll('.bar-item')
-        for( let item of barItems){
+
+        console.log(barItems , 'before')
+        for(let item of barItems){
             item.classList.remove('focused')
         }
-        e.target.classList.add('focused')
 
+
+        e.currentTarget.classList.add('focused')
+        console.log(barItems, 'after')
         switch(target){
             case 'open':
                 setFocus('open')
@@ -139,9 +145,10 @@ const Profile = () => {
             </div>
         </div>
         <div className = 'focus-content'>
-            {hearts && focus === 'open' && <HeartsPage hearts = {openHearts} />}
+            {hearts.length >= 1 && focus === 'open' && <HeartsPage hearts = {openHearts} />}
+            {hearts.length < 1 && focus === 'open' && <DummyHeart />}
             {hearts && focus === 'closed' && <HeartsPage hearts = {closedHearts} />}
-            {hearts && connectedHearts && focus === 'connected' && <ConnectionPage connectedHearts = {connectedHearts} />}
+            {focus === 'connected' && <ConnectionPage connectedHearts = {connectedHearts} />}
         </div>
         </div>
     )
