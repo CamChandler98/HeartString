@@ -78,3 +78,10 @@ h3{
    height: 600px;
    object-fit: cover;
 }
+
+
+.heart-container:hover{
+    cursor: pointer;
+    background-color: rgba(238, 225, 225, 0.412);
+    transform: scale(1.01);
+}
