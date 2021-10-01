@@ -5,7 +5,7 @@ import createHeartIcon from '../graphics/create-heart-icon.svg'
 import { goAddHeart } from '../../store/hearts';
 
 // import './CreateHeartForm.css'
-import CreateHeartFormStyle from './CreateHeartFormStyle';
+
 
 
 const CreateHeartForm = ({closeModal}) => {
@@ -91,7 +91,7 @@ const CreateHeartForm = ({closeModal}) => {
                        <img src = {tempImgUrl ? tempImgUrl: createHeartIcon}
                        className = {tempImgUrl? 'heart-image': 'camera-button'}
                        onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : null}
-                       alt = 'submit-photo'/>
+                       alt = 'submit heart'/>
 
                        {tempImgUrl &&
                        <button className ='remove-button'

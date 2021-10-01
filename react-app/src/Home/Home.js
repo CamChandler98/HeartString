@@ -17,7 +17,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(goGetPopularHearts())
         dispatch(goGetRecentHearts())
-    },[])
+    },[dispatch])
 
     const popularHeartsState = useSelector(state => state.hearts.popular)
     const recentHeartsState = useSelector(state => state.hearts.recent)

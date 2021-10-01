@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useState } from 'react';
-import createHeartIcon from '../graphics/create-heart-icon.svg'
-import { goAddHeart, goUpdateHeart } from '../../store/hearts';
 
-// import './CreateHeartForm.css'
-import CreateHeartFormStyle from './CreateHeartFormStyle';
+import { goUpdateHeart } from '../../store/hearts';
+
+
 
 
 const EditHeartForm = ({closeModal, content, heart_id, content_url, time_to_live}) => {
@@ -40,12 +39,7 @@ const EditHeartForm = ({closeModal, content, heart_id, content_url, time_to_live
     const updateContent = (e) => {
         setContent(e.target.value)
     }
-    const removeImage = (e) => {
-        setContentUrl(null)
-    }
-    const restoreImgae = (e) => {
-        setContentUrl(content_url)
-    }
+
     const reset = () =>{
         setContent('')
         setErrors(errorObj)

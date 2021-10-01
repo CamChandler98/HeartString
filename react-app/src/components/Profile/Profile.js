@@ -146,7 +146,7 @@ const Profile = () => {
         </div>
         <div className = 'focus-content'>
             {hearts.length >= 1 && focus === 'open' && <HeartsPage hearts = {openHearts} />}
-            {hearts.length < 1 && focus === 'open' && <DummyHeart open = {true}/>}
+            {hearts && hearts.length < 1 && focus === 'open' && <DummyHeart open = {true}/>}
             {hearts.length >= 1 && focus === 'closed' && <HeartsPage hearts = {closedHearts} />}
             {hearts.length < 1 && focus === 'closed' && <DummyHeart open = {false}/>}
             {focus === 'connected' && <ConnectionPage connectedHearts = {connectedHearts} />}

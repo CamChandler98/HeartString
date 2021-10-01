@@ -1,5 +1,5 @@
 import { useEffect, useState,  } from 'react'
-import { Link, Redirect } from 'react-router-dom';
+
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
 import EditHeartModal from './EditHeartFormModal'
