@@ -79,7 +79,7 @@ const UserConnections = ({setPartner , partner}) => {
     return (
         <>
 
-            {sessionUser && connections  &&
+            {sessionUser && connections.length >= 1  &&
                 connections.map(connection => {
                     return(
                         <div
@@ -98,6 +98,12 @@ const UserConnections = ({setPartner , partner}) => {
                         </div>
                     )
                 })
+            }
+
+            {sessionUser && connections.length < 1 &&
+                <h1 className = 'empty-text'>
+                    looks like you dont have any connections. Try sending out a heart
+                </h1>
             }
         </>
     )

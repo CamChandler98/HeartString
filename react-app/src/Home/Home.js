@@ -47,7 +47,7 @@ const Home = () => {
         for( let item of barItems){
             item.classList.remove('focused')
         }
-        e.target.classList.add('focused')
+        e.currentTarget.classList.add('focused')
 
         switch(target){
             case 'popular':
