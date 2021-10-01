@@ -39,6 +39,7 @@
 .edit-reply-form button:hover{
     background-color: #e1d175;
     transform: scale(1.02);
+    cursor: pointer;
 }
 
 .errors-list{

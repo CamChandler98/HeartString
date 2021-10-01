@@ -61,6 +61,7 @@ h3{
 }
 .edit-heart button:hover{
     background-color: #dac75f;
+    cursor: pointer;
 }
 .delete-heart button{
     background-color: #fb6888;

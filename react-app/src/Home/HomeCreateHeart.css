@@ -47,6 +47,9 @@
     align-items:center;
     padding-left: 1%;
 }
+.add-heart-photo:hover{
+    cursor: pointer;
+}
 input[type="file"]{
     display: none;
 }
@@ -65,6 +68,10 @@ input[type="file"]{
     width: 300px;
     font-size: 14px;
     text-align: center;
+}
+
+.time-dropdown:hover{
+    cursor: pointer;
 }
 .time-to-live{
     margin-right: auto;
@@ -109,6 +116,7 @@ input[type="file"]{
 .submit:hover{
     background-color: #e1d175;
     transform: scale(1.02);
+    cursor: pointer;
 }
 
 .errors-list{
@@ -136,5 +144,6 @@ input[type="file"]{
 }
 
 .remove-button:hover{
-    background-color: #e95d7c
+    background-color: #e95d7c;
+    cursor: pointer
 }

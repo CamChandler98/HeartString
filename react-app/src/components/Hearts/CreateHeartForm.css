@@ -69,6 +69,10 @@ input[type="file"]{
     align-items:center;
 }
 
+.add-heart-photo:hover{
+    cursor: pointer;
+}
+
 .time-dropdown{
     background-color: transparent;
     color:#393e41;
@@ -79,6 +83,10 @@ input[type="file"]{
     width: 300px;
     font-size: 24px;
     text-align: center;
+}
+
+.time-dropdown:hover{
+    cursor: pointer;
 }
 
 .time-dropdown option{

@@ -37,6 +37,7 @@
 
 .create-reply-form button:hover{
     background-color: #e1d175;
+    cursor: pointer;
     transform: scale(1.02);
 }
 

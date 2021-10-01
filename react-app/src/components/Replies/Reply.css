@@ -24,6 +24,8 @@
 }
 .edit-reply button:hover{
     background-color: #dac75f;
+    cursor: pointer;
+
 }
 .delete-reply button{
     background-color: #fb6888;
