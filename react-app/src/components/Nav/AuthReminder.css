@@ -10,6 +10,8 @@
     padding: 1%;
     justify-content:stretch;
     align-items: center;
+    z-index: 5
+
 }
 
 .reminder-text{

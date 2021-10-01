@@ -79,3 +79,10 @@
     background-color: #d2c163;
     transform: scale(1.03);
 }
+
+
+.intro-copy{
+    color: #393e41;
+    font-size: 20px;
+    font-weight: 400;
+}
