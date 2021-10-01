@@ -15,7 +15,7 @@ const NotificationCount = ({connection_id,  partner,  notifications, clearNotifi
     },[notifications])
 
     useEffect(() => {
-        if(partner.id === connection_id){
+        if(partner?.id === connection_id){
             setShowNotification(false)
             clearNotification(connection_id)
         }else{
