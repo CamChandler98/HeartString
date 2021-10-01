@@ -77,7 +77,7 @@
     font-weight: bold;
     border:none
 }
-.connect-button button:hover{
+.connect-button:hover{
     background-color: #d5506c;
     cursor: pointer;
 }
