@@ -1,134 +1,60 @@
-# Flask React Project
+# HeartString
 
-This is the starter for the Flask React project.
+## A little about HeartString
 
-## Getting started
+HeartString is a full-stack application meant to invoke the feeling of connecting with a stranger. Users of HeartString can post anonymous Hearts to express how they are feeling. Other user can respond to Heart you have posted, and if one of the responses moves you, you can choose to connect with them. Users you are connected to can see 
+which hearts posted are yours. Try to make as many connections as you can!
 
-1. Clone this repository (only this branch)
+## Development
+* You can read more about the project using the wiki located at: https://github.com/CamChandler98/HeartString/wiki
+* To start a development environment:
+    1. Clone the repository at: https://github.com/CamChandler98/HeartString
+    2. Run the command "npm install" from the react-app directory in your terminal to install dependencies for the front end
+    3. Run the command "pipenv install" from the root directory in your terminal to install dependencies for the backend and create a virtual environment.
+    4. Run the command "flask run" from the root directory to start the backend server.
+    5. Run the command "npm start" from the react-app directory to start the frontend server.
+    6. Navigate to the localhost port specified in config/index.js
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## Technologies Used
+* Javascript
+* HTML/CSS
+* Reactjs
+* Redux
+* Python
+* Node.js
+* Flask
+* SQLAlchemy
+* Socket.io
+* Postgres
+* Heroku
+* AWS S3
+* Git/Github
+* Faker
 
-2. Install dependencies
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+## Application Architecture 
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+HeartString is built using a React frontend , a Flask web framework , Flask-SQLAlchemy ORM and Postgresql RDMS 
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+### React
 
-   ```bash
-   pipenv shell
-   ```
+React's components and state management greatly eases the process of translating new features into intuitive UI elements
 
-   ```bash
-   flask db upgrade
-   ```
+### Redux 
 
-   ```bash
-   flask seed all
-   ```
+Redux is used as a store for HeartString as well as being used to make API calls to the backend server
 
-   ```bash
-   flask run
-   ```
+### Socket.io
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+Socket.io to emit and listen to messages on the frontend and the backend. THis allows user to receive notifications when they are messaged and to instantly message each other.
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+### Flask and Flask-SQLAlchemy
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+Flask and Flask-SQLAlchemy greatly increased the speed of developent by easing the process of writing API routes and database models
 
-## Deploy to Heroku
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+## Conclusion and Next Steps
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+HeartString has all the functionality it needs to be a serviceable app , but there are a lot of times where it feels very empty. Future plans include features that allow users to connect in other ways such as short surveys and live group activity. The style is something I am greatly satisfied by, but the transitions between different components can be very jarring so in the future it would also be great to include some animation to ease those transitions
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
-
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
