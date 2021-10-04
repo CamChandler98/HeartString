@@ -5,7 +5,7 @@ from wtforms.fields.simple import TextField
 
 class MessageForm(FlaskForm):
 
-    content = TextField('content', validators = [DataRequired(message='please fill in a message'), Length(min= 1, max = 1000)])
+    content = TextField('content')
 
     user_id = IntegerField('user_id', validators= [DataRequired()])
 
