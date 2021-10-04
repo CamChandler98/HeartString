@@ -12,6 +12,7 @@ import Alert from './components/Alert/Alert';
 import { useAlert } from './context/Alert';
 import SideBar from './components/Sidebar/SideBar';
 import SplashPage from './components/SplashPage/SplashPage';
+import PageNotFound from './components/util/PageNotFound';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path ='/hearts/:heartId'>
             <HeartPage />
+        </Route>
+        <Route >
+            <PageNotFound />
         </Route>
       </Switch>
         {showAlert&& <Alert/>}
