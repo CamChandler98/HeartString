@@ -5,6 +5,8 @@
 HeartString is a full-stack application meant to invoke the feeling of connecting with a stranger. Users of HeartString can post anonymous Hearts to express how they are feeling. Other user can respond to Heart you have posted, and if one of the responses moves you, you can choose to connect with them. Users you are connected to can see 
 which hearts posted are yours. Try to make as many connections as you can!
 
+Live: https://heart-string.herokuapp.com/
+
 ## Development
 * You can read more about the project using the wiki located at: https://github.com/CamChandler98/HeartString/wiki
 * To start a development environment:
