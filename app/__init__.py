@@ -60,8 +60,8 @@ Migrate(app, db)
 # set heart status on interval
 from app.tasks import heart_expiration
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(heart_expiration,'interval',minutes=3)
-# sched.start()
+sched.add_job(heart_expiration,'interval',minutes=20)
+sched.start()
 
 
 # Application Security
