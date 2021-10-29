@@ -74,12 +74,15 @@ input[type="file"]{
     font-size: 14px;
     text-align: center;
 }
+.time-dropdown:hover{
+    cursor:pointer;
+}
 .time-to-live{
     margin-right: auto;
-    margin-left: 27.7%;
+    margin-left: 24.7%;
 }
 .time-to-live h2{
-    align-text:center
+    text-align: center;
     color:#393e41;
     font-size: 14px;
 }
@@ -112,7 +115,7 @@ input[type="file"]{
     margin-bottom: 0px;
     margin-top: -40px;
     margin-left: auto;
-    margin-right: 11.6%;
+    margin-right: 22.6%;
     padding: 1.01% 1%
 }
 .submit:hover{
@@ -146,7 +149,8 @@ input[type="file"]{
 }
 
 .remove-button:hover{
-    background-color: #e95d7c
+    background-color: #e95d7c;
+    cursor: pointer;
 }
 `
 
