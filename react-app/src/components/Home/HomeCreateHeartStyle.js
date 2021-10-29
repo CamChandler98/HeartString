@@ -39,6 +39,10 @@ const HomeCreateHeartFormStyle = styled.div`
     width: 60px;
     height: 60px;
 }
+.camera-button:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
 .heart-image{
     padding-top:2%;
     width:60px;
@@ -114,6 +118,7 @@ input[type="file"]{
 .submit:hover{
     background-color: #e1d175;
     transform: scale(1.02);
+    cursor: pointer;
 }
 
 .errors-list{
