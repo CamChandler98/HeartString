@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import CreateHeartForm from "../components/Hearts/CreateHeartForm"
-import HeartsPage from "../components/Hearts/HeartsPage"
-import { goGetPopularHearts, goGetRecentHearts } from "../store/hearts"
+import CreateHeartForm from "../Hearts/CreateHeartForm"
+import HeartsPage from "../Hearts/HeartsPage"
+import { goGetPopularHearts, goGetRecentHearts } from "../../store/hearts"
 import './Home.css'
 import HomeCreateHeartFormStyle from "./HomeCreateHeartStyle"
+import HomeCreateHeartForm from "./HomeCreateHeartForm"
+
 // import './HomeCreateHeart.css'
 const Home = () => {
 
@@ -68,7 +70,7 @@ const Home = () => {
         </div>
         <HomeCreateHeartFormStyle>
         <div className = 'create-heart-form-container'>
-        <CreateHeartForm />
+        <HomeCreateHeartForm />
         </div>
         </HomeCreateHeartFormStyle>
         <div className = 'tab-bar'>

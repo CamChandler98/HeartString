@@ -5,7 +5,7 @@ import NavBar from './components/Nav/NavBar';
 import packageJson from '../package.json';
 import { authenticate } from './store/session';
 import AuthReminder from './components/Nav/AuthReminder';
-import Home from './Home/Home';
+import Home from './components/Home/Home.js'
 import Profile from './components/Profile/Profile.js';
 import HeartPage from './components/Hearts/HeartPage';
 import Alert from './components/Alert/Alert';
