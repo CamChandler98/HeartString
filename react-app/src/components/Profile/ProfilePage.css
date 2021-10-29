@@ -32,6 +32,11 @@
     width: 20px;
 }
 
+
+.edit-icon:hover, .delete-icon:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
 .manage-profile-buttons{
     margin-top:20px;
     display: flex;

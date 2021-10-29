@@ -39,6 +39,10 @@ const HomeCreateHeartFormStyle = styled.div`
     width: 60px;
     height: 60px;
 }
+.camera-button:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
 .heart-image{
     padding-top:2%;
     width:60px;
@@ -70,12 +74,15 @@ input[type="file"]{
     font-size: 14px;
     text-align: center;
 }
+.time-dropdown:hover{
+    cursor:pointer;
+}
 .time-to-live{
     margin-right: auto;
-    margin-left: 27.7%;
+    margin-left: 24.7%;
 }
 .time-to-live h2{
-    align-text:center
+    text-align: center;
     color:#393e41;
     font-size: 14px;
 }
@@ -108,12 +115,13 @@ input[type="file"]{
     margin-bottom: 0px;
     margin-top: -40px;
     margin-left: auto;
-    margin-right: 11.6%;
+    margin-right: 22.6%;
     padding: 1.01% 1%
 }
 .submit:hover{
     background-color: #e1d175;
     transform: scale(1.02);
+    cursor: pointer;
 }
 
 .errors-list{
@@ -141,7 +149,8 @@ input[type="file"]{
 }
 
 .remove-button:hover{
-    background-color: #e95d7c
+    background-color: #e95d7c;
+    cursor: pointer;
 }
 `
 
