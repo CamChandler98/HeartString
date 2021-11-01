@@ -40,13 +40,6 @@ const Messages = ({partner, setPartner}) => {
         })
     }
 
-
-
-
-
-        return  async () => {
-            console.log('looks like this' , socketio)
-        }
     },[user,partner])
 
     useEffect(() => {

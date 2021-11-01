@@ -23,8 +23,6 @@ def connect():
 @socketio.on('connection_message')
 def send_message(json):
     addy = f'message_to_{json["sent_to"]}_from_{json["sent_from"]}'
-    print('Hey got the message, what should I do with it?')
-    print('the adress looks like this', addy)
     socketio.emit(addy)
 @socketio.on('notify-user')
 def send_notification(data):
