@@ -55,6 +55,37 @@ Socket.io to emit and listen to messages on the frontend and the backend. THis a
 
 Flask and Flask-SQLAlchemy greatly increased the speed of developent by easing the process of writing API routes and database models
 
+## Key Feautres
+- Users can create Hearts
+
+<p align="center">
+  <img src="https://github.com/CamChandler98/HeartString/blob/main/Visualization/Screencap/HeartString-Create-Heart.gif?raw=true" alt="HeartString create heart">
+</p>
+
+- Users can reply to hearts
+
+<p align="center">
+  <img src="https://github.com/CamChandler98/HeartString/blob/main/Visualization/Screencap/HeartString-Reply.gif?raw=true" alt="HeartString create reply">
+</p>
+
+- Users can make a connection from replies on their hearts
+
+<p align="center">
+  <img src="https://github.com/CamChandler98/HeartString/blob/main/Visualization/Screencap/HeartString-Connect.gif?raw=true" alt="HeartString create connection">
+</p>
+
+- Users can message their connections!
+
+<p align="center">
+  <img src="https://github.com/CamChandler98/HeartString/blob/main/Visualization/Screencap/HeartString-Message.gif?raw=true" alt="HeartString send message">
+</p>
+
+- Users have a profile page where they can edit or delete their profile, as well as veiw all of their hearts and connections
+
+<p align="center">
+  <img src="https://github.com/CamChandler98/HeartString/blob/main/Visualization/Screencap/HeartString-Profile.png?raw=true" alt="HeartString profile">
+</p>
+
 ## Code Snippets
 
 ### Modular component for deleteing resources
