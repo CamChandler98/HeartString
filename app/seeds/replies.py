@@ -20,7 +20,7 @@ def gen_text():
 
     return content
 
-def seed_base_replies(seeds = 25):
+def seed_base_replies(seeds = 6):
     romeo_hearts = Heart.query.filter(Heart.user_id == 1).all()
     juliet_hearts =  Heart.query.filter(Heart.user_id == 2).all()
 

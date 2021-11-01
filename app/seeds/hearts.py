@@ -23,7 +23,7 @@ def gen_text():
 
     return content
 
-def seed_base_hearts(seeds = 26):
+def seed_base_hearts(seeds = 10):
 
     for i in range(seeds):
 
