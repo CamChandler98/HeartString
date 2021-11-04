@@ -39,7 +39,7 @@ export const getMessageNotifications = (user_id) => async (dispatch) => {
 
 }
 
-export const getHeartNotifications = (user_id) => (dispatch) => {
+export const getHeartNotifications = (user_id) => async (dispatch) => {
     let res = await fetch(`/api/notifications/message/user/${user_id}`)
 
     if(res.ok){
