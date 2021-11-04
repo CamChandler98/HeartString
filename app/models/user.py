@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
     sent_notifications = db.relationship("MessageNotification", back_populates = 'user', foreign_keys = 'MessageNotification.user_id')
     received_notifications = db.relationship("MessageNotification", back_populates = 'user', foreign_keys = 'MessageNotification.user_id')
 
-    reply_notifications = db.relationship('ReplyNotification', back_populates )
+    reply_notifications = db.relationship('ReplyNotification', back_populates = 'user', foreign_keys = 'ReplyNotification.user_id' )
 
 
     @property
