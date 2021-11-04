@@ -1,8 +1,11 @@
 from datetime import datetime
+from random import randrange
 from flask_apscheduler import APScheduler
 from app import app, db
-from app.models import Heart
+from app.models import Heart, User
+from faker import Faker
 
+from app.seeds.hearts import gen_text, get_ttl
 
 
 def heart_expiration():
@@ -27,3 +30,26 @@ def heart_expiration():
             except Exception as e:
                 db.session.rollback()
     return 'hearts updated'
+
+
+def demo_user_post():
+    with app.app_context():
+        romeowHeart = Heart(
+            content = gen_text(),
+            content_url = None,
+            time_to_live = get_ttl(),
+            user_id = 1,
+            open = True
+        )
+
+        julionHeart = Heart(
+            content = gen_text(),
+            content_url = None,
+            time_to_live = get_ttl(),
+            user_id = 1,
+            open = True
+        )
+
+        db.session.add(romeowHeart)
+        db.session.add(julionHeart)
+        db.session.commit()
