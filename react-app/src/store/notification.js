@@ -1,11 +1,19 @@
 import { REMOVE_USER } from "./session"
 
 const GET_MESSAGE = 'notifications/GET_MESSAGE'
+
+const GET_HEART = 'notifications/GET_HEART'
+
 const SEE = 'notifications/SEE'
 
 
 const getMessage = (notifications) => ({
     type: GET_MESSAGE,
+    notifications
+})
+
+const getHeart = (notifications) => ({
+    type: GET_HEART,
     notifications
 })
 
@@ -23,6 +31,16 @@ export const getMessageNotifications = (user_id) => async (dispatch) => {
         dispatch(getMessage(data))
     }
 
+}
+
+export const getHeartNotifications = (user_id) => (dispatch) => {
+    let res = await fetch(`/api/notifications/message/user/${user_id}`)
+
+    if(res.ok){
+        let data = await res.json()
+        dispatch(getHeart(data))
+    }
+    
 }
 
 export const goSeeMessageNotification = (notification_id) => async (dispatch) => {
