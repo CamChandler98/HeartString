@@ -4,8 +4,9 @@ const GET_MESSAGE = 'notifications/GET_MESSAGE'
 
 const GET_HEART = 'notifications/GET_HEART'
 
-const SEE = 'notifications/SEE'
+const SEE_MESSAGE = 'notifications/SEE_MESSAGE'
 
+const SEE_HEART = 'notifications/SEE_HEART'
 
 const getMessage = (notifications) => ({
     type: GET_MESSAGE,
@@ -18,8 +19,13 @@ const getHeart = (notifications) => ({
 })
 
 
-const seeNotification = (notification_id) => ({
-    type: SEE,
+const seeMessageNotification = (notification_id) => ({
+    type: SEE_MESSAGE,
+    notification_id
+})
+
+const seeHeartNotification = (notification_id) => ({
+    type: SEE_HEART,
     notification_id
 })
 export const getMessageNotifications = (user_id) => async (dispatch) => {
@@ -40,7 +46,7 @@ export const getHeartNotifications = (user_id) => (dispatch) => {
         let data = await res.json()
         dispatch(getHeart(data))
     }
-    
+
 }
 
 export const goSeeMessageNotification = (notification_id) => async (dispatch) => {
@@ -51,7 +57,19 @@ export const goSeeMessageNotification = (notification_id) => async (dispatch) =>
     if(res.ok){
         const data = await res.json()
 
-        dispatch(seeNotification(data.deleted))
+        dispatch(seeMessageNotification(data.deleted))
+    }
+}
+
+export const goSeeHeartNotification = (notification_id) => async (dispatch) => {
+    let res = await fetch(`/api/notifications/reply/${notification_id}`, {
+        method: 'DELETE'
+    })
+
+    if(res.ok){
+        const data = await res.json()
+
+        dispatch(seeHeartNotification(data.deleted))
     }
 }
 
@@ -65,10 +83,21 @@ export default function notificationReducer(state = initialState, action) {
                 ...state,
                 messages: {...action.notifications}
             }
-        case SEE: {
-            let deleteState = {...state, messages: {...state.messages}}
+        case GET_HEART:
+            return {
+                ...state,
+                hearts: {...action.notifications}
+            }
+        case SEE_MESSAGE: {
+            let deleteState = {...state, messages: {...state.messages},}
             delete deleteState.messages[action.notification_id]
             return {...deleteState}
+
+        }
+        case SEE_HEART: {
+            let deleteHeartState = {...state, hearts: {...state.hearts},}
+            delete deleteHeartState.hearts[action.notification_id]
+            return {...deleteHeartState}
 
         }
         case REMOVE_USER: {
