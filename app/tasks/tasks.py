@@ -55,8 +55,8 @@ def demo_user_post():
         db.session.commit()
 
 def rand_user_post():
+    
     with app.app_context():
-
         user_id = randrange(3,70)
 
         userHeart = Heart(
