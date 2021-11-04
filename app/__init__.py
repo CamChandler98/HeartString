@@ -63,7 +63,7 @@ from app.tasks import heart_expiration
 from app.tasks import demo_user_post
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(heart_expiration,'interval',minutes=20)
-sched.add_job(demo_user_post, 'interval', seconds = 10)
+sched.add_job(demo_user_post, 'interval', minutes = 30)
 sched.add_job(demo_user_post, 'interval', hours = 1)
 sched.start()
 
