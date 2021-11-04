@@ -17,7 +17,7 @@ class ReplyNotification (db.Model):
 
     user = db.relationship("User", back_populates = 'received_reply_notifications', foreign_keys='ReplyNotification.user_id')
 
-    heart = db.relationship("Heart", back_populates = 'sent_notifications', foreign_keys='ReplyNotification.heart_id')
+    heart = db.relationship("Heart", back_populates = 'reply_notifications', foreign_keys='ReplyNotification.heart_id')
 
 
     def to_dict(self):

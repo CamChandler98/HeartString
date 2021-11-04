@@ -34,6 +34,8 @@ class Heart(db.Model):
 
     replies = db.relationship('Reply', cascade="all,delete", back_populates = 'heart', foreign_keys = '[Reply.heart_id]')
 
+    reply_notifications = db.relationship('ReplyNotification', back_populates = 'heart', foreign_keys = 'ReplyNotification.heart_id')
+
     @property
     def expiry(self):
         return int(self.created_at.timestamp() + self.time_to_live)
