@@ -9,6 +9,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
+
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
@@ -59,8 +60,11 @@ Migrate(app, db)
 
 # set heart status on interval
 from app.tasks import heart_expiration
+from app.tasks import demo_user_post
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(heart_expiration,'interval',minutes=20)
+sched.add_job(demo_user_post, 'interval', minutes = 30)
+sched.add_job(demo_user_post, 'interval', hours = 1)
 sched.start()
 
 
