@@ -1,8 +1,10 @@
+import random
+from faker import Faker
+
 from app.seeds.utils import assign_from_dict, gen_count_dict
 from app.models.user import User
-import faker
 from app.models import Heart, db
-from faker import Faker
+
 Faker.seed(0)
 fake = Faker()
 fake_latin = Faker('la')
@@ -10,7 +12,6 @@ fake_english = Faker('en-US')
 fake_japanese = Faker('ja-JP')
 
 
-import random
 def get_ttl():
     return random.choice([86400,300,3600])
 def get_image_url():

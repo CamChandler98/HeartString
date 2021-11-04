@@ -1,5 +1,5 @@
 from datetime import datetime
-from random import randrange
+from random import random, randrange
 from flask_apscheduler import APScheduler
 from app import app, db
 from app.models import Heart, User
@@ -52,4 +52,20 @@ def demo_user_post():
 
         db.session.add(romeowHeart)
         db.session.add(julionHeart)
+        db.session.commit()
+
+def rand_user_post():
+    with app.app_context():
+
+        user_id = randrange(3,70)
+
+        userHeart = Heart(
+            content = gen_text(),
+            content_url = None,
+            time_to_live = get_ttl(),
+            user_id = user_id,
+            open = True
+        )
+
+        db.session.add(userHeart)
         db.session.commit()
