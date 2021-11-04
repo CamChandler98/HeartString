@@ -68,6 +68,7 @@ sched.add_job(heart_expiration,'interval',minutes=20)
 sched.add_job(demo_user_post, 'interval', minutes = 30)
 sched.add_job(demo_user_post, 'interval', hours = 1)
 sched.add_job(rand_user_post, 'interval', minutes = 32)
+sched.add_job(rand_user_post, 'interval', minutes = 45)
 sched.start()
 
 
