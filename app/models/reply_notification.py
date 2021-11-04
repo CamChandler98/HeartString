@@ -15,7 +15,7 @@ class ReplyNotification (db.Model):
     created_at = db.Column(db.DateTime(), default= now)
 
 
-    user = db.relationship("User", back_populates = 'received_reply_notifications', foreign_keys='ReplyNotification.user_id')
+    user = db.relationship("User", back_populates = 'reply_notifications', foreign_keys='ReplyNotification.user_id')
 
     heart = db.relationship("Heart", back_populates = 'reply_notifications', foreign_keys='ReplyNotification.heart_id')
 

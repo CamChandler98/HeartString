@@ -34,7 +34,7 @@ def user_reply_notifications(id):
 
 
 @notification_routes.route('/reply/<int:id>', methods = ['DELETE'])
-def see_notification(id):
+def see_reply_notification(id):
     notification = ReplyNotification.query.get(id)
 
     db.session.delete(notification)
