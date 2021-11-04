@@ -7,6 +7,7 @@ from flask import Blueprint, request
 from sqlalchemy.sql.operators import op
 
 from app.models import Heart, Reply, db
+from app.models.reply_notification import ReplyNotification
 
 reply_routes = Blueprint('replies', __name__)
 
@@ -44,15 +45,25 @@ def create_reply():
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        heart = Heart.query.get(int(form.data['heart_id']))
 
         reply = Reply(
             content = form.data['content'],
             user_id = form.data['user_id'],
             heart_id = form.data['heart_id'],
         )
+
         db.session.add(reply)
         db.session.commit()
 
+        reply_notification = ReplyNotification(
+            heart_id = form.data['heart_id'],
+            user_id = heart.user_id
+        )
+
+        db.session.add(reply_notification)
+        db.session.commit()
+        
         return reply.to_dict()
 
     return{'errors': validation_errors_to_error_messages(form.errors)}, 401
