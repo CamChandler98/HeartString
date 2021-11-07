@@ -2,7 +2,7 @@ from datetime import datetime
 from random import random, randrange
 from flask_apscheduler import APScheduler
 from app import app, db
-from app.models import Heart, User
+from app.models import Heart, User, Reply
 from faker import Faker
 
 from app.seeds.hearts import gen_text, get_ttl
@@ -55,7 +55,7 @@ def demo_user_post():
         db.session.commit()
 
 def rand_user_post():
-    
+
     with app.app_context():
         user_id = randrange(3,70)
 
@@ -68,4 +68,18 @@ def rand_user_post():
         )
 
         db.session.add(userHeart)
+        db.session.commit()
+
+        reply_user_id = randrange(3,70)
+
+        while reply_user_id == user_id:
+            reply_user_id = randrange(3,70)
+
+        userReply = Reply(
+            content = gen_text(),
+            heart_id = userHeart.id,
+            user_id = reply_user_id
+        )
+
+        db.session.add(userReply)
         db.session.commit()
