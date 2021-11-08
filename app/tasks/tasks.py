@@ -34,12 +34,13 @@ def heart_expiration():
 
 def demo_user_post():
     now = datetime.now()
+    first_user_id = randrange(1,3)
     with app.app_context():
         romeowHeart = Heart(
             content = gen_text(),
             content_url = None,
             time_to_live = get_ttl(),
-            user_id = 1,
+            user_id = first_user_id,
             open = True,
             created_at = now,
             updated_at = now
@@ -50,7 +51,7 @@ def demo_user_post():
             content = gen_text(),
             content_url = None,
             time_to_live = get_ttl(),
-            user_id = 1,
+            user_id = 2 if first_user_id is 1 else 1,
             open = True,
             created_at = now,
             updated_at = now
