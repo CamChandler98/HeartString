@@ -63,6 +63,7 @@ def demo_user_post():
 def rand_user_post():
 
     with app.app_context():
+        now = datetime.now()
         user_id = randrange(3,70)
 
         userHeart = Heart(
