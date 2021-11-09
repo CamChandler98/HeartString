@@ -13,6 +13,7 @@ import { useAlert } from './context/Alert';
 import SideBar from './components/Sidebar/SideBar';
 import SplashPage from './components/SplashPage/SplashPage';
 import PageNotFound from './components/util/PageNotFound';
+import NotificationPage from './components/Notifications/NotificationPage';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -45,6 +46,9 @@ function App() {
         </Route>
         <Route path = '/users/:username' >
             <Profile />
+        </Route>
+        <Route path = '/notifications' >
+        <NotificationPage />
         </Route>
         <Route path ='/hearts/:heartId'>
             <HeartPage />
