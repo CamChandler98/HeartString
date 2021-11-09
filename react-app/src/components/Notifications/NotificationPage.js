@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 const NotificationPage = () => {
+    const [focus, setFocus] = useState('recent')
 
     const switchFocus = (e,target) => {
         if(focus === target) return
@@ -23,30 +24,23 @@ const NotificationPage = () => {
                 break;
         }
     }
-    
+
     return (
         <div className= 'home-container'>
         <div className ='home-header' >
-            <span>Home</span>
+            <span>Notifications</span>
         </div>
-        <HomeCreateHeartFormStyle>
-        <div className = 'create-heart-form-container'>
-        <HomeCreateHeartForm />
-        </div>
-        </HomeCreateHeartFormStyle>
         <div className = 'tab-bar'>
             <div className ='bar-item focused yellow'
             onClick = {(e)=> switchFocus(e,'recent')}>
-            <span>recent</span>
+            <span>Messages</span>
             </div>
             <div className ='bar-item blue '
             onClick = {(e)=> switchFocus(e,'popular')}>
-            <span>popular</span>
+            <span>Replies</span>
             </div>
         </div>
         <div className = 'focus-content'>
-            {focus === 'recent' && <HeartsPage hearts = {recentHearts} />}
-            {focus === 'popular' && <HeartsPage hearts = {popularHearts} />}
         </div>
         </div>
     )

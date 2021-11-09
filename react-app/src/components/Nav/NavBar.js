@@ -34,11 +34,11 @@ const NavBar = () => {
                     <div className = 'nav-item'>
                     {sessionUser && <><CreateHeartModal /><span>Send Heart</span></>}
                     </div>
-                    <div className = 'nav-item'>
+                    {/* <div className = 'nav-item'>
                     {sessionUser &&
                         <NotificationNav />
                     }
-                    </div>
+                    </div> */}
                     </div>
             <div className = 'bottom'>
             {sessionUser && <ProfilePicture user = {sessionUser}/>}

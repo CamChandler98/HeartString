@@ -5,10 +5,11 @@ import './SideBar.css'
 import Messages from "./Messages"
 import MessageForm from "./MessageForm"
 import { useSocket } from "../../context/Socket"
-
-
+import notificationIcon from '../graphics/notification-nav-icon.svg'
+import connectionIcon from '../graphics/connection-icon.svg'
 const SideBar = () => {
     const [partner, setPartner] = useState()
+    const [isFocusConnection , setFocusConnections] = useState(true)
     const sessionUser = useSelector(state => state.session.user)
     const {socketio} = useSocket()
 
@@ -24,7 +25,15 @@ const SideBar = () => {
            <div className = 'session-connections'>
              {sessionUser &&
                 <>
-                <h2>Your Connections</h2>
+                <div className = 'sidebar-icons'>
+                <span>
+                    <img src = {notificationIcon} />
+                </span>
+                <span>
+                   <img src = {connectionIcon} />
+                </span>
+                </div>
+                {isFocusConnection ? <h2>Connections</h2> : <h2>Notifications</h2>}
                 <Notifications partner = {partner} setPartner = {setPartner} />
                 </>
             }

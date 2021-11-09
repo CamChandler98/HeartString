@@ -10,7 +10,7 @@
     font-size: 60px;
 }
 
-.not-found a ,h2 {
+.not-found a , .not-found h2 {
     margin-top: 20px;;
     font-size: 30px;
     text-decoration: none;

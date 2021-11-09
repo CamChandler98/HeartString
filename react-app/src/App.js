@@ -47,9 +47,9 @@ function App() {
         <Route path = '/users/:username' >
             <Profile />
         </Route>
-        <Route path = '/notifications' >
+        {/* <Route path = '/notifications' >
         <NotificationPage />
-        </Route>
+        </Route> */}
         <Route path ='/hearts/:heartId'>
             <HeartPage />
         </Route>
