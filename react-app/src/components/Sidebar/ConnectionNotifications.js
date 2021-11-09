@@ -6,7 +6,7 @@ import { getMessageNotifications, goSeeMessageNotification } from "../../store/n
 import { useSocket } from "../../context/Socket"
 
 const ConnectionNotifications = ({setPartner, partner}) => {
-    const [connections, setConnections] = useState([])
+    const [connections, setConnections] = useState()
     const [notifications, setNotifications] = useState([])
     const[activeConnection, setActiveConnection] = useState(null)
     const {socketio} = useSocket()
@@ -78,7 +78,7 @@ const ConnectionNotifications = ({setPartner, partner}) => {
     return (
         <>
 
-            {sessionUser && connections.length >= 1  &&
+            {sessionUser && connections && connections.length >= 1  &&
                 connections.map(connection => {
                     return(
                         <div
@@ -99,7 +99,7 @@ const ConnectionNotifications = ({setPartner, partner}) => {
                 })
             }
 
-            {sessionUser && connections.length < 1 &&
+            {sessionUser && connections &&connections.length === 0 &&
                 <h1 className = 'empty-text'>
                     looks like you dont have any connections. Try sending out a heart
                 </h1>

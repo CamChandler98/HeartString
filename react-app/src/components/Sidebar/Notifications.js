@@ -7,10 +7,10 @@ import { useSocket } from "../../context/Socket"
 import ConnectionNotifications from "./ConnectionNotifications"
 
 
-const Notifications = ({setPartner , partner}) => {
+const Notifications = ({setPartner , partner, isFocusConnection }) => {
     return (
         <>
-        <ConnectionNotifications setPartner = {setPartner} partner = {partner} />
+        {isFocusConnection && <ConnectionNotifications setPartner = {setPartner} partner = {partner} />}
         </>
     )
 }

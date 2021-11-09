@@ -26,15 +26,15 @@ const SideBar = () => {
              {sessionUser &&
                 <>
                 <div className = 'sidebar-icons'>
-                <span>
+                <span onClick = { () => setFocusConnections(false)}>
                     <img src = {notificationIcon} />
                 </span>
-                <span>
+                <span onClick = { () => setFocusConnections(true)} >
                    <img src = {connectionIcon} />
                 </span>
                 </div>
                 {isFocusConnection ? <h2>Connections</h2> : <h2>Notifications</h2>}
-                <Notifications partner = {partner} setPartner = {setPartner} />
+                <Notifications partner = {partner} setPartner = {setPartner} isFocusConnection = {isFocusConnection} />
                 </>
             }
             {!sessionUser &&
