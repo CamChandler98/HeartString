@@ -6,7 +6,7 @@ import { getMessageNotifications, goSeeMessageNotification } from "../../store/n
 import { useSocket } from "../../context/Socket"
 
 
-const UserConnections = ({setPartner , partner}) => {
+const Notifications = ({setPartner , partner}) => {
     const [connections, setConnections] = useState([])
     const [notifications, setNotifications] = useState([])
     const[activeConnection, setActiveConnection] = useState(null)
@@ -109,4 +109,4 @@ const UserConnections = ({setPartner , partner}) => {
     )
 }
 
-export default UserConnections
+export default Notifications

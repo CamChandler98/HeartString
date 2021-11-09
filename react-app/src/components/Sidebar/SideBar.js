@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import UserConnections from "./UserConnections"
+import Notifications from "./Notifications"
 import './SideBar.css'
 import Messages from "./Messages"
 import MessageForm from "./MessageForm"
@@ -25,7 +25,7 @@ const SideBar = () => {
              {sessionUser &&
                 <>
                 <h2>Your Connections</h2>
-                <UserConnections partner = {partner} setPartner = {setPartner} />
+                <Notifications partner = {partner} setPartner = {setPartner} />
                 </>
             }
             {!sessionUser &&
