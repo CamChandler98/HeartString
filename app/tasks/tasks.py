@@ -33,21 +33,27 @@ def heart_expiration():
 
 
 def demo_user_post():
+    first_user_id = randrange(1,3)
     with app.app_context():
         romeowHeart = Heart(
             content = gen_text(),
             content_url = None,
             time_to_live = get_ttl(),
-            user_id = 1,
-            open = True
+            user_id = first_user_id,
+            open = True,
+            created_at = datetime.now(),
+            updated_at = datetime.now()
+
         )
 
         julionHeart = Heart(
             content = gen_text(),
             content_url = None,
             time_to_live = get_ttl(),
-            user_id = 1,
-            open = True
+            user_id = 2 if first_user_id is 1 else 1,
+            open = True,
+            created_at = datetime.now(),
+            updated_at = datetime.now()
         )
 
         db.session.add(romeowHeart)
@@ -64,7 +70,9 @@ def rand_user_post():
             content_url = None,
             time_to_live = get_ttl(),
             user_id = user_id,
-            open = True
+            open = True,
+            created_at = datetime.now(),
+            updated_at = datetime.now()
         )
 
         db.session.add(userHeart)
@@ -78,7 +86,9 @@ def rand_user_post():
         userReply = Reply(
             content = gen_text(),
             heart_id = userHeart.id,
-            user_id = reply_user_id
+            user_id = reply_user_id,
+            created_at = datetime.now() ,
+            updated_at = datetime.now()
         )
 
         db.session.add(userReply)
