@@ -11,6 +11,7 @@ const Notifications = ({setPartner , partner, isFocusConnection }) => {
     return (
         <>
         {isFocusConnection && <ConnectionNotifications setPartner = {setPartner} partner = {partner} />}
+        
         </>
     )
 }

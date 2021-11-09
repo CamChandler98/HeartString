@@ -11,6 +11,7 @@ class ReplyNotification (db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     heart_id = db.Column(db.Integer(), db.ForeignKey('hearts.id'))
+    reply_snip = db.Colemn(db.String)
     seen = db.Column(db.Boolean(), default= False)
     created_at = db.Column(db.DateTime(), default= now)
 
@@ -25,5 +26,6 @@ class ReplyNotification (db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "heart_id": self.heart_id,
+            "reply_snip": self.reply_snip,
             "seen": self.seen
         }
