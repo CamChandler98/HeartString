@@ -21,7 +21,7 @@ const HeartNotifications = () => {
     }, [sessionUser])
 
     useEffect(() => {
-        if(Object.keys(notifications).length > 0){
+        if(notifications){
             let temp =  {}
             for (let notification in notifications){
                 let currentNoti = notifications[notification]
@@ -45,6 +45,11 @@ const HeartNotifications = () => {
                 console.log('looking', notification)
                return( <HeartNotification heartId = {notification[0]} replies = {notification[1]} />)
             })
+           }
+           {sessionUser && heartNotifcations && heartNotifcations.length === 0 &&
+                                <h1 className = 'empty-text'>
+                                    Notifications all clear!
+                                 </h1>
            }
        </div>
     )

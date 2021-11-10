@@ -14,20 +14,26 @@ import SideBar from './components/Sidebar/SideBar';
 import SplashPage from './components/SplashPage/SplashPage';
 import PageNotFound from './components/util/PageNotFound';
 import NotificationPage from './components/Notifications/NotificationPage';
+import { getConnections } from './store/connections';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const {showAlert} = useAlert()
-   const sessionUser = useSelector(state => state.session.user)
-   console.log(packageJson.proxy, 'hi from heroku')
 
-  useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+    const sessionUser = useSelector(state => state.session.user)
 
+    useEffect(() => {
+        (async() => {
+            await dispatch(authenticate());
+            setLoaded(true);
+        })();
+    }, [dispatch]);
+
+    useEffect(() => {
+        if(sessionUser){
+            dispatch(getConnections(sessionUser.id))
+        }
+    }, [sessionUser])
   if (!loaded) {
     return null;
   }
