@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getHeartNotifications } from "../../store/notification"
+import HeartNotification from "./HeartNotification"
 
 
 const HeartNotifications = () => {
 
-    const [heartNotifcations, setHeartNotifications ] = useState({})
+    const [heartNotifcations, setHeartNotifications ] = useState([])
 
     const dispatch = useDispatch()
 
@@ -22,7 +23,6 @@ const HeartNotifications = () => {
     useEffect(() => {
         if(Object.keys(notifications).length > 0){
             let temp =  {}
-            console.log(notifications, 'okay')
             for (let notification in notifications){
                 let currentNoti = notifications[notification]
                 let heartId = currentNoti.heart_id
@@ -33,15 +33,20 @@ const HeartNotifications = () => {
                     temp[heartId].push(currentNoti.id)
                 }
             }
-            setHeartNotifications({...temp})
+            setHeartNotifications(Object.entries(temp))
         }
     }, [notifications])
 
-    console.log(notifications, 'Look! Replies!')
-
 
     return(
-        null
+       <div>
+           {heartNotifcations.length > 0 &&
+            heartNotifcations.map(notification => {
+                console.log('looking', notification)
+               return( <HeartNotification heartId = {notification[0]} replies = {notification[1]} />)
+            })
+           }
+       </div>
     )
 }
 
