@@ -135,3 +135,14 @@
     font-size: 20px;
     text-align: center;
 }
+
+.sidebar-icons{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.sidebar-icons img{
+    height: 30px;
+}

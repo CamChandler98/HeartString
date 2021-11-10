@@ -5,9 +5,8 @@ import NotificationCount from "./NotificationCount"
 import { getMessageNotifications, goSeeMessageNotification } from "../../store/notification"
 import { useSocket } from "../../context/Socket"
 
-
-const UserConnections = ({setPartner , partner}) => {
-    const [connections, setConnections] = useState([])
+const ConnectionNotifications = ({setPartner, partner}) => {
+    const [connections, setConnections] = useState()
     const [notifications, setNotifications] = useState([])
     const[activeConnection, setActiveConnection] = useState(null)
     const {socketio} = useSocket()
@@ -34,13 +33,20 @@ const UserConnections = ({setPartner , partner}) => {
 
     useEffect(() => {
         if(sessionUser){
-            socketio.on(`notification_to_${sessionUser.id}`, async () => {
-                console.log('got a noti!')
-                dispatch(getMessageNotifications(sessionUser.id))
+            socketio.on(`notification_to_${sessionUser.id}`, async (data) => {
+                console.log('got a noti!', data)
+                console.log(partner)
+                if(!partner || !partner.id === data['from'] ){
+
+                    dispatch(getMessageNotifications(sessionUser.id))
+                }else{
+                    dispatch(goSeeMessageNotification(data.id))
+                }
             })
         }
     }, [sessionUser])
     const clearNotification = (connection_id) => {
+
         for(let noti in notificationsState){
             let currentNotification = notificationsState[noti]
 
@@ -71,15 +77,15 @@ const UserConnections = ({setPartner , partner}) => {
     useEffect(() => {
 
         return() => {
-            setPartner()
-            setConnections([])
+            // setPartner()
+            // setConnections([])
             connectionState = {}
         }
     }, [sessionUser])
     return (
         <>
 
-            {sessionUser && connections.length >= 1  &&
+            {sessionUser && connections && connections.length >= 1  &&
                 connections.map(connection => {
                     return(
                         <div
@@ -100,7 +106,7 @@ const UserConnections = ({setPartner , partner}) => {
                 })
             }
 
-            {sessionUser && connections.length < 1 &&
+            {sessionUser && connections &&connections.length === 0 &&
                 <h1 className = 'empty-text'>
                     looks like you dont have any connections. Try sending out a heart
                 </h1>
@@ -109,4 +115,4 @@ const UserConnections = ({setPartner , partner}) => {
     )
 }
 
-export default UserConnections
+export default ConnectionNotifications

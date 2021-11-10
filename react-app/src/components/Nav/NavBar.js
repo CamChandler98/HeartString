@@ -9,6 +9,7 @@ import  NavStyle  from './NavStyle';
 import ProfilePicture from './ProfilePicture';
 import homeIcon from '../graphics/home-icon.svg'
 import About from './About';
+import NotificationNav from './Notifications';
 // import './NavBar.css'
 
 
@@ -33,6 +34,11 @@ const NavBar = () => {
                     <div className = 'nav-item'>
                     {sessionUser && <><CreateHeartModal /><span>Send Heart</span></>}
                     </div>
+                    {/* <div className = 'nav-item'>
+                    {sessionUser &&
+                        <NotificationNav />
+                    }
+                    </div> */}
                     </div>
             <div className = 'bottom'>
             {sessionUser && <ProfilePicture user = {sessionUser}/>}

@@ -13,20 +13,30 @@ import { useAlert } from './context/Alert';
 import SideBar from './components/Sidebar/SideBar';
 import SplashPage from './components/SplashPage/SplashPage';
 import PageNotFound from './components/util/PageNotFound';
+import NotificationPage from './components/Notifications/NotificationPage';
+import { getConnections } from './store/connections';
+import { getHeartNotifications, getMessageNotifications } from './store/notification';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const {showAlert} = useAlert()
-   const sessionUser = useSelector(state => state.session.user)
-   console.log(packageJson.proxy, 'hi from heroku')
 
-  useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+    const sessionUser = useSelector(state => state.session.user)
 
+    useEffect(() => {
+        (async() => {
+            await dispatch(authenticate());
+            setLoaded(true);
+        })();
+    }, [dispatch]);
+
+    useEffect(() => {
+        if(sessionUser){
+            dispatch(getConnections(sessionUser.id))
+            dispatch(getMessageNotifications(sessionUser.id))
+            dispatch(getHeartNotifications(sessionUser.id))
+        }
+    }, [sessionUser])
   if (!loaded) {
     return null;
   }
@@ -46,6 +56,9 @@ function App() {
         <Route path = '/users/:username' >
             <Profile />
         </Route>
+        {/* <Route path = '/notifications' >
+        <NotificationPage />
+        </Route> */}
         <Route path ='/hearts/:heartId'>
             <HeartPage />
         </Route>
