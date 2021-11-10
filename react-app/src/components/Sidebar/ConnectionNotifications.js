@@ -36,7 +36,12 @@ const ConnectionNotifications = ({setPartner, partner}) => {
             socketio.on(`notification_to_${sessionUser.id}`, async (data) => {
                 console.log('got a noti!', data)
                 console.log(partner)
-                if(!partner.id === data['from'] )dispatch(getMessageNotifications(sessionUser.id))
+                if(!partner || !partner.id === data['from'] ){
+
+                    dispatch(getMessageNotifications(sessionUser.id))
+                }else{
+                    dispatch(goSeeMessageNotification(data.id))
+                }
             })
         }
     }, [sessionUser])

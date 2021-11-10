@@ -1,8 +1,37 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import styled from "styled-components"
 import { getHeartNotifications } from "../../store/notification"
 import HeartNotification from "./HeartNotification"
 
+
+    let HeartNotificationStyle = styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: .7rem;
+
+        div{
+            display: flex;
+            align-items: center;
+            gap: .2rem;
+            border-radius: 7px;
+            padding: 2% 5%;
+        }
+        div:hover{
+            cursor: pointer;
+            background-color: #2f323526
+        }
+        div span{
+            font-size: 16px;
+            color: #393e41;
+            font-weight: bold;
+        }
+
+        div img{
+            height: 25px;
+        }
+    `
 
 const HeartNotifications = () => {
 
@@ -39,7 +68,7 @@ const HeartNotifications = () => {
 
 
     return(
-       <div>
+       <HeartNotificationStyle>
            {heartNotifcations.length > 0 &&
             heartNotifcations.map(notification => {
                 console.log('looking', notification)
@@ -51,7 +80,7 @@ const HeartNotifications = () => {
                                     Notifications all clear!
                                  </h1>
            }
-       </div>
+       </HeartNotificationStyle>
     )
 }
 

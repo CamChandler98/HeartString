@@ -72,8 +72,8 @@ export const goSendMessage = (content,user_id,receiver_id) => async (dispatch) =
 
     if(res.ok){
         let data = await res.json()
-        dispatch(sendMessage(data))
-        return 'ok'
+        dispatch(sendMessage(data['message']))
+        return ['okay', data.notification]
     }else if (res.status < 500){
         const data = await res.json()
         if(data.errors){

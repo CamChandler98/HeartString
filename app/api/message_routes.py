@@ -50,7 +50,7 @@ def create_message():
         db.session.add(message)
         db.session.commit()
 
-        return message.to_dict()
+        return {'message' : message.to_dict(), 'notification': message_notification.id }
 
     return{'errors': validation_errors_to_error_messages(form.errors)}, 401
 

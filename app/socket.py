@@ -26,6 +26,7 @@ def send_message(json):
     socketio.emit(addy)
 @socketio.on('notify-user')
 def send_notification(data):
+    print(data, 'new life blooms')
     noti = f'notification_to_{data["recp"]}'
     print('sending this noti', noti)
-    socketio.emit(noti, {'from': data['send'] })
+    socketio.emit(noti, {'from': data['send'], 'id': data['id'] })
