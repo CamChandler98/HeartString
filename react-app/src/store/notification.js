@@ -40,10 +40,11 @@ export const getMessageNotifications = (user_id) => async (dispatch) => {
 }
 
 export const getHeartNotifications = (user_id) => async (dispatch) => {
-    let res = await fetch(`/api/notifications/message/user/${user_id}`)
+    let res = await fetch(`/api/notifications/reply/user/${user_id}`)
 
     if(res.ok){
         let data = await res.json()
+        console.log(data, 'heres some replies')
         dispatch(getHeart(data))
     }
 
