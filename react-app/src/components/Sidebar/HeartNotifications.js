@@ -19,6 +19,24 @@ const HeartNotifications = () => {
         }
     }, [sessionUser])
 
+    useEffect(() => {
+        if(Object.keys(notifications).length > 0){
+            let temp =  {}
+            console.log(notifications, 'okay')
+            for (let notification in notifications){
+                let currentNoti = notifications[notification]
+                let heartId = currentNoti.heart_id
+
+                if(!temp[heartId]){
+                    temp[heartId] = [ currentNoti.id]
+                }else{
+                    temp[heartId].push(currentNoti.id)
+                }
+            }
+            setHeartNotifications({...temp})
+        }
+    }, [notifications])
+
     console.log(notifications, 'Look! Replies!')
 
 
