@@ -29,7 +29,7 @@ const MessageForm = ({partner}) => {
             let addy = {sent_from: user.id , sent_to: partner.id }
 
             socketio.emit('connection_message', addy)
-            socketio.emit('notify-user', {data: partner.id})
+            socketio.emit('notify-user', {recp: partner.id, send: user.id})
         }else{
             setErrors({...res})
         }

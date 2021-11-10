@@ -15,6 +15,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import PageNotFound from './components/util/PageNotFound';
 import NotificationPage from './components/Notifications/NotificationPage';
 import { getConnections } from './store/connections';
+import { getHeartNotifications, getMessageNotifications } from './store/notification';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -32,6 +33,8 @@ function App() {
     useEffect(() => {
         if(sessionUser){
             dispatch(getConnections(sessionUser.id))
+            dispatch(getMessageNotifications(sessionUser.id))
+            dispatch(getHeartNotifications(sessionUser.id))
         }
     }, [sessionUser])
   if (!loaded) {

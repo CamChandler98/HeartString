@@ -33,13 +33,15 @@ const ConnectionNotifications = ({setPartner, partner}) => {
 
     useEffect(() => {
         if(sessionUser){
-            socketio.on(`notification_to_${sessionUser.id}`, async () => {
-                console.log('got a noti!')
-                dispatch(getMessageNotifications(sessionUser.id))
+            socketio.on(`notification_to_${sessionUser.id}`, async (data) => {
+                console.log('got a noti!', data)
+                console.log(partner)
+                if(!partner.id === data['from'] )dispatch(getMessageNotifications(sessionUser.id))
             })
         }
     }, [sessionUser])
     const clearNotification = (connection_id) => {
+
         for(let noti in notificationsState){
             let currentNotification = notificationsState[noti]
 
@@ -70,8 +72,8 @@ const ConnectionNotifications = ({setPartner, partner}) => {
     useEffect(() => {
 
         return() => {
-            setPartner()
-            setConnections([])
+            // setPartner()
+            // setConnections([])
             connectionState = {}
         }
     }, [sessionUser])

@@ -34,9 +34,9 @@ const Messages = ({partner, setPartner}) => {
             console.log('looks like a message from', user.id, 'to,' , partner.id)
             await dispatch(goGetConversation(user.id, partner.id))
         })
-        socketio.on(`notification_to_${user.id}`, async () => {
+        socketio.on(`notification_to_${user.id}`, async (data) => {
             console.log('got a noti!')
-            dispatch(getMessageNotifications(user.id))
+            if(!partner.id === data['from'] ) dispatch(getMessageNotifications(user.id))
         })
     }
 
@@ -46,7 +46,6 @@ const Messages = ({partner, setPartner}) => {
 
         setMessages([...Object.values(messagesState)])
     }, [messagesState, partner])
-
 
     return (
         <>
