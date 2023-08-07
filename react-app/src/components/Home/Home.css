@@ -9,6 +9,8 @@
     overflow-y: scroll;
     height: 100vh;
     flex-shrink: 0;
+    flex-grow: 1;
+    align-items: center;
 
 }
 .home-container::-webkit-scrollbar{
